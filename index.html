@@ -17,18 +17,17 @@
      COMO PUBLICAR (GitHub Pages):
      1. Crie um projeto no Firebase Console (console.firebase.google.com).
      2. Build → Authentication → Começar → ative o provedor "Anônimo".
-     3. Build → Firestore Database → Criar banco de dados (modo produção).
-        Cole as regras que estão comentadas mais abaixo neste arquivo.
+     3. Build → Firestore Database → Criar banco de dados.
+        IMPORTANTE: cole as regras abaixo em Firestore → Regras → Publicar.
      4. Configurações do Projeto → Seus apps → Web (</>) → copie o
-        objeto de configuração e substitua o "firebaseConfig" no topo
-        do <script type="module"> deste arquivo.
+        objeto de configuração e substitua o "firebaseConfig" abaixo.
      5. Suba este index.html num repositório e ative o GitHub Pages.
      6. Abra a URL no celular, crie o PIN na primeira vez e pronto.
      7. Instale como app:
         - Android/Chrome: menu ⋮ → "Adicionar à tela inicial".
         - iPhone/Safari: compartilhar → "Adicionar à Tela de Início".
 
-     REGRAS DO FIRESTORE RECOMENDADAS (cole no Console):
+     REGRAS DO FIRESTORE (obrigatório — cole no Console):
      ------------------------------------------------------------
      rules_version = '2';
      service cloud.firestore {
@@ -65,101 +64,41 @@
 
 <style>
   :root{
-    --bg:#F6F3FB;
-    --bg-grad-1:#F6F3FB;
-    --bg-grad-2:#F1F7F4;
-    --surface:#FFFFFF;
-    --surface-2:#F2EDFA;
-    --surface-3:#EAE3F6;
-    --text:#2E2A3B;
-    --muted:#7A7489;
-    --borda:rgba(90,70,130,0.10);
+    --bg:#F6F3FB; --bg-grad-1:#F6F3FB; --bg-grad-2:#F1F7F4;
+    --surface:#FFFFFF; --surface-2:#F2EDFA; --surface-3:#EAE3F6;
+    --text:#2E2A3B; --muted:#7A7489; --borda:rgba(90,70,130,0.10);
     --sombra:0 8px 24px rgba(90,70,130,0.10);
     --sombra-forte:0 14px 34px rgba(90,70,130,0.16);
-    --lavanda:#C9B8E8;
-    --menta:#A8D8C8;
-    --areia:#F2E8D5;
-    --cinza-azulado:#8C9BB5;
-    --rosa:#E08AA6;
-    --rosa-clara:#F6DDE5;
-    --azul:#4A90D9;
-    --azul-claro:#D9E8F8;
-    --ok:#6FBF9B;
+    --lavanda:#C9B8E8; --menta:#A8D8C8; --areia:#F2E8D5;
+    --cinza-azulado:#8C9BB5; --rosa:#E08AA6; --rosa-clara:#F6DDE5;
+    --azul:#4A90D9; --azul-claro:#D9E8F8; --ok:#6FBF9B;
     --nav-bg:rgba(255,255,255,0.86);
   }
   html.dark{
-    --bg:#14121C;
-    --bg-grad-1:#14121C;
-    --bg-grad-2:#171A22;
-    --surface:#1E1B28;
-    --surface-2:#262233;
-    --surface-3:#302A42;
-    --text:#EFEBF7;
-    --muted:#A79FBA;
-    --borda:rgba(255,255,255,0.09);
+    --bg:#14121C; --bg-grad-1:#14121C; --bg-grad-2:#171A22;
+    --surface:#1E1B28; --surface-2:#262233; --surface-3:#302A42;
+    --text:#EFEBF7; --muted:#A79FBA; --borda:rgba(255,255,255,0.09);
     --sombra:0 8px 24px rgba(0,0,0,0.40);
     --sombra-forte:0 14px 34px rgba(0,0,0,0.55);
-    --lavanda:#8E7BC0;
-    --menta:#5E9B87;
-    --areia:#5C5344;
-    --cinza-azulado:#6E7C96;
-    --rosa:#D4789A;
-    --rosa-clara:#3A2733;
-    --azul:#5C9FE0;
-    --azul-claro:#1F2C3D;
-    --ok:#5FAE8C;
+    --lavanda:#8E7BC0; --menta:#5E9B87; --areia:#5C5344;
+    --cinza-azulado:#6E7C96; --rosa:#D4789A; --rosa-clara:#3A2733;
+    --azul:#5C9FE0; --azul-claro:#1F2C3D; --ok:#5FAE8C;
     --nav-bg:rgba(30,27,40,0.88);
   }
-
   *{ -webkit-tap-highlight-color: transparent; }
-  html,body{
-    overscroll-behavior:none;
-    touch-action: manipulation;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Nunito',system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  body{
-    min-height:100dvh;
-    background-image:linear-gradient(170deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 100%);
-    background-attachment:fixed;
-  }
+  html,body{ overscroll-behavior:none; touch-action: manipulation; background:var(--bg); color:var(--text); font-family:'Nunito',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  body{ min-height:100dvh; background-image:linear-gradient(170deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 100%); background-attachment:fixed; }
   .fonte-display{ font-family:'Playfair Display',Georgia,serif; }
 
-  /* ---------- Cartões ---------- */
-  .cartao{
-    background:var(--surface);
-    border:1px solid var(--borda);
-    border-radius:22px;
-    box-shadow:var(--sombra);
-    padding:16px;
-  }
-  .cartao-suave{
-    background:var(--surface-2);
-    border:1px solid var(--borda);
-    border-radius:18px;
-    padding:14px;
-  }
+  .cartao{ background:var(--surface); border:1px solid var(--borda); border-radius:22px; box-shadow:var(--sombra); padding:16px; }
+  .cartao-suave{ background:var(--surface-2); border:1px solid var(--borda); border-radius:18px; padding:14px; }
   .cartao-bebe{
     background:linear-gradient(135deg,var(--rosa-clara) 0%, rgba(242,232,213,0.55) 55%, rgba(168,216,200,0.45) 100%);
-    border:1px solid rgba(224,138,166,0.28);
-    border-radius:26px;
-    box-shadow:var(--sombra-forte);
-    padding:20px;
+    border:1px solid rgba(224,138,166,0.28); border-radius:26px; box-shadow:var(--sombra-forte); padding:20px;
   }
-  html.dark .cartao-bebe{
-    background:linear-gradient(135deg,#33222C 0%, #2A2733 55%, #1F2E2A 100%);
-    border-color:rgba(224,138,166,0.30);
-  }
+  html.dark .cartao-bebe{ background:linear-gradient(135deg,#33222C 0%, #2A2733 55%, #1F2E2A 100%); border-color:rgba(224,138,166,0.30); }
 
-  /* ---------- Botões ---------- */
-  .btn{
-    border-radius:16px;
-    font-weight:700;
-    transition:transform .12s ease, filter .15s ease, background .2s ease;
-    user-select:none;
-  }
+  .btn{ border-radius:16px; font-weight:700; transition:transform .12s ease, filter .15s ease, background .2s ease; user-select:none; }
   .btn:active{ transform:scale(0.96); }
   .btn-primario{ background:var(--azul); color:#fff; }
   .btn-primario:hover{ filter:brightness(1.05); }
@@ -171,102 +110,44 @@
     display:flex; align-items:center; justify-content:center; gap:10px;
     width:100%; padding:18px; margin-bottom:12px;
     border-radius:20px; font-size:1.15rem; font-weight:800;
-    background:var(--surface); color:var(--text);
-    border:2px solid var(--borda);
-    box-shadow:var(--sombra);
-    transition:transform .12s ease, border-color .2s ease;
+    background:var(--surface); color:var(--text); border:2px solid var(--borda);
+    box-shadow:var(--sombra); transition:transform .12s ease, border-color .2s ease;
   }
   .btn-pessoa:active{ transform:scale(0.97); }
   .btn-pessoa[data-pessoa="douglas"]:hover{ border-color:var(--azul); }
   .btn-pessoa[data-pessoa="mayara"]:hover{ border-color:var(--rosa); }
 
-  /* ---------- Inputs ---------- */
-  .campo{
-    width:100%;
-    background:var(--surface-2);
-    border:1.5px solid var(--borda);
-    border-radius:14px;
-    padding:12px 14px;
-    color:var(--text);
-    font-weight:600;
-    font-size:1rem;
-    outline:none;
-    transition:border-color .2s ease;
-  }
+  .campo{ width:100%; background:var(--surface-2); border:1.5px solid var(--borda); border-radius:14px; padding:12px 14px; color:var(--text); font-weight:600; font-size:1rem; outline:none; transition:border-color .2s ease; }
   .campo:focus{ border-color:var(--lavanda); }
   .campo::placeholder{ color:var(--muted); opacity:.75; font-weight:500; }
   textarea.campo{ resize:vertical; min-height:90px; line-height:1.5; }
   select.campo{ appearance:none; }
+  .pin-campo{ letter-spacing:1.1em; text-align:center; font-size:2rem; font-weight:800; padding:16px 16px 16px 32px; }
 
-  .pin-campo{
-    letter-spacing:1.1em;
-    text-align:center;
-    font-size:2rem;
-    font-weight:800;
-    padding:16px 16px 16px 32px;
-  }
-
-  /* ---------- Chips ---------- */
-  .chip{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:9px 14px; border-radius:999px;
-    background:var(--surface-2); color:var(--muted);
-    border:1.5px solid var(--borda);
-    font-weight:700; font-size:.86rem;
-    transition:all .15s ease;
-    user-select:none;
-  }
+  .chip{ display:inline-flex; align-items:center; gap:6px; padding:9px 14px; border-radius:999px; background:var(--surface-2); color:var(--muted); border:1.5px solid var(--borda); font-weight:700; font-size:.86rem; transition:all .15s ease; user-select:none; }
   .chip:active{ transform:scale(0.95); }
-  .chip.ativo{
-    background:var(--rosa); color:#fff; border-color:var(--rosa);
-  }
+  .chip.ativo{ background:var(--rosa); color:#fff; border-color:var(--rosa); }
   .chip-azul.ativo{ background:var(--azul); border-color:var(--azul); }
   .chip-verde.ativo{ background:var(--ok); border-color:var(--ok); }
 
-  /* ---------- Humor ---------- */
-  .humor-btn{
-    display:flex; flex-direction:column; align-items:center; gap:2px;
-    padding:8px 4px; border-radius:16px;
-    border:1.5px solid var(--borda); background:var(--surface-2);
-    transition:all .15s ease; flex:1; min-width:0;
-  }
+  .humor-btn{ display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 4px; border-radius:16px; border:1.5px solid var(--borda); background:var(--surface-2); transition:all .15s ease; flex:1; min-width:0; }
   .humor-btn span.emo{ font-size:1.5rem; line-height:1; }
   .humor-btn span.txt{ font-size:.62rem; font-weight:700; color:var(--muted); }
   .humor-btn:active{ transform:scale(0.94); }
   .humor-btn.ativo{ border-color:var(--lavanda); background:var(--surface-3); box-shadow:0 0 0 2px var(--lavanda) inset; }
 
-  /* ---------- Toggles ---------- */
-  .toggle-item{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:12px 14px; border-radius:16px;
-    background:var(--surface-2); border:1.5px solid var(--borda);
-    font-weight:700; transition:all .15s ease;
-  }
+  .toggle-item{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-radius:16px; background:var(--surface-2); border:1.5px solid var(--borda); font-weight:700; transition:all .15s ease; }
   .toggle-item:active{ transform:scale(0.98); }
-  .toggle-item.ativo{
-    background:var(--surface-3);
-    border-color:var(--menta);
-  }
-  .toggle-dot{
-    width:26px; height:26px; border-radius:9px;
-    border:2px solid var(--borda); display:flex; align-items:center; justify-content:center;
-    font-size:.75rem; color:transparent; transition:all .15s ease; flex:0 0 auto;
-  }
+  .toggle-item.ativo{ background:var(--surface-3); border-color:var(--menta); }
+  .toggle-dot{ width:26px; height:26px; border-radius:9px; border:2px solid var(--borda); display:flex; align-items:center; justify-content:center; font-size:.75rem; color:transparent; transition:all .15s ease; flex:0 0 auto; }
   .toggle-item.ativo .toggle-dot{ background:var(--ok); border-color:var(--ok); color:#fff; }
 
-  /* ---------- Navegação ---------- */
-  .nav-btn{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:3px; padding:8px 2px 6px; color:var(--muted);
-    font-size:.62rem; font-weight:700; transition:color .18s ease;
-    background:transparent; border:none;
-  }
+  .nav-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:8px 2px 6px; color:var(--muted); font-size:.62rem; font-weight:700; transition:color .18s ease; background:transparent; border:none; }
   .nav-btn i{ font-size:1.15rem; }
   .nav-btn.ativo{ color:var(--azul); }
   .nav-btn[data-tela="gravidez"].ativo{ color:var(--rosa); }
   .nav-btn.ativo i{ transform:translateY(-1px); }
 
-  /* ---------- Animações ---------- */
   @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
   @keyframes popIn{ 0%{opacity:0; transform:scale(.94);} 60%{opacity:1; transform:scale(1.015);} 100%{transform:scale(1);} }
   @keyframes pulsar{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.13);} }
@@ -288,134 +169,54 @@
   .stagger > *:nth-child(7){ animation-delay:.26s; }
   .stagger > *:nth-child(8){ animation-delay:.30s; }
 
-  /* ---------- Modo difícil (acolhedor) ---------- */
-  body.modo-dificil{
-    --bg-grad-1:#FBF3F6;
-    --bg-grad-2:#F5F1FA;
-  }
-  html.dark body.modo-dificil{
-    --bg-grad-1:#1C161E;
-    --bg-grad-2:#191725;
-  }
+  body.modo-dificil{ --bg-grad-1:#FBF3F6; --bg-grad-2:#F5F1FA; }
+  html.dark body.modo-dificil{ --bg-grad-1:#1C161E; --bg-grad-2:#191725; }
 
-  /* ---------- Barras de progresso ---------- */
-  .barra{
-    height:10px; border-radius:999px; background:var(--surface-3); overflow:hidden;
-  }
-  .barra > i{
-    display:block; height:100%; border-radius:999px;
-    transition:width .7s cubic-bezier(.22,1,.36,1);
-  }
+  .barra{ height:10px; border-radius:999px; background:var(--surface-3); overflow:hidden; }
+  .barra > i{ display:block; height:100%; border-radius:999px; transition:width .7s cubic-bezier(.22,1,.36,1); }
 
-  /* ---------- Pomodoro ---------- */
   .pomo-anel{ transform:rotate(-90deg); transform-origin:50% 50%; }
   .pomo-anel circle{ transition:stroke-dashoffset .5s linear, stroke .3s ease; }
 
-  /* ---------- Toast ---------- */
-  #toasts{
-    position:fixed; left:50%; transform:translateX(-50%);
-    bottom:calc(88px + env(safe-area-inset-bottom));
-    z-index:90; display:flex; flex-direction:column; gap:8px;
-    pointer-events:none; width:max-content; max-width:90vw;
-  }
-  .toast{
-    background:var(--surface); color:var(--text);
-    border:1px solid var(--borda); border-radius:16px;
-    padding:11px 18px; font-weight:700; font-size:.9rem;
-    box-shadow:var(--sombra-forte);
-    animation:popIn .3s cubic-bezier(.34,1.4,.64,1) both;
-    text-align:center;
-  }
+  #toasts{ position:fixed; left:50%; transform:translateX(-50%); bottom:calc(88px + env(safe-area-inset-bottom)); z-index:90; display:flex; flex-direction:column; gap:8px; pointer-events:none; width:max-content; max-width:90vw; }
+  .toast{ background:var(--surface); color:var(--text); border:1px solid var(--borda); border-radius:16px; padding:11px 18px; font-weight:700; font-size:.9rem; box-shadow:var(--sombra-forte); animation:popIn .3s cubic-bezier(.34,1.4,.64,1) both; text-align:center; }
 
-  /* ---------- Modal ---------- */
-  .modal-fundo{
-    position:fixed; inset:0; z-index:100;
-    background:rgba(30,24,45,0.55);
-    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-    display:flex; align-items:flex-end; justify-content:center;
-    animation:fadeIn .2s ease both;
-    padding:0;
-  }
-  @media(min-width:640px){
-    .modal-fundo{ align-items:center; padding:24px; }
-  }
-  .modal-caixa{
-    background:var(--surface); color:var(--text);
-    width:100%; max-width:520px;
-    border-radius:26px 26px 0 0;
-    padding:22px 20px calc(22px + env(safe-area-inset-bottom));
-    max-height:88dvh; overflow-y:auto;
-    animation:popIn .3s cubic-bezier(.34,1.4,.64,1) both;
-    border:1px solid var(--borda);
-  }
-  @media(min-width:640px){
-    .modal-caixa{ border-radius:26px; padding-bottom:22px; }
-  }
+  .modal-fundo{ position:fixed; inset:0; z-index:100; background:rgba(30,24,45,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:flex-end; justify-content:center; animation:fadeIn .2s ease both; padding:0; }
+  @media(min-width:640px){ .modal-fundo{ align-items:center; padding:24px; } }
+  .modal-caixa{ background:var(--surface); color:var(--text); width:100%; max-width:520px; border-radius:26px 26px 0 0; padding:22px 20px calc(22px + env(safe-area-inset-bottom)); max-height:88dvh; overflow-y:auto; animation:popIn .3s cubic-bezier(.34,1.4,.64,1) both; border:1px solid var(--borda); }
+  @media(min-width:640px){ .modal-caixa{ border-radius:26px; padding-bottom:22px; } }
 
-  /* ---------- Diversos ---------- */
   .safe-top{ padding-top:env(safe-area-inset-top); }
   .safe-bottom{ padding-bottom:env(safe-area-inset-bottom); }
-  #confetti-canvas{
-    position:fixed; inset:0; pointer-events:none; z-index:95;
-  }
+  #confetti-canvas{ position:fixed; inset:0; pointer-events:none; z-index:95; }
   .divisor{ height:1px; background:var(--borda); margin:14px 0; }
-  .rolagem-horizontal{
-    display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;
-    scrollbar-width:none;
-  }
-  .rolagem-horizontal::-webkit-scrollbar{ display:none; }
   .oculto{ display:none !important; }
 
-  .semana-grande{
-    font-family:'Playfair Display',Georgia,serif;
-    font-size:2.7rem; line-height:1; font-weight:700;
-    background:linear-gradient(90deg,var(--rosa),#C9A0DC,var(--menta),var(--rosa));
-    background-size:200% auto;
-    -webkit-background-clip:text; background-clip:text;
-    color:transparent;
-    animation:brilho 9s linear infinite;
-  }
+  .semana-grande{ font-family:'Playfair Display',Georgia,serif; font-size:2.7rem; line-height:1; font-weight:700; background:linear-gradient(90deg,var(--rosa),#C9A0DC,var(--menta),var(--rosa)); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:brilho 9s linear infinite; }
 
-  .calendario-grid{
-    display:grid; grid-template-columns:repeat(7,1fr); gap:5px;
-  }
-  .cal-dia{
-    aspect-ratio:1; border-radius:10px; display:flex; align-items:center; justify-content:center;
-    font-size:.68rem; font-weight:700; background:var(--surface-2); color:var(--muted);
-    border:1px solid var(--borda);
-  }
+  .calendario-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
+  .cal-dia{ aspect-ratio:1; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:.68rem; font-weight:700; background:var(--surface-2); color:var(--muted); border:1px solid var(--borda); }
   .cal-dia.vazio{ background:transparent; border-color:transparent; }
-  .cal-dia.n0{ background:var(--surface-2); color:var(--muted); }
   .cal-dia.n1{ background:rgba(168,216,200,.35); color:var(--text); }
   .cal-dia.n2{ background:rgba(168,216,200,.62); color:var(--text); }
   .cal-dia.n3{ background:rgba(111,191,155,.85); color:#fff; }
   .cal-dia.hoje{ outline:2px solid var(--lavanda); outline-offset:1px; }
 
-  .timeline-item{
-    position:relative; padding-left:26px; padding-bottom:18px;
-  }
-  .timeline-item::before{
-    content:''; position:absolute; left:7px; top:8px; bottom:-4px; width:2px;
-    background:var(--borda);
-  }
+  .timeline-item{ position:relative; padding-left:26px; padding-bottom:18px; }
+  .timeline-item::before{ content:''; position:absolute; left:7px; top:8px; bottom:-4px; width:2px; background:var(--borda); }
   .timeline-item:last-child::before{ display:none; }
-  .timeline-item::after{
-    content:''; position:absolute; left:1px; top:6px; width:14px; height:14px;
-    border-radius:50%; background:var(--rosa); border:3px solid var(--surface);
-    box-shadow:0 0 0 1px var(--borda);
-  }
+  .timeline-item::after{ content:''; position:absolute; left:1px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--rosa); border:3px solid var(--surface); box-shadow:0 0 0 1px var(--borda); }
 </style>
 </head>
 
 <body class="font-sans">
 
-<!-- TELA DE CARREGAMENTO -->
 <div id="tela-loading" class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5" style="background:var(--bg)">
   <div class="text-5xl pulsar">💙💗</div>
   <p class="font-bold text-sm" style="color:var(--muted)">Carregando nossa rotina...</p>
+  <p id="loading-dica" class="text-xs mt-2 px-8 text-center" style="color:var(--muted); max-width:340px"></p>
 </div>
 
-<!-- TELA 0 — BOAS-VINDAS / LOGIN -->
 <div id="tela-login" class="fixed inset-0 z-40 flex flex-col items-center justify-center px-6 oculto" style="background:var(--bg)">
   <div class="w-full max-w-sm fade-in text-center">
     <div class="text-5xl mb-3 flutuar">💙💗</div>
@@ -448,7 +249,6 @@
   </div>
 </div>
 
-<!-- APLICATIVO -->
 <div id="app" class="oculto">
 
   <header class="safe-top sticky top-0 z-20" style="background:var(--nav-bg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--borda)">
@@ -504,15 +304,12 @@ import {
 import {
   initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
   doc, getDoc, setDoc, updateDoc, deleteDoc, addDoc,
-  collection, query, where, orderBy, limit, onSnapshot, getDocs,
+  collection, orderBy, limit, onSnapshot, getDocs,
   serverTimestamp, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 /* ============================================================
    1. CONFIGURAÇÃO DO FIREBASE
-   ------------------------------------------------------------
-   ⚠️ SUBSTITUA pelas suas credenciais:
-   Firebase Console → Configurações do Projeto → Seus apps → Web
    ============================================================ */
 const firebaseConfig = {
   apiKey: "AIzaSyBqirYTZyLWjD84-e3NnDyNyiH7-97vK_4",
@@ -524,26 +321,31 @@ const firebaseConfig = {
   measurementId: "G-DMNY2KT0EN"
 };
 
-/* Detecta se o usuário ainda não colou as credenciais reais.
-   Enquanto isso for false, mostramos uma tela de instruções
-   em vez de deixar o app em branco. */
 const FIREBASE_CONFIGURADO =
   !!firebaseConfig.apiKey &&
   !firebaseConfig.apiKey.includes("SUA_API_KEY") &&
   !!firebaseConfig.projectId &&
   !firebaseConfig.projectId.includes("SEU_PROJETO");
 
-/* Firebase só é inicializado se estiver configurado.
-   Isso evita erros feios no console quando o usuário
-   ainda está preenchendo as credenciais. */
+/* Inicialização robusta: alguns navegadores móveis (Safari iOS,
+   navegadores in-app, modo privado) bloqueiam IndexedDB. Nesses
+   casos, caímos para cache em memória para não travar o app. */
 let app = null, auth = null, db = null;
 
 if (FIREBASE_CONFIGURADO) {
-  app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = initializeFirestore(app, {
-    localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
-  });
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    try {
+      db = initializeFirestore(app, {
+        localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+      });
+    } catch (eCache) {
+      db = initializeFirestore(app, {});
+    }
+  } catch (eInit) {
+    app = null; auth = null; db = null;
+  }
 }
 
 /* ============================================================
@@ -551,7 +353,7 @@ if (FIREBASE_CONFIGURADO) {
    ============================================================ */
 const APP_CONFIG = {
   nome: "Nossa Rotina Viva",
-  versao: "1.0.0",
+  versao: "1.1.0",
 
   frases: [
     "Cuidar de você também é cuidar de nós dois. 💙💗",
@@ -638,18 +440,24 @@ const APP_CONFIG = {
     { id:"muito_dificil",t:"Muito difícil",e:"😢" }
   ],
 
+  /* NOVO: 6 refeições — inclui lanches e ceia */
   refeicoes: [
-    { id:"cafe",   t:"Café da manhã", e:"☕" },
-    { id:"almoco", t:"Almoço",        e:"🍽️" },
-    { id:"jantar", t:"Jantar",        e:"🍲" },
-    { id:"lanche", t:"Lanche",        e:"🍎" }
+    { id:"cafe",      t:"Café da manhã",   e:"☕" },
+    { id:"lanche_am", t:"Lanche da manhã", e:"🍎" },
+    { id:"almoco",    t:"Almoço",          e:"🍽️" },
+    { id:"lanche_pm", t:"Lanche da tarde", e:"🥪" },
+    { id:"jantar",    t:"Jantar",          e:"🍲" },
+    { id:"ceia",      t:"Ceia leve",       e:"🥛" }
   ],
 
+  /* NOVO: 6 hábitos evitados — adicionado café e dormir com tela */
   evitaveis: [
-    { id:"doce",   t:"Doce",   e:"🍰" },
-    { id:"farofa", t:"Farofa", e:"🍚" },
-    { id:"leite",  t:"Leite",  e:"🥛" },
-    { id:"vicios", t:"Vícios", e:"🚭" }
+    { id:"doce",        t:"Doce",           e:"🍰" },
+    { id:"farofa",      t:"Farofa",         e:"🍚" },
+    { id:"leite",       t:"Leite",          e:"🥛" },
+    { id:"cafe",        t:"Café",           e:"☕" },
+    { id:"vicios",      t:"Vícios",         e:"🚭" },
+    { id:"dormir_tela", t:"Tela ao deitar", e:"📱" }
   ],
 
   checklistSugerido: [
@@ -794,6 +602,7 @@ const Sons = {
    ============================================================ */
 function toast(msg, ms = 2400) {
   const box = $("#toasts");
+  if (!box) return;
   const el = document.createElement("div");
   el.className = "toast";
   el.textContent = msg;
@@ -835,53 +644,53 @@ function confirmar(titulo, texto, rotuloOk = "Confirmar") {
 }
 
 function soltarConfete() {
-  const canvas = $("#confetti-canvas");
-  const ctx = canvas.getContext("2d");
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  try {
+    const canvas = $("#confetti-canvas");
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  const cores = ["#E08AA6", "#C9B8E8", "#A8D8C8", "#F2E8D5", "#4A90D9", "#F6DDE5"];
-  const pecas = [];
-  for (let i = 0; i < 70; i++) {
-    pecas.push({
-      x: window.innerWidth / 2 + (Math.random() - 0.5) * 140,
-      y: -20 - Math.random() * 160,
-      w: 5 + Math.random() * 6,
-      h: 8 + Math.random() * 8,
-      vy: 1.6 + Math.random() * 2.4,
-      vx: (Math.random() - 0.5) * 1.6,
-      rot: Math.random() * Math.PI,
-      vrot: (Math.random() - 0.5) * 0.16,
-      cor: cores[Math.floor(Math.random() * cores.length)],
-      op: 0.9
-    });
-  }
-  let frames = 0;
-  function animar() {
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    let vivas = 0;
-    pecas.forEach((p) => {
-      if (p.y > window.innerHeight + 40) return;
-      vivas++;
-      p.y += p.vy;
-      p.x += p.vx;
-      p.rot += p.vrot;
-      if (frames > 70) p.op = Math.max(0, p.op - 0.012);
-      ctx.save();
-      ctx.globalAlpha = p.op;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.cor;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
-    });
-    frames++;
-    if (vivas > 0 && frames < 190) requestAnimationFrame(animar);
-    else ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-  }
-  animar();
+    const cores = ["#E08AA6", "#C9B8E8", "#A8D8C8", "#F2E8D5", "#4A90D9", "#F6DDE5"];
+    const pecas = [];
+    for (let i = 0; i < 70; i++) {
+      pecas.push({
+        x: window.innerWidth / 2 + (Math.random() - 0.5) * 140,
+        y: -20 - Math.random() * 160,
+        w: 5 + Math.random() * 6,
+        h: 8 + Math.random() * 8,
+        vy: 1.6 + Math.random() * 2.4,
+        vx: (Math.random() - 0.5) * 1.6,
+        rot: Math.random() * Math.PI,
+        vrot: (Math.random() - 0.5) * 0.16,
+        cor: cores[Math.floor(Math.random() * cores.length)],
+        op: 0.9
+      });
+    }
+    let frames = 0;
+    function animar() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      let vivas = 0;
+      pecas.forEach((p) => {
+        if (p.y > window.innerHeight + 40) return;
+        vivas++;
+        p.y += p.vy; p.x += p.vx; p.rot += p.vrot;
+        if (frames > 70) p.op = Math.max(0, p.op - 0.012);
+        ctx.save();
+        ctx.globalAlpha = p.op;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.cor;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      frames++;
+      if (vivas > 0 && frames < 190) requestAnimationFrame(animar);
+      else ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+    animar();
+  } catch (e) { /* silencioso */ }
 }
 
 /* ============================================================
@@ -939,6 +748,7 @@ function obterDia(pessoa, data) {
 function progressoDia(dia, pessoa) {
   if (!dia) return 0;
   const agua = Math.min(1, (dia.agua_ml || 0) / metaAgua(pessoa)) * 25;
+  /* Refeições: 3 já bate a meta; as outras 3 são bônus */
   const refeicoes = Math.min(1, ((dia.refeicoes || []).length) / 3) * 20;
   const exercicio = dia.exercicio ? 10 : 0;
   const ingles = Math.min(1, (dia.ingles_minutos || 0) / metaIngles(pessoa)) * 15;
@@ -983,9 +793,7 @@ function calcularRecorde(pessoa, tipo = "geral") {
         atual = diff === 1 ? atual + 1 : 1;
       } else atual = 1;
       melhor = Math.max(melhor, atual);
-    } else {
-      atual = 0;
-    }
+    } else { atual = 0; }
     anterior = iso;
   });
   return melhor;
@@ -999,6 +807,7 @@ const CHAVE_TEMA = "nrv_tema";
 
 async function garantirAutenticacao() {
   return new Promise((resolve) => {
+    if (!auth) { resolve(null); return; }
     const parar = onAuthStateChanged(auth, async (user) => {
       if (user) { parar(); resolve(user); return; }
       try { await signInAnonymously(auth); }
@@ -1036,9 +845,7 @@ function irParaPin(pessoa) {
   setTimeout(() => $("#login-pin").focus(), 220);
 }
 
-/* ---------- AJUSTE 3: validarPin robusto ---------- */
 function validarPin() {
-  /* Se a configuração ainda não chegou do Firestore, não deixamos entrar */
   if (!estado.config) {
     Sons.erro();
     vibrar(120);
@@ -1051,7 +858,6 @@ function validarPin() {
   const valor = ($("#login-pin").value || "").trim();
   const pinCorreto = estado.config.pin ? String(estado.config.pin) : null;
 
-  /* Config existe mas não tem PIN (raro) → trata como primeira vez */
   if (!pinCorreto) {
     entrarNoApp(pessoaEscolhida);
     return;
@@ -1095,49 +901,71 @@ async function sair() {
 }
 
 /* ============================================================
-   10. FIRESTORE — CRUD
+   10. FIRESTORE — CRUD (com erros explicativos)
    ============================================================ */
 const REF_CONFIG = () => doc(db, "config", "casal");
 const refDia = (pessoa, data) => doc(db, "dias", `${pessoa}_${data}`);
 const refSemana = (semana) => doc(db, "semanas_gravidez", String(semana));
 
+/* Mensagem de erro clara para qualquer falha de escrita */
+function mensagemErroFirestore(e) {
+  const codigo = (e && e.code) ? String(e.code) : "";
+  if (!navigator.onLine) {
+    return "Tô sem conexão. Quando voltar, atualizo tudo 💙";
+  }
+  if (codigo.includes("permission") || codigo.includes("unauthenticated")) {
+    return "O Firestore está bloqueando. Confere as regras no Console 🔒";
+  }
+  if (codigo.includes("unavailable")) {
+    return "Servidor indisponível agora. Tenta em instantes 💙";
+  }
+  return "Não consegui salvar agora. Tenta de novo 💙";
+}
+
 async function salvarConfig(parcial, aviso = "Salvo 💚") {
+  if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
     await setDoc(REF_CONFIG(), { ...parcial, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
   } catch (e) {
-    toast("Tô sem conexão, mas quando voltar atualizo tudo 💙", 3200);
+    toast(mensagemErroFirestore(e), 4000);
     return false;
   }
 }
 
 async function salvarDia(pessoa, data, dados, aviso = "Anotado 💚") {
+  if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
-    const ref = refDia(pessoa, data);
-    const snap = await getDoc(ref);
-    const base = snap.exists() ? {} : { pessoa, data, criado_em: serverTimestamp() };
-    await setDoc(ref, { ...base, ...dados, atualizado_em: serverTimestamp() }, { merge: true });
+    /* setDoc com merge cria ou atualiza em uma única chamada — mais robusto */
+    await setDoc(refDia(pessoa, data), {
+      pessoa,
+      data,
+      ...dados,
+      atualizado_em: serverTimestamp()
+    }, { merge: true });
     if (aviso) toast(aviso);
     return true;
   } catch (e) {
-    toast("Tô sem conexão, mas quando voltar atualizo tudo 💙", 3200);
+    toast(mensagemErroFirestore(e), 4000);
     return false;
   }
 }
 
 async function salvarSemana(semana, dados, aviso = "Anotado com carinho 💗") {
+  if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
     await setDoc(refSemana(semana), { semana, ...dados, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
   } catch (e) {
-    toast("Tô sem conexão, mas quando voltar atualizo tudo 💙", 3200);
+    toast(mensagemErroFirestore(e), 4000);
     return false;
   }
 }
 
 async function salvarPreparacao(item) {
+  if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
     await addDoc(collection(db, "preparacao_papai"), {
       item: item.item,
@@ -1147,26 +975,41 @@ async function salvarPreparacao(item) {
       criado_em: serverTimestamp()
     });
     toast("Item adicionado 🌱");
-  } catch (e) { toast("Não consegui salvar agora 💙", 3000); }
+    return true;
+  } catch (e) {
+    toast(mensagemErroFirestore(e), 4000);
+    return false;
+  }
 }
 
 async function atualizarPreparacao(id, dados) {
+  if (!db) return false;
   try {
     await updateDoc(doc(db, "preparacao_papai", id), dados);
-  } catch (e) { toast("Não consegui salvar agora 💙", 3000); }
+    return true;
+  } catch (e) {
+    toast(mensagemErroFirestore(e), 4000);
+    return false;
+  }
 }
 
 async function removerPreparacao(id) {
+  if (!db) return false;
   try {
     await deleteDoc(doc(db, "preparacao_papai", id));
     toast("Item removido");
-  } catch (e) { toast("Não consegui remover agora 💙", 3000); }
+    return true;
+  } catch (e) {
+    toast(mensagemErroFirestore(e), 4000);
+    return false;
+  }
 }
 
 async function registrarSessaoPomodoro(dados) {
+  if (!db) return;
   try {
     await addDoc(collection(db, "sessoes_pomodoro"), { ...dados, criado_em: serverTimestamp() });
-  } catch (e) { /* silencioso */ }
+  } catch (e) { /* silencioso — não interrompe o foco */ }
 }
 
 /* ============================================================
@@ -1478,9 +1321,7 @@ function renderizarHome() {
     const humorSem = APP_CONFIG.humores.find((h) => h.id === sem.humor);
     const sintomasTxt = (sem.sintomas || [])
       .map((id) => APP_CONFIG.sintomas.find((s) => s.id === id))
-      .filter(Boolean)
-      .map((s) => `${s.e} ${s.t}`)
-      .join(" · ");
+      .filter(Boolean).map((s) => `${s.e} ${s.t}`).join(" · ");
     cardMay = `
       <div class="cartao mt-3 pop-in" style="background:linear-gradient(140deg,var(--rosa-clara),var(--surface))">
         <div class="flex items-center justify-between mb-2">
@@ -1526,10 +1367,11 @@ function renderizarHome() {
       </div>`;
   }
 
+  /* NOVO: 6 evitáveis em grid 3x2 */
   const evHTML = APP_CONFIG.evitaveis.map((e) => `
-    <div class="flex-1 text-center">
-      <div class="text-xl ${evitou[e.id] ? "" : "opacity-30"}">${e.e}</div>
-      <div class="text-[0.6rem] font-bold mt-0.5" style="color:var(--muted)">${escaparHTML(e.t)}</div>
+    <div class="text-center cartao-suave py-2">
+      <div class="text-lg ${evitou[e.id] ? "" : "opacity-30"}">${e.e}</div>
+      <div class="text-[0.58rem] font-bold mt-0.5 leading-tight" style="color:var(--muted)">${escaparHTML(e.t)}</div>
     </div>`).join("");
 
   const humorHoje = APP_CONFIG.humores.find((h) => h.id === (diaHoje && diaHoje.humor));
@@ -1603,9 +1445,9 @@ function renderizarHome() {
 
         <div class="cartao">
           <p class="text-xs font-extrabold uppercase tracking-wider mb-1" style="color:var(--muted)">🍽️ Refeições</p>
-          <p class="text-2xl font-extrabold" style="color:var(--text)">${refeicoes.length}<span class="text-sm font-bold" style="color:var(--muted)"> / 3</span></p>
+          <p class="text-2xl font-extrabold" style="color:var(--text)">${refeicoes.length}<span class="text-sm font-bold" style="color:var(--muted)"> / 6</span></p>
           <p class="text-xs font-bold mb-2" style="color:var(--muted)">${refeicoes.length ? refeicoes.map((r) => (APP_CONFIG.refeicoes.find((x) => x.id === r.tipo) || {}).e || "").join(" ") : "nenhuma ainda"}</p>
-          <div class="barra"><i style="width:${Math.min(100, Math.round((refeicoes.length / 3) * 100))}%; background:linear-gradient(90deg,var(--menta),var(--ok))"></i></div>
+          <div class="barra"><i style="width:${Math.min(100, Math.round((refeicoes.length / 6) * 100))}%; background:linear-gradient(90deg,var(--menta),var(--ok))"></i></div>
         </div>
 
         <div class="cartao">
@@ -1624,7 +1466,7 @@ function renderizarHome() {
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🚫 Hábitos evitados hoje</p>
-        <div class="flex gap-2">${evHTML}</div>
+        <div class="grid grid-cols-3 gap-2">${evHTML}</div>
       </div>
 
       ${cardMinhaGrav}
@@ -1665,6 +1507,7 @@ function renderizarHome() {
    16. DIÁRIO
    ============================================================ */
 let aguaLocal = null;
+let aguaLocalData = null;
 
 function renderizarDiario() {
   const p = estado.pessoa;
@@ -1672,19 +1515,25 @@ function renderizarDiario() {
   const dia = obterDia(p, data) || {};
   const cfg = estado.config;
 
-  if (aguaLocal === null || aguaLocal === undefined) {
+  /* Sincroniza água local só quando muda o dia ou quando o servidor traz valor maior */
+  if (aguaLocalData !== data) {
     aguaLocal = dia.agua_ml || 0;
+    aguaLocalData = data;
+  } else if (typeof dia.agua_ml === "number" && dia.agua_ml > aguaLocal) {
+    aguaLocal = dia.agua_ml;
   }
 
   const refeicoesFeitas = (dia.refeicoes || []).map((r) => r.tipo);
   const evitou = dia.evitou || {};
 
+  /* NOVO: 6 refeições */
   const refeicoesHTML = APP_CONFIG.refeicoes.map((r) => `
     <button class="toggle-item w-full mb-2 ${refeicoesFeitas.includes(r.id) ? "ativo" : ""}" data-refeicao="${r.id}">
       <span class="flex items-center gap-2 text-sm">${r.e} ${escaparHTML(r.t)}</span>
       <span class="toggle-dot"><i class="fa-solid fa-check"></i></span>
     </button>`).join("");
 
+  /* NOVO: 6 evitáveis */
   const evitaveisHTML = APP_CONFIG.evitaveis.map((e) => `
     <button class="toggle-item w-full mb-2 ${evitou[e.id] ? "ativo" : ""}" data-evitavel="${e.id}">
       <span class="flex items-center gap-2 text-sm">${e.e} ${escaparHTML(e.t)}</span>
@@ -1778,12 +1627,14 @@ function renderizarDiario() {
   `;
 
   const atualizarAguaUI = () => {
-    $("#agua-valor").innerHTML = `${aguaLocal} <span style="color:var(--muted)">/ ${metaAgua(p)} ml</span>`;
-    $("#agua-barra").innerHTML = `<i style="width:${Math.min(100, Math.round((aguaLocal / metaAgua(p)) * 100))}%; background:linear-gradient(90deg,#7FC7E8,var(--azul))"></i>`;
+    const el1 = $("#agua-valor"), el2 = $("#agua-barra");
+    if (el1) el1.innerHTML = `${aguaLocal} <span style="color:var(--muted)">/ ${metaAgua(p)} ml</span>`;
+    if (el2) el2.innerHTML = `<i style="width:${Math.min(100, Math.round((aguaLocal / metaAgua(p)) * 100))}%; background:linear-gradient(90deg,#7FC7E8,var(--azul))"></i>`;
   };
 
   $$("[data-agua]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
+      const anterior = aguaLocal;
       if (b.dataset.agua === "reset") {
         aguaLocal = 0;
       } else {
@@ -1792,9 +1643,10 @@ function renderizarDiario() {
         vibrar(18);
       }
       atualizarAguaUI();
-      await salvarDia(p, data, { agua_ml: aguaLocal }, null);
+      const ok = await salvarDia(p, data, { agua_ml: aguaLocal }, null);
+      if (!ok) { aguaLocal = anterior; atualizarAguaUI(); }
       const meta = metaAgua(p);
-      if (aguaLocal >= meta && (dia.agua_ml || 0) < meta) {
+      if (ok && aguaLocal >= meta && (dia.agua_ml || 0) < meta) {
         soltarConfete();
         toast("Meta de água batida! 💧✨", 3000);
       }
@@ -1814,8 +1666,10 @@ function renderizarDiario() {
         Sons.habitoFeito();
         vibrar(18);
       }
+      const anterior = b.classList.contains("ativo");
       b.classList.toggle("ativo", !existe);
-      await salvarDia(p, data, { refeicoes: lista }, null);
+      const ok = await salvarDia(p, data, { refeicoes: lista }, null);
+      if (!ok) b.classList.toggle("ativo", anterior);
     });
   });
 
@@ -1825,20 +1679,24 @@ function renderizarDiario() {
       const atual = obterDia(p, data) || {};
       const ev = { ...(atual.evitou || {}) };
       ev[id] = !ev[id];
+      const anterior = b.classList.contains("ativo");
       b.classList.toggle("ativo", ev[id]);
       if (ev[id]) { Sons.habitoFeito(); vibrar(18); }
-      await salvarDia(p, data, { evitou: ev }, null);
+      const ok = await salvarDia(p, data, { evitou: ev }, null);
+      if (!ok) b.classList.toggle("ativo", anterior);
     });
   });
 
   $$("[data-humor]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const id = b.dataset.humor;
+      const anterior = $$("[data-humor]", $("#tela-diario")).find((x) => x.classList.contains("ativo"));
       $$("[data-humor]", $("#tela-diario")).forEach((x) => x.classList.remove("ativo"));
       b.classList.add("ativo");
       vibrar(18);
-      await salvarDia(p, data, { humor: id }, null);
-      if (id === "dificil" || id === "muito_dificil") {
+      const ok = await salvarDia(p, data, { humor: id }, null);
+      if (!ok && anterior) { anterior.classList.add("ativo"); b.classList.remove("ativo"); }
+      if (ok && (id === "dificil" || id === "muito_dificil")) {
         toast("Obrigado por dividir. Vai com calma hoje 💗", 3200);
       }
     });
@@ -1849,16 +1707,19 @@ function renderizarDiario() {
       const campo = b.dataset.toggle;
       const atual = obterDia(p, data) || {};
       const novo = !atual[campo];
+      const anterior = b.classList.contains("ativo");
       b.classList.toggle("ativo", novo);
       if (novo) { Sons.habitoFeito(); vibrar(18); }
-      await salvarDia(p, data, { [campo]: novo }, null);
+      const ok = await salvarDia(p, data, { [campo]: novo }, null);
+      if (!ok) b.classList.toggle("ativo", anterior);
     });
   });
 
   const campoAnot = $("#campo-anotacao");
   if (campoAnot) {
     campoAnot.addEventListener("input", () => {
-      $("#contador-anotacao").textContent = campoAnot.value.length;
+      const c = $("#contador-anotacao");
+      if (c) c.textContent = campoAnot.value.length;
     });
   }
 
@@ -1867,7 +1728,7 @@ function renderizarDiario() {
     campoIngles.addEventListener("change", async () => {
       const v = Math.max(0, Math.min(600, Number(campoIngles.value) || 0));
       campoIngles.value = v;
-      await salvarDia(p, data, { ingles_minutos: v }, null);
+      await salvarDia(p, data, { ingles_minutos: v }, "Inglês salvo 📚");
     });
   }
 
@@ -1888,19 +1749,25 @@ function renderizarDiario() {
       dormiu_bem: !!atual.dormiu_bem,
       exercicio: !!atual.exercicio
     };
-    const ok = await salvarDia(p, data, dados, "Anotado 💚");
+    const btn = $("#btn-salvar-dia");
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Salvando...';
+    btn.disabled = true;
+    const ok = await salvarDia(p, data, dados, null);
+    btn.disabled = false;
     if (ok) {
       Sons.salvar();
       vibrar([18, 40, 18]);
-      const btn = $("#btn-salvar-dia");
-      const original = btn.innerHTML;
       btn.innerHTML = '<i class="fa-solid fa-check"></i> Salvo!';
+      toast("Anotado 💚", 2000);
       setTimeout(() => { btn.innerHTML = original; }, 1500);
       const prog = progressoDia({ ...atual, ...dados }, p);
       if (prog >= 80) {
         soltarConfete();
         toast("Dia lindo! Você cuidou de você hoje ✨", 3000);
       }
+    } else {
+      btn.innerHTML = original;
     }
   });
 }
@@ -1962,9 +1829,7 @@ function renderizarPomodoro() {
           </div>
         </div>
 
-        <div class="flex gap-2 w-full mt-6">
-          ${modosHTML}
-        </div>
+        <div class="flex gap-2 w-full mt-6">${modosHTML}</div>
 
         <div class="flex gap-2 w-full mt-3">
           <button class="btn ${pm.rodando ? "btn-neutro" : "btn-primario"} flex-1 py-4 text-base" id="btn-pomo-principal">
@@ -2041,10 +1906,7 @@ function iniciarPomodoro() {
   toast("Pomodoro iniciado 🍅");
   pm.intervalo = setInterval(() => {
     const restante = Math.round((pm.fimEm - Date.now()) / 1000);
-    if (restante <= 0) {
-      finalizarPomodoro();
-      return;
-    }
+    if (restante <= 0) { finalizarPomodoro(); return; }
     pm.restante = restante;
     atualizarVisorPomodoro();
   }, 250);
@@ -2081,11 +1943,8 @@ async function finalizarPomodoro() {
   toast("Bloco concluído! Descansa um pouquinho 💙", 3200);
 
   await registrarSessaoPomodoro({
-    pessoa: p,
-    data: hojeISO(),
-    duracao_min: minutos,
-    categoria: modo,
-    concluido: true
+    pessoa: p, data: hojeISO(), duracao_min: minutos,
+    categoria: modo, concluido: true
   });
 
   const data = hojeISO();
@@ -2193,9 +2052,7 @@ function renderizarGravidez() {
         const h = APP_CONFIG.humores.find((x) => x.id === s.humor);
         const sint = (s.sintomas || [])
           .map((id) => APP_CONFIG.sintomas.find((x) => x.id === id))
-          .filter(Boolean)
-          .map((x) => `${x.e} ${x.t}`)
-          .join(" · ");
+          .filter(Boolean).map((x) => `${x.e} ${x.t}`).join(" · ");
         const inf = infoBebe(s.semana);
         return `
           <div class="timeline-item">
@@ -2329,43 +2186,55 @@ function renderizarGravidez() {
         const atual = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
         const lista = new Set(atual.sintomas || []);
         if (lista.has(id)) lista.delete(id); else { lista.add(id); Sons.habitoFeito(); vibrar(16); }
+        const anterior = b.classList.contains("ativo");
         b.classList.toggle("ativo", lista.has(id));
-        await salvarSemana(grav.semanaTabela, { sintomas: Array.from(lista) }, null);
+        const ok = await salvarSemana(grav.semanaTabela, { sintomas: Array.from(lista) }, null);
+        if (!ok) b.classList.toggle("ativo", anterior);
       });
     });
 
     $$("[data-humor-semana]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const id = b.dataset.humorSemana;
+        const anterior = $$("[data-humor-semana]", $("#tela-gravidez")).find((x) => x.classList.contains("ativo"));
         $$("[data-humor-semana]", $("#tela-gravidez")).forEach((x) => x.classList.remove("ativo"));
         b.classList.add("ativo");
         vibrar(18);
-        await salvarSemana(grav.semanaTabela, { humor: id }, null);
-        if (id === "muito_dificil") {
+        const ok = await salvarSemana(grav.semanaTabela, { humor: id }, null);
+        if (!ok && anterior) { anterior.classList.add("ativo"); b.classList.remove("ativo"); }
+        if (ok && id === "muito_dificil") {
           toast("Obrigado por dividir 💗 Vai com calma hoje.", 3400);
         }
       });
     });
 
-    $("#btn-salvar-semana").addEventListener("click", async () => {
-      const ok = await salvarSemana(grav.semanaTabela, {
-        anotacao_mayara: ($("#grav-anotacao").value || "").slice(0, 800),
-        o_que_ajuda: ($("#grav-ajuda").value || "").slice(0, 200),
-        data: new Date()
-      }, "Anotado com carinho 💗");
-      if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
-    });
+    const btnSem = $("#btn-salvar-semana");
+    if (btnSem) {
+      btnSem.addEventListener("click", async () => {
+        const ok = await salvarSemana(grav.semanaTabela, {
+          anotacao_mayara: ($("#grav-anotacao").value || "").slice(0, 800),
+          o_que_ajuda: ($("#grav-ajuda").value || "").slice(0, 200),
+          data: new Date()
+        }, "Anotado com carinho 💗");
+        if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
+      });
+    }
   }
 
   if (editavelEle) {
-    $("#btn-add-item").addEventListener("click", async () => {
-      const campo = $("#novo-item-checklist");
-      const txt = (campo.value || "").trim();
-      if (!txt) return;
-      await salvarPreparacao({ item: txt.slice(0, 80), ordem: Date.now() });
-      campo.value = "";
-      vibrar(18);
-    });
+    const btnAdd = $("#btn-add-item");
+    if (btnAdd) {
+      btnAdd.addEventListener("click", async () => {
+        const campo = $("#novo-item-checklist");
+        const txt = (campo.value || "").trim();
+        if (!txt) return;
+        btnAdd.disabled = true;
+        await salvarPreparacao({ item: txt.slice(0, 80), ordem: Date.now() });
+        btnAdd.disabled = false;
+        campo.value = "";
+        vibrar(18);
+      });
+    }
 
     $$("[data-sugestao]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
@@ -2378,11 +2247,16 @@ function renderizarGravidez() {
       b.addEventListener("click", async () => {
         const id = b.dataset.check;
         const feito = b.dataset.feito === "1";
+        const anterior = feito;
         b.classList.toggle("ativo", !feito);
         const span = b.querySelector("span");
         if (span) span.classList.toggle("line-through", !feito);
         if (!feito) { Sons.habitoFeito(); vibrar(20); }
-        await atualizarPreparacao(id, { feito: !feito, data_conclusao: !feito ? new Date() : null });
+        const ok = await atualizarPreparacao(id, { feito: !feito, data_conclusao: !feito ? new Date() : null });
+        if (!ok) {
+          b.classList.toggle("ativo", anterior);
+          if (span) span.classList.toggle("line-through", anterior);
+        }
       });
     });
 
@@ -2393,13 +2267,16 @@ function renderizarGravidez() {
       });
     });
 
-    $("#btn-salvar-papai").addEventListener("click", async () => {
-      const ok = await salvarSemana(grav.semanaTabela, {
-        feito_pelo_douglas: ($("#grav-feito").value || "").slice(0, 400),
-        data: new Date()
-      }, "Registrado 💙");
-      if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
-    });
+    const btnPapai = $("#btn-salvar-papai");
+    if (btnPapai) {
+      btnPapai.addEventListener("click", async () => {
+        const ok = await salvarSemana(grav.semanaTabela, {
+          feito_pelo_douglas: ($("#grav-feito").value || "").slice(0, 400),
+          data: new Date()
+        }, "Registrado 💙");
+        if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
+      });
+    }
   }
 }
 
@@ -2540,8 +2417,7 @@ function renderizarHistorico() {
   const corGrade = getComputedStyle(document.documentElement).getPropertyValue("--borda").trim() || "rgba(0,0,0,.08)";
   const fontePadrao = { family: "Nunito", size: 11, weight: "600" };
   const opcoesBase = {
-    responsive: true,
-    maintainAspectRatio: false,
+    responsive: true, maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
       legend: { labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true } },
@@ -2560,16 +2436,8 @@ function renderizarHistorico() {
       data: {
         labels: labels30.map(formatarDataCurta),
         datasets: [
-          {
-            label: nomePessoa("douglas"), data: aguaDouglas,
-            borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.12)",
-            fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5
-          },
-          {
-            label: nomePessoa("mayara"), data: aguaMayara,
-            borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.12)",
-            fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5
-          }
+          { label: nomePessoa("douglas"), data: aguaDouglas, borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.12)", fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5 },
+          { label: nomePessoa("mayara"), data: aguaMayara, borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.12)", fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5 }
         ]
       },
       options: opcoesBase
@@ -2597,17 +2465,10 @@ function renderizarHistorico() {
       type: "doughnut",
       data: {
         labels: ["Trabalho", "Estudo", "Inglês"],
-        datasets: [{
-          data: [distTrabalho, distEstudo, distIngles],
-          backgroundColor: ["#4A90D9", "#A8D8C8", "#E08AA6"],
-          borderWidth: 0,
-          hoverOffset: 6
-        }]
+        datasets: [{ data: [distTrabalho, distEstudo, distIngles], backgroundColor: ["#4A90D9", "#A8D8C8", "#E08AA6"], borderWidth: 0, hoverOffset: 6 }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: "62%",
+        responsive: true, maintainAspectRatio: false, cutout: "62%",
         plugins: {
           legend: { position: "bottom", labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 14 } },
           tooltip: { titleFont: fontePadrao, bodyFont: fontePadrao, padding: 10, cornerRadius: 10 }
@@ -2623,10 +2484,8 @@ function renderizarHistorico() {
       data: {
         labels: labelsGrav,
         datasets: [{
-          label: "Humor dela",
-          data: dadosHumor,
-          borderColor: "#E08AA6",
-          backgroundColor: "rgba(224,138,166,0.16)",
+          label: "Humor dela", data: dadosHumor,
+          borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.16)",
           fill: true, tension: 0.38, spanGaps: true,
           pointRadius: 5, pointBackgroundColor: "#E08AA6", pointBorderColor: "#fff", pointBorderWidth: 2, borderWidth: 2.5
         }]
@@ -2637,10 +2496,7 @@ function renderizarHistorico() {
           x: { ticks: { color: corTexto, font: fontePadrao }, grid: { display: false } },
           y: {
             min: 1, max: 5,
-            ticks: {
-              color: corTexto, font: fontePadrao, stepSize: 1,
-              callback: (v) => ({ 1: "😢", 2: "😔", 3: "😐", 4: "🙂", 5: "😄" }[v] || "")
-            },
+            ticks: { color: corTexto, font: fontePadrao, stepSize: 1, callback: (v) => ({ 1: "😢", 2: "😔", 3: "😐", 4: "🙂", 5: "😄" }[v] || "") },
             grid: { color: corGrade }
           }
         }
@@ -2744,7 +2600,7 @@ function renderizarConfig() {
       </div>
 
       <div class="cartao mb-3">
-        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">⏰ Horários das refeições</p>
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">⏰ Horários das refeições principais</p>
         <div class="grid grid-cols-3 gap-3">
           <div>
             <label class="block text-xs font-bold mb-1" style="color:var(--muted)">☕ Café</label>
@@ -2853,26 +2709,11 @@ function renderizarConfig() {
         mayara: ($("#cfg-nome-mayara").value || "Mayara").trim() || "Mayara"
       },
       nome_bebe: ($("#cfg-nome-bebe").value || "").trim(),
-      meta_agua_ml: {
-        douglas: Number($("#cfg-agua-douglas").value) || 2500,
-        mayara: Number($("#cfg-agua-mayara").value) || 2500
-      },
-      meta_acordar: {
-        douglas: $("#cfg-acordar-douglas").value || "06:30",
-        mayara: $("#cfg-acordar-mayara").value || "07:30"
-      },
-      meta_dormir: {
-        douglas: $("#cfg-dormir-douglas").value || "23:00",
-        mayara: $("#cfg-dormir-mayara").value || "22:30"
-      },
-      meta_ingles_min: {
-        douglas: Number($("#cfg-ingles-douglas").value) || 20,
-        mayara: Number($("#cfg-ingles-mayara").value) || 15
-      },
-      meta_pomodoros: {
-        douglas: Number($("#cfg-pomo-douglas").value) || 4,
-        mayara: Number($("#cfg-pomo-mayara").value) || 3
-      },
+      meta_agua_ml: { douglas: Number($("#cfg-agua-douglas").value) || 2500, mayara: Number($("#cfg-agua-mayara").value) || 2500 },
+      meta_acordar: { douglas: $("#cfg-acordar-douglas").value || "06:30", mayara: $("#cfg-acordar-mayara").value || "07:30" },
+      meta_dormir: { douglas: $("#cfg-dormir-douglas").value || "23:00", mayara: $("#cfg-dormir-mayara").value || "22:30" },
+      meta_ingles_min: { douglas: Number($("#cfg-ingles-douglas").value) || 20, mayara: Number($("#cfg-ingles-mayara").value) || 15 },
+      meta_pomodoros: { douglas: Number($("#cfg-pomo-douglas").value) || 4, mayara: Number($("#cfg-pomo-mayara").value) || 3 },
       horarios_refeicao: {
         cafe: $("#cfg-cafe").value || "07:00",
         almoco: $("#cfg-almoco").value || "12:30",
@@ -2897,14 +2738,10 @@ function renderizarConfig() {
 
   $("#cfg-exportar").addEventListener("click", () => {
     const backup = {
-      app: APP_CONFIG.nome,
-      versao: APP_CONFIG.versao,
+      app: APP_CONFIG.nome, versao: APP_CONFIG.versao,
       exportado_em: new Date().toISOString(),
-      config: estado.config,
-      dias: estado.dias,
-      semanas_gravidez: estado.semanas,
-      preparacao_papai: estado.preparacao,
-      sessoes_pomodoro: estado.sessoes
+      config: estado.config, dias: estado.dias, semanas_gravidez: estado.semanas,
+      preparacao_papai: estado.preparacao, sessoes_pomodoro: estado.sessoes
     };
     try {
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
@@ -2918,15 +2755,13 @@ function renderizarConfig() {
       setTimeout(() => URL.revokeObjectURL(url), 2000);
       toast("Backup baixado 💚");
       Sons.salvar();
-    } catch (e) {
-      toast("Não consegui gerar o backup agora 💙");
-    }
+    } catch (e) { toast("Não consegui gerar o backup agora 💙"); }
   });
 
   $("#cfg-regras").addEventListener("click", () => {
     abrirModal(`
       <h3 class="fonte-display text-xl font-bold mb-2">Regras do Firestore 🔐</h3>
-      <p class="text-sm mb-3" style="color:var(--muted)">Cole isso no Console do Firebase → Firestore → Regras:</p>
+      <p class="text-sm mb-3" style="color:var(--muted)">Cole isso no Console do Firebase → Firestore → Regras e publique:</p>
       <pre class="text-[0.68rem] leading-relaxed p-3 rounded-xl overflow-x-auto" style="background:var(--surface-2); color:var(--text); border:1px solid var(--borda)">rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -2990,9 +2825,7 @@ function aplicarTema(tema) {
   if (meta) meta.setAttribute("content", escuro ? "#14121C" : "#F6F3FB");
   const btn = $("#btn-tema");
   if (btn) {
-    btn.innerHTML = escuro
-      ? '<i class="fa-solid fa-sun"></i>'
-      : '<i class="fa-solid fa-moon"></i>';
+    btn.innerHTML = escuro ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
   }
 }
 
@@ -3077,76 +2910,53 @@ function iniciarLembretes() {
 function gerarIconeDataURL() {
   try {
     const canvas = document.createElement("canvas");
-    canvas.width = 512;
-    canvas.height = 512;
+    canvas.width = 512; canvas.height = 512;
     const ctx = canvas.getContext("2d");
-
     const grad = ctx.createLinearGradient(0, 0, 512, 512);
-    grad.addColorStop(0, "#F6DDE5");
-    grad.addColorStop(0.5, "#E8DEF7");
-    grad.addColorStop(1, "#D8EFE7");
+    grad.addColorStop(0, "#F6DDE5"); grad.addColorStop(0.5, "#E8DEF7"); grad.addColorStop(1, "#D8EFE7");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 512, 512);
-
     ctx.fillStyle = "rgba(255,255,255,0.55)";
     ctx.beginPath();
     ctx.arc(256, 256, 190, 0, Math.PI * 2);
     ctx.fill();
-
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.font = "150px serif";
     ctx.fillText("💙", 178, 236);
     ctx.fillText("💗", 334, 236);
     ctx.font = "bold 58px Nunito, sans-serif";
     ctx.fillStyle = "#4A3F63";
     ctx.fillText("Rotina", 256, 372);
-
     return canvas.toDataURL("image/png");
-  } catch (e) {
-    return "";
-  }
+  } catch (e) { return ""; }
 }
 
 function registrarPWA() {
   try {
     const icone = gerarIconeDataURL();
-
     const manifest = {
-      name: "Nossa Rotina Viva",
-      short_name: "Rotina Viva",
+      name: "Nossa Rotina Viva", short_name: "Rotina Viva",
       description: "Um cantinho nosso pra crescer juntos 💙💗",
-      start_url: ".",
-      scope: ".",
-      display: "standalone",
-      orientation: "portrait",
-      background_color: "#F6F3FB",
-      theme_color: "#C9B8E8",
-      lang: "pt-BR",
+      start_url: ".", scope: ".", display: "standalone", orientation: "portrait",
+      background_color: "#F6F3FB", theme_color: "#C9B8E8", lang: "pt-BR",
       icons: icone ? [
         { src: icone, sizes: "192x192", type: "image/png", purpose: "any" },
         { src: icone, sizes: "512x512", type: "image/png", purpose: "any" },
         { src: icone, sizes: "512x512", type: "image/png", purpose: "maskable" }
       ] : []
     };
-
     const blob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("link");
-    link.rel = "manifest";
-    link.href = url;
+    link.rel = "manifest"; link.href = url;
     document.head.appendChild(link);
 
     if (icone) {
       const apple = document.createElement("link");
-      apple.rel = "apple-touch-icon";
-      apple.href = icone;
+      apple.rel = "apple-touch-icon"; apple.href = icone;
       document.head.appendChild(apple);
-
       const fav = document.createElement("link");
-      fav.rel = "icon";
-      fav.type = "image/png";
-      fav.href = icone;
+      fav.rel = "icon"; fav.type = "image/png"; fav.href = icone;
       document.head.appendChild(fav);
     }
   } catch (e) { /* silencioso */ }
@@ -3159,24 +2969,17 @@ function bloquearGestos() {
   ["gesturestart", "gesturechange", "gestureend"].forEach((ev) => {
     document.addEventListener(ev, (e) => e.preventDefault(), { passive: false });
   });
-
   let ultimoToque = 0;
   document.addEventListener("touchend", (e) => {
     const agora = Date.now();
     if (agora - ultimoToque <= 320) e.preventDefault();
     ultimoToque = agora;
   }, { passive: false });
-
   document.addEventListener("touchmove", (e) => {
     if (e.touches.length > 1) e.preventDefault();
   }, { passive: false });
-
   document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-  document.addEventListener("wheel", (e) => {
-    if (e.ctrlKey) e.preventDefault();
-  }, { passive: false });
-
+  document.addEventListener("wheel", (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].includes(e.key)) e.preventDefault();
   });
@@ -3189,36 +2992,18 @@ document.addEventListener("click", (e) => {
   const alvo = e.target.closest("[data-acao]");
   if (!alvo) return;
   const acao = alvo.dataset.acao;
-
   switch (acao) {
-    case "abrir-diario":
-      vibrar(20);
-      trocarTela("diario");
-      break;
-    case "ir-gravidez":
-      vibrar(18);
-      trocarTela("gravidez");
-      break;
-    case "ir-historico":
-      trocarTela("historico");
-      break;
-    case "ir-pomodoro":
-      trocarTela("pomodoro");
-      break;
-    case "ir-config":
-      trocarTela("config");
-      break;
-    case "ir-home":
-      trocarTela("home");
-      break;
+    case "abrir-diario": vibrar(20); trocarTela("diario"); break;
+    case "ir-gravidez": vibrar(18); trocarTela("gravidez"); break;
+    case "ir-historico": trocarTela("historico"); break;
+    case "ir-pomodoro": trocarTela("pomodoro"); break;
+    case "ir-config": trocarTela("config"); break;
+    case "ir-home": trocarTela("home"); break;
   }
 });
 
 $$(".nav-btn").forEach((b) => {
-  b.addEventListener("click", () => {
-    vibrar(14);
-    trocarTela(b.dataset.tela);
-  });
+  b.addEventListener("click", () => { vibrar(14); trocarTela(b.dataset.tela); });
 });
 
 $("#btn-tema").addEventListener("click", () => {
@@ -3228,16 +3013,10 @@ $("#btn-tema").addEventListener("click", () => {
   if (estado.tela === "config") renderizarConfig();
 });
 
-$("#btn-config-topo").addEventListener("click", () => {
-  vibrar(14);
-  trocarTela("config");
-});
+$("#btn-config-topo").addEventListener("click", () => { vibrar(14); trocarTela("config"); });
 
 $$("#login-passo-pessoa .btn-pessoa").forEach((b) => {
-  b.addEventListener("click", () => {
-    vibrar(18);
-    irParaPin(b.dataset.pessoa);
-  });
+  b.addEventListener("click", () => { vibrar(18); irParaPin(b.dataset.pessoa); });
 });
 
 $("#login-voltar").addEventListener("click", () => {
@@ -3254,9 +3033,7 @@ $("#login-pin").addEventListener("input", (e) => {
   if (e.target.value.length === 4) setTimeout(validarPin, 140);
 });
 
-$("#login-pin").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") validarPin();
-});
+$("#login-pin").addEventListener("keydown", (e) => { if (e.key === "Enter") validarPin(); });
 
 /* ============================================================
    26. TELA DE SETUP QUANDO O FIREBASE NÃO ESTÁ CONFIGURADO
@@ -3264,7 +3041,6 @@ $("#login-pin").addEventListener("keydown", (e) => {
 function mostrarTelaSetup() {
   const existente = document.getElementById("tela-setup-firebase");
   if (existente) existente.remove();
-
   const div = document.createElement("div");
   div.id = "tela-setup-firebase";
   div.className = "fixed inset-0 z-40 flex items-start justify-center overflow-y-auto px-4 py-8";
@@ -3274,22 +3050,18 @@ function mostrarTelaSetup() {
       <div class="text-center mb-4">
         <div class="text-4xl mb-2">🔧</div>
         <h1 class="fonte-display text-2xl font-bold">Falta configurar o Firebase</h1>
-        <p class="text-sm mt-1" style="color:var(--muted)">
-          O app é 100% funcional — só precisa das credenciais do <b>seu</b> projeto.
-        </p>
+        <p class="text-sm mt-1" style="color:var(--muted)">O app é 100% funcional — só precisa das credenciais do <b>seu</b> projeto.</p>
       </div>
-
       <ol class="text-sm space-y-3 mb-5" style="color:var(--text)">
         <li><b>1.</b> Crie um projeto em <span style="color:var(--azul)">console.firebase.google.com</span>.</li>
         <li><b>2.</b> Ative <b>Authentication → Anônimo</b>.</li>
-        <li><b>3.</b> Crie o <b>Firestore</b> em modo produção e cole as regras que estão comentadas no topo do arquivo.</li>
+        <li><b>3.</b> Crie o <b>Firestore</b> e cole as regras mostradas abaixo.</li>
         <li><b>4.</b> Em <b>Configurações do Projeto → Seus apps → Web</b>, copie o objeto <code>firebaseConfig</code>.</li>
-        <li><b>5.</b> Abra este <code>index.html</code> num editor e substitua o bloco <code>const firebaseConfig = { ... }</code> pelas suas credenciais.</li>
+        <li><b>5.</b> Substitua o bloco <code>const firebaseConfig = { ... }</code> no HTML.</li>
         <li><b>6.</b> Salve, suba no GitHub Pages e recarregue.</li>
       </ol>
-
       <div class="cartao-suave mb-3">
-        <p class="text-xs font-bold mb-1" style="color:var(--muted)">Regras do Firestore (Console → Firestore → Regras):</p>
+        <p class="text-xs font-bold mb-1" style="color:var(--muted)">Regras do Firestore:</p>
         <pre class="text-[0.62rem] leading-relaxed p-2 rounded-lg overflow-x-auto" style="background:var(--surface); color:var(--text); border:1px solid var(--borda)">rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -3299,17 +3071,13 @@ service cloud.firestore {
   }
 }</pre>
       </div>
-
       <button class="btn btn-primario w-full py-3" id="setup-recarregar">
         <i class="fa-solid fa-rotate-right mr-1"></i> Já configurei, recarregar
       </button>
     </div>
   `;
   document.body.appendChild(div);
-
-  document.getElementById("setup-recarregar").addEventListener("click", () => {
-    window.location.reload();
-  });
+  document.getElementById("setup-recarregar").addEventListener("click", () => window.location.reload());
 }
 
 /* ============================================================
@@ -3320,8 +3088,9 @@ async function boot() {
   registrarPWA();
   bloquearGestos();
 
-  /* Se o firebaseConfig ainda for placeholder, mostra instruções claras
-     em vez de deixar o app em branco. */
+  const dica = $("#loading-dica");
+  if (dica) dica.textContent = "";
+
   if (!FIREBASE_CONFIGURADO) {
     $("#tela-loading").classList.add("oculto");
     $("#tela-login").classList.add("oculto");
@@ -3330,27 +3099,55 @@ async function boot() {
     return;
   }
 
-  let usuario = null;
-  try {
-    usuario = await garantirAutenticacao();
-  } catch (e) { usuario = null; }
-
-  if (!usuario) {
+  if (!app || !auth || !db) {
     $("#tela-loading").classList.add("oculto");
     $("#tela-login").classList.remove("oculto");
-    toast("Não consegui conectar. Confere a internet e as credenciais 💙", 4000);
+    const erro = $("#login-erro");
+    if (erro) {
+      erro.textContent = "Não consegui iniciar o Firebase. Confere as credenciais 💙";
+      erro.classList.remove("oculto");
+    }
     return;
   }
 
-  iniciarOuvintes();
+  /* Timeout de segurança: se em 15s o app não carregou, mostra o login
+     com uma mensagem clara em vez de travar em "Carregando..." */
+  const timerSeguranca = setTimeout(() => {
+    const loading = $("#tela-loading");
+    if (loading && !loading.classList.contains("oculto")) {
+      loading.classList.add("oculto");
+      $("#tela-login").classList.remove("oculto");
+      const erro = $("#login-erro");
+      if (erro) {
+        erro.textContent = "Demorou mais que o normal. Confere a internet e as regras do Firestore 💙";
+        erro.classList.remove("oculto");
+      }
+    }
+  }, 15000);
 
-  setTimeout(() => {
-    if (!estado.configCarregada) {
+  try {
+    const usuario = await garantirAutenticacao();
+    if (!usuario) {
+      clearTimeout(timerSeguranca);
       $("#tela-loading").classList.add("oculto");
       $("#tela-login").classList.remove("oculto");
-      toast("Tô sem conexão, mas quando voltar atualizo tudo 💙", 3600);
+      toast("Não consegui conectar. Confere a internet e as credenciais 💙", 4000);
+      return;
     }
-  }, 12000);
+    iniciarOuvintes();
+    /* O timer de segurança é limpo quando a config chega no onSnapshot */
+    const vigia = setInterval(() => {
+      if (estado.configCarregada) {
+        clearTimeout(timerSeguranca);
+        clearInterval(vigia);
+      }
+    }, 500);
+  } catch (e) {
+    clearTimeout(timerSeguranca);
+    $("#tela-loading").classList.add("oculto");
+    $("#tela-login").classList.remove("oculto");
+    toast("Não consegui conectar. Confere a internet 💙", 4000);
+  }
 }
 
 boot().then(() => {

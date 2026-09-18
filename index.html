@@ -11,33 +11,14 @@
 <meta name="description" content="Nossa Rotina Viva — um cantinho nosso pra crescer juntos 💙💗">
 <title>Nossa Rotina Viva 💙💗</title>
 
-<!-- ============================================================
-     NOSSA ROTINA VIVA — app do casal (Douglas 💙 & Mayara 💗)
-     ------------------------------------------------------------
-     REGRAS DO FIRESTORE (obrigatório — cole no Console → Firestore → Regras):
-     rules_version = '2';
-     service cloud.firestore {
-       match /databases/{database}/documents {
-         match /{document=**} {
-           allow read, write: if request.auth != null;
-         }
-       }
-     }
-     ------------------------------------------------------------
-     ============================================================ -->
-
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     darkMode: 'class',
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Nunito', 'system-ui', 'sans-serif'],
-          display: ['"Playfair Display"', 'Georgia', 'serif']
-        }
-      }
-    }
+    theme: { extend: { fontFamily: {
+      sans: ['Nunito', 'system-ui', 'sans-serif'],
+      display: ['"Playfair Display"', 'Georgia', 'serif']
+    } } }
   };
 </script>
 
@@ -129,70 +110,23 @@
   .toggle-dot{ width:26px; height:26px; border-radius:9px; border:2px solid var(--borda); display:flex; align-items:center; justify-content:center; font-size:.75rem; color:transparent; transition:all .15s ease; flex:0 0 auto; }
   .toggle-item.ativo .toggle-dot{ background:var(--ok); border-color:var(--ok); color:#fff; }
 
-  /* NOVO: hábitos evitados na home com contraste claro */
   .habito-card{
-    padding:10px 6px;
-    border-radius:16px;
-    text-align:center;
-    transition:all .25s ease;
-    border:1.5px solid var(--borda);
-    background:var(--nao-evitado-bg);
-    position:relative;
+    padding:10px 6px; border-radius:16px; text-align:center;
+    transition:all .25s ease; border:1.5px solid var(--borda);
+    background:var(--nao-evitado-bg); position:relative;
   }
-  .habito-card .emoji{
-    font-size:1.4rem;
-    filter:grayscale(1);
-    opacity:.30;
-    transition:all .25s ease;
-    display:block;
-    line-height:1;
-  }
-  .habito-card .rotulo{
-    font-size:.6rem;
-    font-weight:700;
-    color:var(--muted);
-    margin-top:3px;
-    opacity:.55;
-    line-height:1.15;
-  }
-  .habito-card .check{
-    position:absolute;
-    top:5px;
-    right:5px;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:var(--ok);
-    color:#fff;
-    font-size:.6rem;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 2px 4px rgba(0,0,0,0.12);
-  }
-  .habito-card.ativo{
-    background:var(--evitado-bg);
-    border-color:var(--ok);
-    border-style:solid;
-  }
-  .habito-card.ativo .emoji{
-    filter:none;
-    opacity:1;
-  }
-  .habito-card.ativo .rotulo{
-    color:var(--text);
-    opacity:1;
-    font-weight:800;
-  }
-  .habito-card.ativo .check{
-    display:flex;
-  }
+  .habito-card .emoji{ font-size:1.4rem; filter:grayscale(1); opacity:.30; transition:all .25s ease; display:block; line-height:1; }
+  .habito-card .rotulo{ font-size:.6rem; font-weight:700; color:var(--muted); margin-top:3px; opacity:.55; line-height:1.15; }
+  .habito-card .check{ position:absolute; top:5px; right:5px; width:18px; height:18px; border-radius:50%; background:var(--ok); color:#fff; font-size:.6rem; display:none; align-items:center; justify-content:center; box-shadow:0 2px 4px rgba(0,0,0,0.12); }
+  .habito-card.ativo{ background:var(--evitado-bg); border-color:var(--ok); border-style:solid; }
+  .habito-card.ativo .emoji{ filter:none; opacity:1; }
+  .habito-card.ativo .rotulo{ color:var(--text); opacity:1; font-weight:800; }
+  .habito-card.ativo .check{ display:flex; }
 
   .nav-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:8px 2px 6px; color:var(--muted); font-size:.62rem; font-weight:700; transition:color .18s ease; background:transparent; border:none; }
   .nav-btn i{ font-size:1.15rem; }
   .nav-btn.ativo{ color:var(--azul); }
   .nav-btn[data-tela="gravidez"].ativo{ color:var(--rosa); }
-  .nav-btn.ativo i{ transform:translateY(-1px); }
 
   @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
   @keyframes popIn{ 0%{opacity:0; transform:scale(.94);} 60%{opacity:1; transform:scale(1.015);} 100%{transform:scale(1);} }
@@ -253,36 +187,13 @@
   .timeline-item:last-child::before{ display:none; }
   .timeline-item::after{ content:''; position:absolute; left:1px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--rosa); border:3px solid var(--surface); box-shadow:0 0 0 1px var(--borda); }
 
-  /* NOVO: item de pré-natal */
-  .pnatal-item{
-    display:flex; align-items:flex-start; gap:10px;
-    padding:10px 12px; border-radius:14px;
-    background:var(--surface-2); border:1px solid var(--borda);
-    margin-bottom:8px;
-  }
-  .pnatal-item .data{
-    flex:0 0 auto;
-    background:var(--surface);
-    border:1px solid var(--borda);
-    border-radius:10px;
-    padding:4px 8px;
-    font-size:.66rem;
-    font-weight:800;
-    color:var(--muted);
-    min-width:52px;
-    text-align:center;
-    line-height:1.1;
-  }
+  .pnatal-item{ display:flex; align-items:flex-start; gap:10px; padding:10px 12px; border-radius:14px; background:var(--surface-2); border:1px solid var(--borda); margin-bottom:8px; }
+  .pnatal-item .data{ flex:0 0 auto; background:var(--surface); border:1px solid var(--borda); border-radius:10px; padding:4px 8px; font-size:.66rem; font-weight:800; color:var(--muted); min-width:52px; text-align:center; line-height:1.1; }
   .pnatal-item .data.dia{ font-size:1rem; color:var(--text); }
   .pnatal-item .info{ flex:1; min-width:0; }
   .pnatal-item .info .titulo{ font-size:.86rem; font-weight:800; line-height:1.25; }
   .pnatal-item .info .sub{ font-size:.72rem; color:var(--muted); font-weight:600; margin-top:2px; }
-  .pnatal-item .acao{
-    flex:0 0 auto;
-    width:30px; height:30px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    background:transparent; color:var(--muted); border:none;
-  }
+  .pnatal-item .acao{ flex:0 0 auto; width:30px; height:30px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:transparent; color:var(--muted); border:none; }
   .pnatal-item.feito{ opacity:.55; }
   .pnatal-item.feito .titulo{ text-decoration:line-through; }
   .pnatal-item.passado .data{ background:var(--evitado-bg); }
@@ -330,7 +241,6 @@
 </div>
 
 <div id="app" class="oculto">
-
   <header class="safe-top sticky top-0 z-20" style="background:var(--nav-bg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--borda)">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-3">
       <div class="min-w-0">
@@ -374,22 +284,16 @@
 <canvas id="confetti-canvas"></canvas>
 
 <script type="module">
-/* ============================================================
-   0. IMPORTAÇÕES DO FIREBASE
-   ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import {
-  getAuth, signInAnonymously, onAuthStateChanged, signOut
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
   initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
   doc, getDoc, setDoc, updateDoc, deleteDoc, addDoc,
-  collection, orderBy, limit, onSnapshot, getDocs,
-  serverTimestamp, writeBatch
+  collection, orderBy, limit, onSnapshot, getDocs, serverTimestamp, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 /* ============================================================
-   1. CONFIGURAÇÃO DO FIREBASE
+   FIREBASE CONFIG
    ============================================================ */
 const firebaseConfig = {
   apiKey: "AIzaSyBqirYTZyLWjD84-e3NnDyNyiH7-97vK_4",
@@ -408,15 +312,12 @@ const FIREBASE_CONFIGURADO =
   !firebaseConfig.projectId.includes("SEU_PROJETO");
 
 let app = null, auth = null, db = null;
-
 if (FIREBASE_CONFIGURADO) {
   try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     try {
-      db = initializeFirestore(app, {
-        localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
-      });
+      db = initializeFirestore(app, { localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }) });
     } catch (eCache) {
       db = initializeFirestore(app, {});
     }
@@ -426,12 +327,11 @@ if (FIREBASE_CONFIGURADO) {
 }
 
 /* ============================================================
-   2. CONSTANTES DO APP
+   CONFIG
    ============================================================ */
 const APP_CONFIG = {
   nome: "Nossa Rotina Viva",
-  versao: "1.2.0",
-
+  versao: "1.3.0",
   frases: [
     "Cuidar de você também é cuidar de nós dois. 💙💗",
     "Um dia de cada vez, juntinhos. 🌱",
@@ -446,7 +346,6 @@ const APP_CONFIG = {
     "Bora com carinho, sem pressa. 🍃",
     "Cada gotinha de água é um cuidado com você. 💧"
   ],
-
   tamanhos: {
     1:{t:"sementinha de papoula",e:"🌱",d:"Ainda é uma promessa minúscula, mas já está se dividindo em muitas células."},
     2:{t:"semente de gergelim",e:"🌰",d:"O embriãozinho se aninha com cuidado no colo do útero."},
@@ -489,7 +388,6 @@ const APP_CONFIG = {
     39:{t:"melancia pequena",e:"🍉",d:"Prontinho! Só esperando o dia certo pra te conhecer."},
     40:{t:"abóbora",e:"🎃",d:"Chegou a hora. Que encontro lindo vai ser. 💗"}
   },
-
   sintomas: [
     { id:"enjoo",      t:"Enjoo",              e:"🤢" },
     { id:"cansaco",    t:"Cansaço",            e:"😴" },
@@ -508,7 +406,6 @@ const APP_CONFIG = {
     { id:"cheiros",    t:"Sensível a cheiros", e:"👃" },
     { id:"emocao",     t:"Emoções à flor",     e:"🥲" }
   ],
-
   humores: [
     { id:"otimo",        t:"Ótimo",        e:"😄" },
     { id:"bom",          t:"Bom",          e:"🙂" },
@@ -516,7 +413,6 @@ const APP_CONFIG = {
     { id:"dificil",      t:"Difícil",      e:"😔" },
     { id:"muito_dificil",t:"Muito difícil",e:"😢" }
   ],
-
   refeicoes: [
     { id:"cafe",      t:"Café da manhã",   e:"☕" },
     { id:"lanche_am", t:"Lanche da manhã", e:"🍎" },
@@ -525,7 +421,6 @@ const APP_CONFIG = {
     { id:"jantar",    t:"Jantar",          e:"🍲" },
     { id:"ceia",      t:"Ceia leve",       e:"🥛" }
   ],
-
   evitaveis: [
     { id:"doce",        t:"Doce",           e:"🍰" },
     { id:"farofa",      t:"Farofa",         e:"🍚" },
@@ -534,7 +429,6 @@ const APP_CONFIG = {
     { id:"vicios",      t:"Vícios",         e:"🚭" },
     { id:"dormir_tela", t:"Tela ao deitar", e:"📱" }
   ],
-
   checklistSugerido: [
     "Ir à primeira ultrassom",
     "Escolher o nome do bebê",
@@ -543,8 +437,6 @@ const APP_CONFIG = {
     "Escolher a maternidade",
     "Fazer o chá de bebê"
   ],
-
-  /* NOVO: lembretes sugeridos do pré-natal */
   lembretesPrenatal: [
     "Agendar a morfológica do 1º trimestre",
     "Levar exames na consulta",
@@ -568,40 +460,23 @@ const METAS_PADRAO = {
 };
 
 /* ============================================================
-   3. ESTADO GLOBAL
+   ESTADO
    ============================================================ */
 const estado = {
-  pessoa: null,
-  config: null,
-  dias: [],
-  semanas: [],
-  preparacao: [],
-  sessoes: [],
-  prenatal: [],       // NOVO
-  tela: "home",
-  charts: {},
-  modoDificil: false,
-  avisos: [],
-  ouvintesAtivos: false,
-  configCarregada: false,
-  pomodoro: {
-    modo: "trabalho", restante: 25 * 60, total: 25 * 60,
-    rodando: false, intervalo: null, fimEm: null, ciclo: 0
-  }
+  pessoa: null, config: null,
+  dias: [], semanas: [], preparacao: [], sessoes: [], prenatal: [],
+  tela: "home", charts: {}, modoDificil: false, avisos: [],
+  ouvintesAtivos: false, configCarregada: false,
+  pomodoro: { modo: "trabalho", restante: 25 * 60, total: 25 * 60, rodando: false, intervalo: null, fimEm: null, ciclo: 0 }
 };
 
 /* ============================================================
-   4. UTILITÁRIOS
+   UTILITÁRIOS
    ============================================================ */
-const $  = (sel, raiz = document) => raiz.querySelector(sel);
-const $$ = (sel, raiz = document) => Array.from(raiz.querySelectorAll(sel));
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-function dataISO(d) {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const dia = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${dia}`;
-}
+function dataISO(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
 function hojeISO() { return dataISO(new Date()); }
 function inicioDoDia(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
 function paraData(v) {
@@ -616,26 +491,16 @@ function formatarDataLonga(d) {
   const meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
   return `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]}`;
 }
-function formatarDataCurta(iso) {
-  const [a, m, d] = iso.split("-");
-  return `${d}/${m}`;
-}
+function formatarDataCurta(iso) { const [a,m,d] = iso.split("-"); return `${d}/${m}`; }
 function formatarDiaMes(d) {
   const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
   return `${String(d.getDate()).padStart(2,"0")} ${meses[d.getMonth()]}`;
 }
 function escaparHTML(s) {
-  return String(s == null ? "" : s)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
-function agoraHHMM() {
-  const d = new Date();
-  return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
-}
-function vibrar(padrao = 28) {
-  if (navigator.vibrate) { try { navigator.vibrate(padrao); } catch (e) { /* silencioso */ } }
-}
+function agoraHHMM() { const d = new Date(); return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; }
+function vibrar(p = 28) { if (navigator.vibrate) { try { navigator.vibrate(p); } catch(e){} } }
 function nomePessoa(p) {
   const cfg = estado.config;
   const padrao = p === "douglas" ? "Douglas" : "Mayara";
@@ -643,7 +508,7 @@ function nomePessoa(p) {
 }
 
 /* ============================================================
-   5. SONS
+   SONS
    ============================================================ */
 let ctxAudio = null;
 function obterCtx() {
@@ -652,12 +517,12 @@ function obterCtx() {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return null;
       ctxAudio = new AC();
-    } catch (e) { return null; }
+    } catch(e) { return null; }
   }
-  if (ctxAudio.state === "suspended") { ctxAudio.resume().catch(() => {}); }
+  if (ctxAudio.state === "suspended") ctxAudio.resume().catch(()=>{});
   return ctxAudio;
 }
-function tocarNota(freq, atraso, duracao, tipo = "sine", volume = 0.16) {
+function tocarNota(freq, atraso, dur, tipo = "sine", vol = 0.16) {
   const ctx = obterCtx();
   if (!ctx) return;
   const t0 = ctx.currentTime + atraso;
@@ -666,38 +531,34 @@ function tocarNota(freq, atraso, duracao, tipo = "sine", volume = 0.16) {
   osc.type = tipo;
   osc.frequency.setValueAtTime(freq, t0);
   gan.gain.setValueAtTime(0.0001, t0);
-  gan.gain.exponentialRampToValueAtTime(volume, t0 + 0.02);
-  gan.gain.exponentialRampToValueAtTime(0.0001, t0 + duracao);
+  gan.gain.exponentialRampToValueAtTime(vol, t0 + 0.02);
+  gan.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
   osc.connect(gan); gan.connect(ctx.destination);
-  osc.start(t0); osc.stop(t0 + duracao + 0.05);
+  osc.start(t0); osc.stop(t0 + dur + 0.05);
 }
 const Sons = {
-  pomodoroInicio() { tocarNota(261.63, 0, 0.28, "sine", 0.14); tocarNota(329.63, 0.14, 0.38, "sine", 0.14); },
-  pomodoroFim()    { tocarNota(392.00, 0, 0.55, "sine", 0.13); tocarNota(493.88, 0.06, 0.55, "sine", 0.11); tocarNota(587.33, 0.12, 0.75, "sine", 0.10); },
-  habitoFeito()    { tocarNota(880, 0, 0.06, "triangle", 0.08); tocarNota(1174.66, 0.05, 0.12, "sine", 0.09); },
-  salvar()         { tocarNota(261.63, 0, 0.30, "sine", 0.10); tocarNota(329.63, 0.05, 0.30, "sine", 0.10); tocarNota(392.00, 0.10, 0.45, "sine", 0.10); },
-  semanaBebe()     { [261.63, 329.63, 392.00, 523.25].forEach((f, i) => tocarNota(f, i * 0.11, 0.9, "sine", 0.10)); },
-  erro()           { tocarNota(174.61, 0, 0.28, "sine", 0.09); }
+  pomodoroInicio(){ tocarNota(261.63,0,0.28,"sine",0.14); tocarNota(329.63,0.14,0.38,"sine",0.14); },
+  pomodoroFim(){ tocarNota(392,0,0.55,"sine",0.13); tocarNota(493.88,0.06,0.55,"sine",0.11); tocarNota(587.33,0.12,0.75,"sine",0.10); },
+  habitoFeito(){ tocarNota(880,0,0.06,"triangle",0.08); tocarNota(1174.66,0.05,0.12,"sine",0.09); },
+  salvar(){ tocarNota(261.63,0,0.30,"sine",0.10); tocarNota(329.63,0.05,0.30,"sine",0.10); tocarNota(392,0.10,0.45,"sine",0.10); },
+  semanaBebe(){ [261.63,329.63,392,523.25].forEach((f,i)=>tocarNota(f,i*0.11,0.9,"sine",0.10)); },
+  erro(){ tocarNota(174.61,0,0.28,"sine",0.09); }
 };
 
 /* ============================================================
-   6. TOASTS, MODAIS, CONFETE
+   TOASTS / MODAL / CONFETE
    ============================================================ */
 function toast(msg, ms = 2400) {
-  const box = $("#toasts");
-  if (!box) return;
+  const box = $("#toasts"); if (!box) return;
   const el = document.createElement("div");
-  el.className = "toast";
-  el.textContent = msg;
+  el.className = "toast"; el.textContent = msg;
   box.appendChild(el);
   setTimeout(() => {
     el.style.transition = "opacity .3s ease, transform .3s ease";
-    el.style.opacity = "0";
-    el.style.transform = "translateY(8px)";
+    el.style.opacity = "0"; el.style.transform = "translateY(8px)";
     setTimeout(() => el.remove(), 320);
   }, ms);
 }
-
 function abrirModal(html, opcoes = {}) {
   fecharModal();
   const fundo = document.createElement("div");
@@ -707,10 +568,7 @@ function abrirModal(html, opcoes = {}) {
   $("#modal-root").appendChild(fundo);
   return fundo;
 }
-function fecharModal() {
-  const m = $(".modal-fundo");
-  if (m) m.remove();
-}
+function fecharModal() { const m = $(".modal-fundo"); if (m) m.remove(); }
 function confirmar(titulo, texto, rotuloOk = "Confirmar") {
   return new Promise((resolve) => {
     const fundo = abrirModal(`
@@ -725,7 +583,6 @@ function confirmar(titulo, texto, rotuloOk = "Confirmar") {
     fundo.querySelector("[data-ok]").addEventListener("click", () => { fecharModal(); resolve(true); });
   });
 }
-
 function soltarConfete() {
   try {
     const canvas = $("#confetti-canvas");
@@ -734,17 +591,16 @@ function soltarConfete() {
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const cores = ["#E08AA6", "#C9B8E8", "#A8D8C8", "#F2E8D5", "#4A90D9", "#F6DDE5"];
+    const cores = ["#E08AA6","#C9B8E8","#A8D8C8","#F2E8D5","#4A90D9","#F6DDE5"];
     const pecas = [];
     for (let i = 0; i < 70; i++) {
       pecas.push({
-        x: window.innerWidth / 2 + (Math.random() - 0.5) * 140,
-        y: -20 - Math.random() * 160,
-        w: 5 + Math.random() * 6, h: 8 + Math.random() * 8,
-        vy: 1.6 + Math.random() * 2.4, vx: (Math.random() - 0.5) * 1.6,
-        rot: Math.random() * Math.PI, vrot: (Math.random() - 0.5) * 0.16,
-        cor: cores[Math.floor(Math.random() * cores.length)], op: 0.9
+        x: window.innerWidth/2 + (Math.random()-0.5)*140,
+        y: -20 - Math.random()*160,
+        w: 5 + Math.random()*6, h: 8 + Math.random()*8,
+        vy: 1.6 + Math.random()*2.4, vx: (Math.random()-0.5)*1.6,
+        rot: Math.random()*Math.PI, vrot: (Math.random()-0.5)*0.16,
+        cor: cores[Math.floor(Math.random()*cores.length)], op: 0.9
       });
     }
     let frames = 0;
@@ -756,12 +612,9 @@ function soltarConfete() {
         vivas++;
         p.y += p.vy; p.x += p.vx; p.rot += p.vrot;
         if (frames > 70) p.op = Math.max(0, p.op - 0.012);
-        ctx.save();
-        ctx.globalAlpha = p.op;
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.cor;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.save(); ctx.globalAlpha = p.op;
+        ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.cor; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
         ctx.restore();
       });
       frames++;
@@ -769,30 +622,30 @@ function soltarConfete() {
       else ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     }
     animar();
-  } catch (e) { /* silencioso */ }
+  } catch(e) {}
 }
 
 /* ============================================================
-   7. CÁLCULOS DE GRAVIDEZ
+   GRAVIDEZ
    ============================================================ */
 function calcularGravidez(dumValor) {
   const dum = paraData(dumValor);
   if (!dum) return null;
   const hoje = inicioDoDia(new Date());
   const base = inicioDoDia(dum);
-  const MS_DIA = 86400000;
-  const totalDias = Math.floor((hoje - base) / MS_DIA);
+  const MS = 86400000;
+  const totalDias = Math.floor((hoje - base) / MS);
   const semanas = Math.floor(totalDias / 7);
   const dias = totalDias % 7;
-  const dataPrevista = new Date(base.getTime() + 280 * MS_DIA);
-  const diasRestantes = Math.max(0, Math.round((inicioDoDia(dataPrevista) - hoje) / MS_DIA));
+  const dataPrevista = new Date(base.getTime() + 280 * MS);
+  const diasRestantes = Math.max(0, Math.round((inicioDoDia(dataPrevista) - hoje) / MS));
   const semanasRestantes = Math.max(0, Math.ceil(diasRestantes / 7));
   const trimestre = semanas < 13 ? 1 : (semanas < 27 ? 2 : 3);
   const semanaTabela = Math.min(40, Math.max(1, semanas));
   return {
-    dum: base, totalDias: Math.max(0, totalDias), semanas: Math.max(0, semanas), dias: Math.max(0, dias),
+    dum: base, totalDias: Math.max(0,totalDias), semanas: Math.max(0,semanas), dias: Math.max(0,dias),
     dataPrevista, diasRestantes, semanasRestantes, trimestre, semanaTabela,
-    texto: `${Math.max(0, semanas)} ${Math.max(0, semanas) === 1 ? "semana" : "semanas"} e ${Math.max(0, dias)} ${Math.max(0, dias) === 1 ? "dia" : "dias"}`
+    texto: `${Math.max(0,semanas)} ${Math.max(0,semanas) === 1 ? "semana" : "semanas"} e ${Math.max(0,dias)} ${Math.max(0,dias) === 1 ? "dia" : "dias"}`
   };
 }
 function infoBebe(semana) {
@@ -807,38 +660,27 @@ function diasJuntos() {
 }
 
 /* ============================================================
-   8. PROGRESSO / METAS
+   METAS / PROGRESSO
    ============================================================ */
-function metaAgua(pessoa) {
-  const m = estado.config && estado.config.meta_agua_ml;
-  return (m && m[pessoa]) || 2500;
-}
-function metaIngles(pessoa) {
-  const m = estado.config && estado.config.meta_ingles_min;
-  return (m && m[pessoa]) || 20;
-}
-function metaPomodoros(pessoa) {
-  const m = estado.config && estado.config.meta_pomodoros;
-  return (m && m[pessoa]) || 4;
-}
-function obterDia(pessoa, data) {
-  return estado.dias.find((d) => d.pessoa === pessoa && d.data === data) || null;
-}
-function progressoDia(dia, pessoa) {
+function metaAgua(p) { const m = estado.config && estado.config.meta_agua_ml; return (m && m[p]) || 2500; }
+function metaIngles(p) { const m = estado.config && estado.config.meta_ingles_min; return (m && m[p]) || 20; }
+function metaPomodoros(p) { const m = estado.config && estado.config.meta_pomodoros; return (m && m[p]) || 4; }
+function obterDia(p, data) { return estado.dias.find((d) => d.pessoa === p && d.data === data) || null; }
+function progressoDia(dia, p) {
   if (!dia) return 0;
-  const agua = Math.min(1, (dia.agua_ml || 0) / metaAgua(pessoa)) * 25;
+  const agua = Math.min(1, (dia.agua_ml || 0) / metaAgua(p)) * 25;
   const refeicoes = Math.min(1, ((dia.refeicoes || []).length) / 3) * 20;
   const exercicio = dia.exercicio ? 10 : 0;
-  const ingles = Math.min(1, (dia.ingles_minutos || 0) / metaIngles(pessoa)) * 15;
-  const pomodoros = Math.min(1, ((dia.pomodoros_trabalho || 0) + (dia.pomodoros_estudo || 0)) / metaPomodoros(pessoa)) * 20;
+  const ingles = Math.min(1, (dia.ingles_minutos || 0) / metaIngles(p)) * 15;
+  const pomodoros = Math.min(1, ((dia.pomodoros_trabalho || 0) + (dia.pomodoros_estudo || 0)) / metaPomodoros(p)) * 20;
   const ev = dia.evitou || {};
-  const qtdEv = APP_CONFIG.evitaveis.filter((e) => ev[e.id]).length;
-  const evitou = (qtdEv / APP_CONFIG.evitaveis.length) * 10;
+  const qtd = APP_CONFIG.evitaveis.filter((e) => ev[e.id]).length;
+  const evitou = (qtd / APP_CONFIG.evitaveis.length) * 10;
   return Math.round(Math.min(100, agua + refeicoes + exercicio + ingles + pomodoros + evitou));
 }
-function calcularStreak(pessoa, tipo = "geral") {
+function calcularStreak(p, tipo = "geral") {
   const mapa = {};
-  estado.dias.filter((d) => d.pessoa === pessoa).forEach((d) => { mapa[d.data] = d; });
+  estado.dias.filter((d) => d.pessoa === p).forEach((d) => { mapa[d.data] = d; });
   let d = new Date();
   if (!mapa[dataISO(d)]) d.setDate(d.getDate() - 1);
   let streak = 0;
@@ -846,25 +688,21 @@ function calcularStreak(pessoa, tipo = "geral") {
     const iso = dataISO(d);
     const doc = mapa[iso];
     if (!doc) break;
-    const ok = tipo === "agua"
-      ? (doc.agua_ml || 0) >= metaAgua(pessoa)
-      : progressoDia(doc, pessoa) >= 60;
+    const ok = tipo === "agua" ? (doc.agua_ml || 0) >= metaAgua(p) : progressoDia(doc, p) >= 60;
     if (!ok) break;
     streak++;
     d.setDate(d.getDate() - 1);
   }
   return streak;
 }
-function calcularRecorde(pessoa, tipo = "geral") {
+function calcularRecorde(p, tipo = "geral") {
   const mapa = {};
-  estado.dias.filter((d) => d.pessoa === pessoa).forEach((d) => { mapa[d.data] = d; });
+  estado.dias.filter((d) => d.pessoa === p).forEach((d) => { mapa[d.data] = d; });
   const datas = Object.keys(mapa).sort();
   let melhor = 0, atual = 0, anterior = null;
   datas.forEach((iso) => {
     const doc = mapa[iso];
-    const ok = tipo === "agua"
-      ? (doc.agua_ml || 0) >= metaAgua(pessoa)
-      : progressoDia(doc, pessoa) >= 60;
+    const ok = tipo === "agua" ? (doc.agua_ml || 0) >= metaAgua(p) : progressoDia(doc, p) >= 60;
     if (ok) {
       if (anterior) {
         const diff = (new Date(iso) - new Date(anterior)) / 86400000;
@@ -878,7 +716,7 @@ function calcularRecorde(pessoa, tipo = "geral") {
 }
 
 /* ============================================================
-   9. LOGIN, SESSÃO E PIN
+   LOGIN / PIN
    ============================================================ */
 const CHAVE_SESSAO = "nrv_sessao_pessoa";
 const CHAVE_TEMA = "nrv_tema";
@@ -886,12 +724,11 @@ const CHAVE_TEMA = "nrv_tema";
 async function garantirAutenticacao() {
   return new Promise((resolve) => {
     if (!auth) { resolve(null); return; }
-    /* Timeout de segurança para mobile lento */
     const timeout = setTimeout(() => resolve(auth.currentUser || null), 12000);
     const parar = onAuthStateChanged(auth, async (user) => {
       if (user) { clearTimeout(timeout); parar(); resolve(user); return; }
       try { await signInAnonymously(auth); }
-      catch (e) { clearTimeout(timeout); parar(); resolve(null); }
+      catch(e) { clearTimeout(timeout); parar(); resolve(null); }
     });
   });
 }
@@ -912,7 +749,6 @@ function mostrarLogin() {
 }
 
 let pessoaEscolhida = null;
-
 function irParaPin(pessoa) {
   pessoaEscolhida = pessoa;
   const nome = nomePessoa(pessoa);
@@ -923,53 +759,37 @@ function irParaPin(pessoa) {
   $("#login-erro").classList.add("oculto");
   $("#login-pin").value = "";
   setTimeout(() => $("#login-pin").focus(), 220);
-
-  /* NOVO: em mobile a config pode não ter chegado ainda. Buscamos de novo. */
   if (!estado.config) buscarConfigSeNecessario();
 }
 
-/* NOVO: fallback direto via getDoc (mobile costuma precisar disso) */
 async function buscarConfigSeNecessario() {
   if (estado.config || !db) return;
   try {
     const snap = await getDoc(doc(db, "config", "casal"));
-    if (snap.exists()) {
-      estado.config = snap.data();
-      estado.configCarregada = true;
-    }
-  } catch (e) {
-    /* silencioso — o validarPin mostra a mensagem */
-  }
+    if (snap.exists()) { estado.config = snap.data(); estado.configCarregada = true; }
+  } catch(e) {}
 }
 
 async function validarPin() {
-  /* Se a config não está na memória, tenta buscar direto do Firestore */
   if (!estado.config) {
     toast("Conectando...", 1500);
     await buscarConfigSeNecessario();
   }
-
   if (!estado.config) {
-    Sons.erro();
-    vibrar(120);
+    Sons.erro(); vibrar(120);
     const erro = $("#login-erro");
     erro.textContent = "Ainda não consegui falar com o Firebase. Confere a internet e as regras do Firestore 💙";
     erro.classList.remove("oculto");
     return;
   }
-
   const valor = ($("#login-pin").value || "").trim();
   const pinCorreto = estado.config.pin ? String(estado.config.pin) : null;
-
   if (!pinCorreto) { entrarNoApp(pessoaEscolhida); return; }
-
   if (valor === pinCorreto) {
-    Sons.salvar();
-    vibrar([18, 40, 18]);
+    Sons.salvar(); vibrar([18,40,18]);
     entrarNoApp(pessoaEscolhida);
   } else {
-    Sons.erro();
-    vibrar(120);
+    Sons.erro(); vibrar(120);
     const erro = $("#login-erro");
     erro.textContent = "PIN diferente do nosso. Tenta de novo 💙";
     erro.classList.remove("oculto");
@@ -986,7 +806,6 @@ function entrarNoApp(pessoa) {
   atualizarCabecalho();
   trocarTela("home");
   verificarAvisosDaOutraPessoa();
-  /* Garante que os ouvintes rodem mesmo se a config chegou via getDoc direto */
   if (!estado.ouvintesAtivos) iniciarOuvintes();
 }
 
@@ -994,27 +813,24 @@ async function sair() {
   const ok = await confirmar("Sair do app?", "Você vai precisar do nosso PIN pra entrar de novo.", "Sair");
   if (!ok) return;
   sessionStorage.removeItem(CHAVE_SESSAO);
-  estado.pessoa = null;
-  pessoaEscolhida = null;
+  estado.pessoa = null; pessoaEscolhida = null;
   pararPomodoro();
   mostrarLogin();
-  try { await signOut(auth); } catch (e) { /* silencioso */ }
-  try { await signInAnonymously(auth); } catch (e) { /* silencioso */ }
+  try { await signOut(auth); } catch(e) {}
+  try { await signInAnonymously(auth); } catch(e) {}
 }
 
 /* ============================================================
-   10. FIRESTORE — CRUD
+   FIRESTORE
    ============================================================ */
 const REF_CONFIG = () => doc(db, "config", "casal");
-const refDia = (pessoa, data) => doc(db, "dias", `${pessoa}_${data}`);
-const refSemana = (semana) => doc(db, "semanas_gravidez", String(semana));
+const refDia = (p, d) => doc(db, "dias", `${p}_${d}`);
+const refSemana = (s) => doc(db, "semanas_gravidez", String(s));
 
 function mensagemErroFirestore(e) {
   const codigo = (e && e.code) ? String(e.code) : "";
   if (!navigator.onLine) return "Tô sem conexão. Quando voltar, atualizo tudo 💙";
-  if (codigo.includes("permission") || codigo.includes("unauthenticated")) {
-    return "O Firestore está bloqueando. Confere as regras no Console 🔒";
-  }
+  if (codigo.includes("permission") || codigo.includes("unauthenticated")) return "O Firestore está bloqueando. Confere as regras no Console 🔒";
   if (codigo.includes("unavailable")) return "Servidor indisponível agora. Tenta em instantes 💙";
   return "Não consegui salvar agora. Tenta de novo 💙";
 }
@@ -1025,29 +841,24 @@ async function salvarConfig(parcial, aviso = "Salvo 💚") {
     await setDoc(REF_CONFIG(), { ...parcial, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  } catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
-async function salvarDia(pessoa, data, dados, aviso = "Anotado 💚") {
+async function salvarDia(p, data, dados, aviso = "Anotado 💚") {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
-    await setDoc(refDia(pessoa, data), {
-      pessoa, data, ...dados, atualizado_em: serverTimestamp()
-    }, { merge: true });
+    await setDoc(refDia(p, data), { pessoa: p, data, ...dados, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  } catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function salvarSemana(semana, dados, aviso = "Anotado com carinho 💗") {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
     await setDoc(refSemana(semana), { semana, ...dados, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  } catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function salvarPreparacao(item) {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
@@ -1057,50 +868,39 @@ async function salvarPreparacao(item) {
     });
     toast("Item adicionado 🌱");
     return true;
-  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  } catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function atualizarPreparacao(id, dados) {
   if (!db) return false;
   try { await updateDoc(doc(db, "preparacao_papai", id), dados); return true; }
-  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function removerPreparacao(id) {
   if (!db) return false;
   try { await deleteDoc(doc(db, "preparacao_papai", id)); toast("Item removido"); return true; }
-  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
-/* NOVO: pré-natal */
 async function salvarPrenatal(dados, id = null) {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
-    if (id) {
-      await updateDoc(doc(db, "prenatal", id), { ...dados, atualizado_em: serverTimestamp() });
-    } else {
-      await addDoc(collection(db, "prenatal"), {
-        ...dados, feito: false, criado_em: serverTimestamp()
-      });
-    }
+    if (id) await updateDoc(doc(db, "prenatal", id), { ...dados, atualizado_em: serverTimestamp() });
+    else await addDoc(collection(db, "prenatal"), { ...dados, feito: false, criado_em: serverTimestamp() });
     return true;
-  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  } catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function removerPrenatal(id) {
   if (!db) return false;
   try { await deleteDoc(doc(db, "prenatal", id)); toast("Item removido"); return true; }
-  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+  catch(e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
-
 async function registrarSessaoPomodoro(dados) {
   if (!db) return;
   try { await addDoc(collection(db, "sessoes_pomodoro"), { ...dados, criado_em: serverTimestamp() }); }
-  catch (e) { /* silencioso */ }
+  catch(e) {}
 }
 
 /* ============================================================
-   11. OUVINTES EM TEMPO REAL
+   OUVINTES
    ============================================================ */
 function iniciarOuvintes() {
   if (estado.ouvintesAtivos || !db) return;
@@ -1116,29 +916,24 @@ function iniciarOuvintes() {
     const anterior = estado.config;
     estado.config = snap.data();
     estado.configCarregada = true;
-
     $("#tela-loading").classList.add("oculto");
 
     if (anterior && anterior.dum && estado.config.dum) {
-      const gAntes = calcularGravidez(anterior.dum);
-      const gAgora = calcularGravidez(estado.config.dum);
-      if (gAntes && gAgora && gAntes.semanas !== gAgora.semanas) {
+      const gA = calcularGravidez(anterior.dum);
+      const gB = calcularGravidez(estado.config.dum);
+      if (gA && gB && gA.semanas !== gB.semanas) {
         Sons.semanaBebe();
-        toast(`Nova semana do bebê: ${infoBebe(gAgora.semanaTabela).e} ${infoBebe(gAgora.semanaTabela).t} 💗`, 3600);
+        toast(`Nova semana do bebê: ${infoBebe(gB.semanaTabela).e} ${infoBebe(gB.semanaTabela).t} 💗`, 3600);
       }
     }
 
     const sessao = sessionStorage.getItem(CHAVE_SESSAO);
-    if (sessao && !estado.pessoa) {
-      entrarNoApp(sessao);
-    } else if (!sessao && !estado.pessoa) {
-      mostrarLogin();
-    }
+    if (sessao && !estado.pessoa) entrarNoApp(sessao);
+    else if (!sessao && !estado.pessoa) mostrarLogin();
 
     atualizarCabecalho();
     renderizarTelaAtual();
   }, () => {
-    /* Fallback: tenta buscar direto */
     buscarConfigSeNecessario();
     if (!estado.config) {
       $("#tela-loading").classList.add("oculto");
@@ -1153,33 +948,29 @@ function iniciarOuvintes() {
   }, () => {});
 
   onSnapshot(collection(db, "semanas_gravidez"), (snap) => {
-    estado.semanas = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
-      .sort((a, b) => (b.semana || 0) - (a.semana || 0));
+    estado.semanas = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => (b.semana || 0) - (a.semana || 0));
     renderizarTelaAtual();
   }, () => {});
 
   onSnapshot(collection(db, "preparacao_papai"), (snap) => {
-    estado.preparacao = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
-      .sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
+    estado.preparacao = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
     renderizarTelaAtual();
   }, () => {});
 
-  /* NOVO: pré-natal */
   onSnapshot(collection(db, "prenatal"), (snap) => {
-    estado.prenatal = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
-      .sort((a, b) => {
-        const da = a.data ? paraData(a.data) : null;
-        const db_ = b.data ? paraData(b.data) : null;
-        if (da && db_) return da - db_;
-        if (da) return -1;
-        if (db_) return 1;
-        return (a.ordem || 0) - (b.ordem || 0);
-      });
+    estado.prenatal = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => {
+      const da = a.data ? paraData(a.data) : null;
+      const db2 = b.data ? paraData(b.data) : null;
+      if (da && db2) return da - db2;
+      if (da) return -1;
+      if (db2) return 1;
+      return (a.ordem || 0) - (b.ordem || 0);
+    });
     renderizarTelaAtual();
   }, () => {});
 
-  const qSessoes = query(collection(db, "sessoes_pomodoro"), orderBy("criado_em", "desc"), limit(300));
-  onSnapshot(qSessoes, (snap) => {
+  const qS = query(collection(db, "sessoes_pomodoro"), orderBy("criado_em", "desc"), limit(300));
+  onSnapshot(qS, (snap) => {
     estado.sessoes = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
     renderizarTelaAtual();
   }, () => {
@@ -1190,15 +981,11 @@ function iniciarOuvintes() {
 }
 
 /* ============================================================
-   12. CONFIGURAÇÃO INICIAL
+   CONFIG INICIAL
    ============================================================ */
 function abrirConfiguracaoInicial() {
   const hoje = hojeISO();
-  const dumPadrao = (() => {
-    const d = new Date();
-    d.setDate(d.getDate() - 49);
-    return dataISO(d);
-  })();
+  const dumPadrao = (() => { const d = new Date(); d.setDate(d.getDate() - 49); return dataISO(d); })();
 
   abrirModal(`
     <div class="text-center mb-5">
@@ -1227,29 +1014,22 @@ function abrirConfiguracaoInicial() {
   $("#setup-salvar").addEventListener("click", async () => {
     const pin = ($("#setup-pin").value || "").trim();
     const erro = $("#setup-erro");
-    if (!/^\d{4}$/.test(pin)) {
-      erro.textContent = "O PIN precisa ter 4 números 💙";
-      erro.classList.remove("oculto"); Sons.erro(); return;
-    }
+    if (!/^\d{4}$/.test(pin)) { erro.textContent = "O PIN precisa ter 4 números 💙"; erro.classList.remove("oculto"); Sons.erro(); return; }
     const nomeD = ($("#setup-nome-douglas").value || "Douglas").trim() || "Douglas";
     const nomeM = ($("#setup-nome-mayara").value || "Mayara").trim() || "Mayara";
     const dum = $("#setup-dum").value;
     const juntos = $("#setup-juntos").value;
-    if (!dum) {
-      erro.textContent = "Preciso da data da última menstruação 💗";
-      erro.classList.remove("oculto"); Sons.erro(); return;
-    }
-    const dumDate = new Date(`${dum}T00:00:00`);
-    const juntosDate = new Date(`${juntos}T00:00:00`);
+    if (!dum) { erro.textContent = "Preciso da data da última menstruação 💗"; erro.classList.remove("oculto"); Sons.erro(); return; }
 
     const ok = await salvarConfig({
       pin, nomes: { douglas: nomeD, mayara: nomeM },
-      dum: dumDate, data_juntos: juntosDate, nome_bebe: "",
-      ...METAS_PADRAO, criado_em: serverTimestamp()
+      dum: new Date(`${dum}T00:00:00`),
+      data_juntos: new Date(`${juntos}T00:00:00`),
+      nome_bebe: "", ...METAS_PADRAO, criado_em: serverTimestamp()
     }, null);
 
     if (ok) {
-      Sons.salvar(); vibrar([20, 50, 20]);
+      Sons.salvar(); vibrar([20,50,20]);
       fecharModal(); soltarConfete();
       toast("Nosso cantinho está pronto 💙💗", 3200);
       mostrarLogin();
@@ -1261,84 +1041,61 @@ function abrirConfiguracaoInicial() {
 }
 
 /* ============================================================
-   13. CABEÇALHO, AVISOS E MODO DIFÍCIL
+   CABEÇALHO / AVISOS
    ============================================================ */
 function atualizarCabecalho() {
   if (!estado.pessoa) return;
   const h = new Date().getHours();
   const nome = nomePessoa(estado.pessoa);
-  let saudacao = "Olá";
-  if (h < 5) saudacao = `Boa noite, ${nome}`;
-  else if (h < 12) saudacao = `Bom dia, ${nome}`;
-  else if (h < 18) saudacao = `Boa tarde, ${nome}`;
-  else saudacao = `Boa noite, ${nome}`;
-  if (estado.modoDificil && estado.pessoa === "mayara") saudacao = `Bom dia, ${nome} 💗`;
-  $("#cabecalho-saudacao").textContent = saudacao;
+  let s = "Olá";
+  if (h < 5) s = `Boa noite, ${nome}`;
+  else if (h < 12) s = `Bom dia, ${nome}`;
+  else if (h < 18) s = `Boa tarde, ${nome}`;
+  else s = `Boa noite, ${nome}`;
+  if (estado.modoDificil && estado.pessoa === "mayara") s = `Bom dia, ${nome} 💗`;
+  $("#cabecalho-saudacao").textContent = s;
   $("#cabecalho-data").textContent = formatarDataLonga(new Date());
 }
-
 function aplicarModoDificil() {
-  const semanas = estado.semanas || [];
-  const atual = semanas.length ? semanas[0] : null;
-  const ativo = !!(atual && (atual.humor === "muito_dificil" || atual.humor === "dificil"));
+  const s = estado.semanas || [];
+  const at = s.length ? s[0] : null;
+  const ativo = !!(at && (at.humor === "muito_dificil" || at.humor === "dificil"));
   estado.modoDificil = ativo;
   document.body.classList.toggle("modo-dificil", ativo);
   atualizarCabecalho();
 }
-
 function verificarAvisosDaOutraPessoa() {
   const p = estado.pessoa;
   const outro = p === "douglas" ? "mayara" : "douglas";
   const hoje = hojeISO();
   const avisos = [];
-
   const diaOutro = obterDia(outro, hoje);
-  if (diaOutro && diaOutro.humor && (diaOutro.humor === "dificil" || diaOutro.humor === "muito_dificil")) {
-    avisos.push(`${nomePessoa(outro)} anotou que o dia foi difícil hoje 💗`);
-  }
-  if (diaOutro && (diaOutro.agua_ml || 0) >= metaAgua(outro)) {
-    avisos.push(`${nomePessoa(outro)} bateu a meta de água hoje! 💧`);
-  }
+  if (diaOutro && diaOutro.humor && (diaOutro.humor === "dificil" || diaOutro.humor === "muito_dificil")) avisos.push(`${nomePessoa(outro)} anotou que o dia foi difícil hoje 💗`);
+  if (diaOutro && (diaOutro.agua_ml || 0) >= metaAgua(outro)) avisos.push(`${nomePessoa(outro)} bateu a meta de água hoje! 💧`);
   if (diaOutro && diaOutro.exercicio) avisos.push(`${nomePessoa(outro)} se mexeu hoje! 🧘`);
-  if (diaOutro && (diaOutro.ingles_minutos || 0) >= metaIngles(outro)) {
-    avisos.push(`${nomePessoa(outro)} estudou inglês hoje! 📚`);
-  }
-  if (diaOutro && diaOutro.pomodoros_trabalho >= metaPomodoros(outro)) {
-    avisos.push(`${nomePessoa(outro)} mandou bem nos focos hoje! 🍅`);
-  }
+  if (diaOutro && (diaOutro.ingles_minutos || 0) >= metaIngles(outro)) avisos.push(`${nomePessoa(outro)} estudou inglês hoje! 📚`);
+  if (diaOutro && diaOutro.pomodoros_trabalho >= metaPomodoros(outro)) avisos.push(`${nomePessoa(outro)} mandou bem nos focos hoje! 🍅`);
 
-  /* NOVO: lembrete de pré-natal próximo */
   const hojeMs = inicioDoDia(new Date()).getTime();
   estado.prenatal.forEach((item) => {
     if (item.feito) return;
     const d = paraData(item.data);
     if (!d) return;
     const diff = Math.round((inicioDoDia(d) - hojeMs) / 86400000);
-    if (diff === 0) {
-      avisos.push(`📅 Hoje: ${item.titulo}`);
-    } else if (diff === 1) {
-      avisos.push(`📅 Amanhã: ${item.titulo}`);
-    } else if (diff > 1 && diff <= 3) {
-      avisos.push(`📅 Em ${diff} dias: ${item.titulo}`);
-    }
+    if (diff === 0) avisos.push(`📅 Hoje: ${item.titulo}`);
+    else if (diff === 1) avisos.push(`📅 Amanhã: ${item.titulo}`);
+    else if (diff > 1 && diff <= 3) avisos.push(`📅 Em ${diff} dias: ${item.titulo}`);
   });
 
-  const semanaAtual = calcularGravidez(estado.config && estado.config.dum);
-  if (p === "douglas" && semanaAtual) {
-    const s = semanaAtual.semanaTabela;
-    const registrada = estado.semanas.find((x) => x.semana === s);
-    if (registrada && registrada.o_que_ajuda) {
-      avisos.push(`Ela deixou um recadinho: "${String(registrada.o_que_ajuda).slice(0, 80)}" 💙`);
-    }
+  const semAtual = calcularGravidez(estado.config && estado.config.dum);
+  if (p === "douglas" && semAtual) {
+    const reg = estado.semanas.find((x) => x.semana === semAtual.semanaTabela);
+    if (reg && reg.o_que_ajuda) avisos.push(`Ela deixou um recadinho: "${String(reg.o_que_ajuda).slice(0, 80)}" 💙`);
   }
-
   if (p === "douglas" && estado.semanas.length >= 2) {
-    const ordenadas = [...estado.semanas].sort((a, b) => b.semana - a.semana);
-    if (ordenadas[0].humor === "muito_dificil" && ordenadas[1].humor === "muito_dificil") {
-      avisos.push("Talvez seja bom conversar com o médico e dar um colinho extra 💗");
-    }
+    const ord = [...estado.semanas].sort((a, b) => b.semana - a.semana);
+    if (ord[0].humor === "muito_dificil" && ord[1].humor === "muito_dificil") avisos.push("Talvez seja bom conversar com o médico e dar um colinho extra 💗");
   }
-
   estado.avisos = avisos;
   const faixa = $("#faixa-avisos");
   if (!avisos.length) { faixa.classList.add("oculto"); faixa.innerHTML = ""; return; }
@@ -1353,10 +1110,9 @@ function verificarAvisosDaOutraPessoa() {
 }
 
 /* ============================================================
-   14. NAVEGAÇÃO
+   NAVEGAÇÃO
    ============================================================ */
 const TELAS = ["home", "diario", "pomodoro", "gravidez", "historico", "config"];
-
 function trocarTela(tela) {
   if (!TELAS.includes(tela)) tela = "home";
   estado.tela = tela;
@@ -1368,13 +1124,12 @@ function trocarTela(tela) {
       el.classList.remove("fade-in");
       void el.offsetWidth;
       el.classList.add("fade-in");
-    } else { el.classList.add("oculto"); }
+    } else el.classList.add("oculto");
   });
   $$(".nav-btn").forEach((b) => b.classList.toggle("ativo", b.dataset.tela === tela));
   window.scrollTo({ top: 0, behavior: "smooth" });
   renderizarTelaAtual();
 }
-
 function renderizarTelaAtual() {
   if (!estado.pessoa || !estado.config) return;
   switch (estado.tela) {
@@ -1388,7 +1143,7 @@ function renderizarTelaAtual() {
 }
 
 /* ============================================================
-   15. HOME
+   HOME
    ============================================================ */
 function renderizarHome() {
   const p = estado.pessoa;
@@ -1400,31 +1155,27 @@ function renderizarHome() {
   const bebe = grav ? infoBebe(grav.semanaTabela) : null;
   const juntos = diasJuntos();
   const frase = APP_CONFIG.frases[new Date().getDate() % APP_CONFIG.frases.length];
-
   const progEu = progressoDia(diaHoje, p);
   const progOutro = progressoDia(diaOutro, outro);
-
   const agua = (diaHoje && diaHoje.agua_ml) || 0;
   const refeicoes = (diaHoje && diaHoje.refeicoes) || [];
-  const pomodorosT = (diaHoje && diaHoje.pomodoros_trabalho) || 0;
-  const pomodorosE = (diaHoje && diaHoje.pomodoros_estudo) || 0;
+  const pomT = (diaHoje && diaHoje.pomodoros_trabalho) || 0;
+  const pomE = (diaHoje && diaHoje.pomodoros_estudo) || 0;
   const evitou = (diaHoje && diaHoje.evitou) || {};
 
   let cardMay = "";
   if (p === "douglas" && grav) {
     const sem = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
-    const humorSem = APP_CONFIG.humores.find((h) => h.id === sem.humor);
-    const sintomasTxt = (sem.sintomas || [])
-      .map((id) => APP_CONFIG.sintomas.find((s) => s.id === id))
-      .filter(Boolean).map((s) => `${s.e} ${s.t}`).join(" · ");
+    const h = APP_CONFIG.humores.find((x) => x.id === sem.humor);
+    const sint = (sem.sintomas || []).map((id) => APP_CONFIG.sintomas.find((s) => s.id === id)).filter(Boolean).map((s) => `${s.e} ${s.t}`).join(" · ");
     cardMay = `
       <div class="cartao mt-3 pop-in" style="background:linear-gradient(140deg,var(--rosa-clara),var(--surface))">
         <div class="flex items-center justify-between mb-2">
           <h3 class="fonte-display text-lg font-bold">Como está a ${escaparHTML(nomePessoa("mayara"))} 💗</h3>
-          ${humorSem ? `<span class="text-2xl">${humorSem.e}</span>` : ""}
+          ${h ? `<span class="text-2xl">${h.e}</span>` : ""}
         </div>
         ${sem.sintomas && sem.sintomas.length
-          ? `<p class="text-sm font-semibold mb-2" style="color:var(--text)">${escaparHTML(sintomasTxt)}</p>`
+          ? `<p class="text-sm font-semibold mb-2" style="color:var(--text)">${escaparHTML(sint)}</p>`
           : `<p class="text-sm mb-2" style="color:var(--muted)">Ela ainda não marcou os sintomas dessa semana.</p>`}
         ${sem.o_que_ajuda
           ? `<div class="cartao-suave mb-2">
@@ -1462,7 +1213,6 @@ function renderizarHome() {
       </div>`;
   }
 
-  /* NOVO: hábitos evitados com contraste claro (grayscale nos não-marcados) */
   const evHTML = APP_CONFIG.evitaveis.map((e) => `
     <div class="habito-card ${evitou[e.id] ? "ativo" : ""}" title="${evitou[e.id] ? 'Evitado hoje' : 'Ainda não marcado'}">
       <div class="check"><i class="fa-solid fa-check"></i></div>
@@ -1488,14 +1238,12 @@ function renderizarHome() {
             <p class="text-[0.66rem] font-bold mt-1" style="color:var(--muted)">Tamanho de<br>${escaparHTML(bebe.t)}</p>` : ""}
           </div>
         </div>
-
         ${grav ? `
         <div class="divisor" style="background:rgba(224,138,166,0.25)"></div>
         <div class="flex items-center justify-between text-xs font-bold" style="color:var(--text)">
           <span>💗 Faltam ${grav.diasRestantes} dias pro nosso encontro</span>
-          <span>${grav.dataPrevista.getDate()}/${String(grav.dataPrevista.getMonth() + 1).padStart(2, "0")}/${grav.dataPrevista.getFullYear()}</span>
+          <span>${grav.dataPrevista.getDate()}/${String(grav.dataPrevista.getMonth()+1).padStart(2,"0")}/${grav.dataPrevista.getFullYear()}</span>
         </div>` : ""}
-
         <div class="divisor" style="background:rgba(224,138,166,0.25)"></div>
         <div class="flex items-center justify-between gap-3">
           <p class="text-xs font-bold" style="color:var(--text)">💞 ${juntos} dias juntos</p>
@@ -1538,21 +1286,18 @@ function renderizarHome() {
           <p class="text-xs font-bold mb-2" style="color:var(--muted)">meta ${metaAgua(p)} ml</p>
           <div class="barra"><i style="width:${Math.min(100, Math.round((agua / metaAgua(p)) * 100))}%; background:linear-gradient(90deg,#7FC7E8,var(--azul))"></i></div>
         </div>
-
         <div class="cartao">
           <p class="text-xs font-extrabold uppercase tracking-wider mb-1" style="color:var(--muted)">🍽️ Refeições</p>
           <p class="text-2xl font-extrabold" style="color:var(--text)">${refeicoes.length}<span class="text-sm font-bold" style="color:var(--muted)"> / 6</span></p>
           <p class="text-xs font-bold mb-2" style="color:var(--muted)">${refeicoes.length ? refeicoes.map((r) => (APP_CONFIG.refeicoes.find((x) => x.id === r.tipo) || {}).e || "").join(" ") : "nenhuma ainda"}</p>
           <div class="barra"><i style="width:${Math.min(100, Math.round((refeicoes.length / 6) * 100))}%; background:linear-gradient(90deg,var(--menta),var(--ok))"></i></div>
         </div>
-
         <div class="cartao">
           <p class="text-xs font-extrabold uppercase tracking-wider mb-1" style="color:var(--muted)">🍅 Focos</p>
-          <p class="text-2xl font-extrabold" style="color:var(--text)">${pomodorosT + pomodorosE}</p>
-          <p class="text-xs font-bold mb-2" style="color:var(--muted)">${pomodorosT} trabalho · ${pomodorosE} estudo</p>
-          <div class="barra"><i style="width:${Math.min(100, Math.round(((pomodorosT + pomodorosE) / metaPomodoros(p)) * 100))}%; background:linear-gradient(90deg,#F5A97F,#E0655A)"></i></div>
+          <p class="text-2xl font-extrabold" style="color:var(--text)">${pomT + pomE}</p>
+          <p class="text-xs font-bold mb-2" style="color:var(--muted)">${pomT} trabalho · ${pomE} estudo</p>
+          <div class="barra"><i style="width:${Math.min(100, Math.round(((pomT + pomE) / metaPomodoros(p)) * 100))}%; background:linear-gradient(90deg,#F5A97F,#E0655A)"></i></div>
         </div>
-
         <div class="cartao">
           <p class="text-xs font-extrabold uppercase tracking-wider mb-1" style="color:var(--muted)">🧘 Humor</p>
           <p class="text-3xl mb-1">${humorHoje ? humorHoje.e : "—"}</p>
@@ -1572,7 +1317,7 @@ function renderizarHome() {
       ${cardMay}
       ${cardPai}
 
-      <div class="grid grid-cols-3 gap-3 mt-3 mb-4">
+      <div class="grid grid-cols-3 gap-3 mt-3 mb-3">
         <button class="cartao flex flex-col items-center gap-1.5 py-4" data-acao="ir-pomodoro">
           <i class="fa-solid fa-stopwatch text-xl" style="color:#E0655A"></i>
           <span class="text-xs font-extrabold">Foco</span>
@@ -1587,7 +1332,7 @@ function renderizarHome() {
         </button>
       </div>
 
-         <!-- Botão inline de anotar (sem flutuar sobre nada) -->
+      <!-- Botão inline de anotar (não flutua sobre nada) -->
       <button class="btn btn-rosa w-full py-4 text-base mb-3 flex items-center justify-center gap-2"
               data-acao="abrir-diario">
         <i class="fa-solid fa-plus text-lg"></i>
@@ -1601,9 +1346,10 @@ function renderizarHome() {
       </div>
     </div>
   `;
+}
 
 /* ============================================================
-   16. DIÁRIO
+   DIÁRIO
    ============================================================ */
 let aguaLocal = null;
 let aguaLocalData = null;
@@ -1680,23 +1426,18 @@ function renderizarDiario() {
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🌙 Corpo e mente</p>
-
         <button class="toggle-item w-full mb-2 ${dia.dormiu_bem ? "ativo" : ""}" data-toggle="dormiu_bem">
           <span class="flex items-center gap-2 text-sm">😴 Dormi bem</span>
           <span class="toggle-dot"><i class="fa-solid fa-check"></i></span>
         </button>
-
         <button class="toggle-item w-full mb-3 ${dia.exercicio ? "ativo" : ""}" data-toggle="exercicio">
           <span class="flex items-center gap-2 text-sm">🏃 Me movimentei</span>
           <span class="toggle-dot"><i class="fa-solid fa-check"></i></span>
         </button>
-
         <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Acordei às</label>
         <input type="time" class="campo mb-3" id="campo-acordou" value="${escaparHTML(dia.acordou_horario || (cfg.meta_acordar && cfg.meta_acordar[p]) || "")}">
-
         <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Minutos de inglês</label>
         <input type="number" min="0" max="600" class="campo mb-3" id="campo-ingles" value="${dia.ingles_minutos || 0}" placeholder="0">
-
         <div class="flex items-center justify-between cartao-suave">
           <div>
             <p class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--muted)">🍅 Focos de hoje</p>
@@ -1719,139 +1460,123 @@ function renderizarDiario() {
   `;
 
   const atualizarAguaUI = () => {
-    const el1 = $("#agua-valor"), el2 = $("#agua-barra");
-    if (el1) el1.innerHTML = `${aguaLocal} <span style="color:var(--muted)">/ ${metaAgua(p)} ml</span>`;
-    if (el2) el2.innerHTML = `<i style="width:${Math.min(100, Math.round((aguaLocal / metaAgua(p)) * 100))}%; background:linear-gradient(90deg,#7FC7E8,var(--azul))"></i>`;
+    const e1 = $("#agua-valor"), e2 = $("#agua-barra");
+    if (e1) e1.innerHTML = `${aguaLocal} <span style="color:var(--muted)">/ ${metaAgua(p)} ml</span>`;
+    if (e2) e2.innerHTML = `<i style="width:${Math.min(100, Math.round((aguaLocal / metaAgua(p)) * 100))}%; background:linear-gradient(90deg,#7FC7E8,var(--azul))"></i>`;
   };
 
   $$("[data-agua]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
-      const anterior = aguaLocal;
+      const ant = aguaLocal;
       if (b.dataset.agua === "reset") aguaLocal = 0;
-      else {
-        aguaLocal = Math.max(0, aguaLocal + Number(b.dataset.agua));
-        Sons.habitoFeito(); vibrar(18);
-      }
+      else { aguaLocal = Math.max(0, aguaLocal + Number(b.dataset.agua)); Sons.habitoFeito(); vibrar(18); }
       atualizarAguaUI();
       const ok = await salvarDia(p, data, { agua_ml: aguaLocal }, null);
-      if (!ok) { aguaLocal = anterior; atualizarAguaUI(); }
+      if (!ok) { aguaLocal = ant; atualizarAguaUI(); }
       const meta = metaAgua(p);
-      if (ok && aguaLocal >= meta && (dia.agua_ml || 0) < meta) {
-        soltarConfete(); toast("Meta de água batida! 💧✨", 3000);
-      }
+      if (ok && aguaLocal >= meta && (dia.agua_ml || 0) < meta) { soltarConfete(); toast("Meta de água batida! 💧✨", 3000); }
     });
   });
 
   $$("[data-refeicao]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const tipo = b.dataset.refeicao;
-      const atual = obterDia(p, data) || {};
-      let lista = [...(atual.refeicoes || [])];
+      const at = obterDia(p, data) || {};
+      let lista = [...(at.refeicoes || [])];
       const existe = lista.some((r) => r.tipo === tipo);
       if (existe) lista = lista.filter((r) => r.tipo !== tipo);
       else { lista.push({ tipo, horario: agoraHHMM() }); Sons.habitoFeito(); vibrar(18); }
-      const anterior = b.classList.contains("ativo");
+      const ant = b.classList.contains("ativo");
       b.classList.toggle("ativo", !existe);
       const ok = await salvarDia(p, data, { refeicoes: lista }, null);
-      if (!ok) b.classList.toggle("ativo", anterior);
+      if (!ok) b.classList.toggle("ativo", ant);
     });
   });
 
   $$("[data-evitavel]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const id = b.dataset.evitavel;
-      const atual = obterDia(p, data) || {};
-      const ev = { ...(atual.evitou || {}) };
+      const at = obterDia(p, data) || {};
+      const ev = { ...(at.evitou || {}) };
       ev[id] = !ev[id];
-      const anterior = b.classList.contains("ativo");
+      const ant = b.classList.contains("ativo");
       b.classList.toggle("ativo", ev[id]);
       if (ev[id]) { Sons.habitoFeito(); vibrar(18); }
       const ok = await salvarDia(p, data, { evitou: ev }, null);
-      if (!ok) b.classList.toggle("ativo", anterior);
+      if (!ok) b.classList.toggle("ativo", ant);
     });
   });
 
   $$("[data-humor]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const id = b.dataset.humor;
-      const anterior = $$("[data-humor]", $("#tela-diario")).find((x) => x.classList.contains("ativo"));
+      const ant = $$("[data-humor]", $("#tela-diario")).find((x) => x.classList.contains("ativo"));
       $$("[data-humor]", $("#tela-diario")).forEach((x) => x.classList.remove("ativo"));
       b.classList.add("ativo");
       vibrar(18);
       const ok = await salvarDia(p, data, { humor: id }, null);
-      if (!ok && anterior) { anterior.classList.add("ativo"); b.classList.remove("ativo"); }
-      if (ok && (id === "dificil" || id === "muito_dificil")) {
-        toast("Obrigado por dividir. Vai com calma hoje 💗", 3200);
-      }
+      if (!ok && ant) { ant.classList.add("ativo"); b.classList.remove("ativo"); }
+      if (ok && (id === "dificil" || id === "muito_dificil")) toast("Obrigado por dividir. Vai com calma hoje 💗", 3200);
     });
   });
 
   $$("[data-toggle]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const campo = b.dataset.toggle;
-      const atual = obterDia(p, data) || {};
-      const novo = !atual[campo];
-      const anterior = b.classList.contains("ativo");
+      const at = obterDia(p, data) || {};
+      const novo = !at[campo];
+      const ant = b.classList.contains("ativo");
       b.classList.toggle("ativo", novo);
       if (novo) { Sons.habitoFeito(); vibrar(18); }
       const ok = await salvarDia(p, data, { [campo]: novo }, null);
-      if (!ok) b.classList.toggle("ativo", anterior);
+      if (!ok) b.classList.toggle("ativo", ant);
     });
   });
 
-  const campoAnot = $("#campo-anotacao");
-  if (campoAnot) {
-    campoAnot.addEventListener("input", () => {
-      const c = $("#contador-anotacao");
-      if (c) c.textContent = campoAnot.value.length;
-    });
-  }
+  const ca = $("#campo-anotacao");
+  if (ca) ca.addEventListener("input", () => { const c = $("#contador-anotacao"); if (c) c.textContent = ca.value.length; });
 
-  const campoIngles = $("#campo-ingles");
-  if (campoIngles) {
-    campoIngles.addEventListener("change", async () => {
-      const v = Math.max(0, Math.min(600, Number(campoIngles.value) || 0));
-      campoIngles.value = v;
-      await salvarDia(p, data, { ingles_minutos: v }, "Inglês salvo 📚");
-    });
-  }
+  const ci = $("#campo-ingles");
+  if (ci) ci.addEventListener("change", async () => {
+    const v = Math.max(0, Math.min(600, Number(ci.value) || 0));
+    ci.value = v;
+    await salvarDia(p, data, { ingles_minutos: v }, "Inglês salvo 📚");
+  });
 
-  const campoAcordou = $("#campo-acordou");
-  if (campoAcordou) {
-    campoAcordou.addEventListener("change", async () => {
-      await salvarDia(p, data, { acordou_horario: campoAcordou.value || null }, null);
-    });
-  }
+  const cac = $("#campo-acordou");
+  if (cac) cac.addEventListener("change", async () => {
+    await salvarDia(p, data, { acordou_horario: cac.value || null }, null);
+  });
 
   $("#btn-salvar-dia").addEventListener("click", async () => {
-    const atual = obterDia(p, data) || {};
+    const at = obterDia(p, data) || {};
     const dados = {
       agua_ml: aguaLocal,
       anotacao: ($("#campo-anotacao").value || "").slice(0, 800),
       ingles_minutos: Math.max(0, Math.min(600, Number($("#campo-ingles").value) || 0)),
       acordou_horario: $("#campo-acordou").value || null,
-      dormiu_bem: !!atual.dormiu_bem,
-      exercicio: !!atual.exercicio
+      dormiu_bem: !!at.dormiu_bem,
+      exercicio: !!at.exercicio
     };
     const btn = $("#btn-salvar-dia");
-    const original = btn.innerHTML;
+    const orig = btn.innerHTML;
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Salvando...';
     btn.disabled = true;
     const ok = await salvarDia(p, data, dados, null);
     btn.disabled = false;
     if (ok) {
-      Sons.salvar(); vibrar([18, 40, 18]);
+      Sons.salvar(); vibrar([18,40,18]);
       btn.innerHTML = '<i class="fa-solid fa-check"></i> Salvo!';
       toast("Anotado 💚", 2000);
-      setTimeout(() => { btn.innerHTML = original; }, 1500);
-      const prog = progressoDia({ ...atual, ...dados }, p);
+      setTimeout(() => { btn.innerHTML = orig; }, 1500);
+      const prog = progressoDia({ ...at, ...dados }, p);
       if (prog >= 80) { soltarConfete(); toast("Dia lindo! Você cuidou de você hoje ✨", 3000); }
-    } else { btn.innerHTML = original; }
+    } else btn.innerHTML = orig;
   });
 }
 
 /* ============================================================
-   17. POMODORO
+   POMODORO
    ============================================================ */
 const MODOS_POMODORO = {
   trabalho: { t: "Trabalho", cor: "#4A90D9", icone: "fa-briefcase" },
@@ -1864,17 +1589,14 @@ function renderizarPomodoro() {
   const cfg = estado.config;
   const p = estado.pessoa;
   const corModo = MODOS_POMODORO[pm.modo] ? MODOS_POMODORO[pm.modo].cor : "#C9B8E8";
-
   const min = Math.floor(pm.restante / 60);
   const seg = pm.restante % 60;
-  const texto = `${String(min).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
-  const progresso = pm.total > 0 ? 1 - (pm.restante / pm.total) : 0;
+  const texto = `${String(min).padStart(2,"0")}:${String(seg).padStart(2,"0")}`;
+  const prog = pm.total > 0 ? 1 - (pm.restante / pm.total) : 0;
   const raio = 120;
-  const circunferencia = 2 * Math.PI * raio;
-  const offset = circunferencia * (1 - progresso);
-
-  const hoje = hojeISO();
-  const dia = obterDia(p, hoje) || {};
+  const circ = 2 * Math.PI * raio;
+  const offset = circ * (1 - prog);
+  const dia = obterDia(p, hojeISO()) || {};
 
   const modosHTML = Object.entries(MODOS_POMODORO).map(([id, m]) => `
     <button class="btn flex-1 py-3 text-xs ${pm.modo === id ? "" : "btn-neutro"}"
@@ -1898,7 +1620,7 @@ function renderizarPomodoro() {
             <circle cx="140" cy="140" r="${raio}" fill="none" stroke="var(--surface-3)" stroke-width="14"></circle>
             <circle class="pomo-anel" cx="140" cy="140" r="${raio}" fill="none"
                     stroke="${corModo}" stroke-width="14" stroke-linecap="round"
-                    stroke-dasharray="${circunferencia}" stroke-dashoffset="${offset}"></circle>
+                    stroke-dasharray="${circ}" stroke-dashoffset="${offset}"></circle>
           </svg>
           <div class="absolute inset-0 flex flex-col items-center justify-center">
             <p class="text-[0.68rem] font-extrabold uppercase tracking-widest mb-1" style="color:var(--muted)">${nomeModo}</p>
@@ -1906,9 +1628,7 @@ function renderizarPomodoro() {
             <p class="text-xs font-bold mt-2" style="color:var(--muted)">${pm.rodando ? "em andamento..." : "pronto quando você estiver"}</p>
           </div>
         </div>
-
         <div class="flex gap-2 w-full mt-6">${modosHTML}</div>
-
         <div class="flex gap-2 w-full mt-3">
           <button class="btn ${pm.rodando ? "btn-neutro" : "btn-primario"} flex-1 py-4 text-base" id="btn-pomo-principal">
             ${pm.rodando ? '<i class="fa-solid fa-pause"></i> Pausar' : '<i class="fa-solid fa-play"></i> Começar'}
@@ -1922,18 +1642,9 @@ function renderizarPomodoro() {
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">🍅 Focos de hoje</p>
         <div class="flex items-center justify-around text-center">
-          <div>
-            <p class="text-2xl font-extrabold" style="color:var(--azul)">${dia.pomodoros_trabalho || 0}</p>
-            <p class="text-[0.66rem] font-bold" style="color:var(--muted)">trabalho</p>
-          </div>
-          <div>
-            <p class="text-2xl font-extrabold" style="color:var(--menta)">${dia.pomodoros_estudo || 0}</p>
-            <p class="text-[0.66rem] font-bold" style="color:var(--muted)">estudo</p>
-          </div>
-          <div>
-            <p class="text-2xl font-extrabold" style="color:var(--rosa)">${dia.ingles_minutos || 0}</p>
-            <p class="text-[0.66rem] font-bold" style="color:var(--muted)">min inglês</p>
-          </div>
+          <div><p class="text-2xl font-extrabold" style="color:var(--azul)">${dia.pomodoros_trabalho || 0}</p><p class="text-[0.66rem] font-bold" style="color:var(--muted)">trabalho</p></div>
+          <div><p class="text-2xl font-extrabold" style="color:var(--menta)">${dia.pomodoros_estudo || 0}</p><p class="text-[0.66rem] font-bold" style="color:var(--muted)">estudo</p></div>
+          <div><p class="text-2xl font-extrabold" style="color:var(--rosa)">${dia.ingles_minutos || 0}</p><p class="text-[0.66rem] font-bold" style="color:var(--muted)">min inglês</p></div>
         </div>
       </div>
 
@@ -1952,12 +1663,9 @@ function renderizarPomodoro() {
       renderizarPomodoro();
     });
   });
-
   $("#btn-pomo-principal").addEventListener("click", () => {
-    if (estado.pomodoro.rodando) pausarPomodoro();
-    else iniciarPomodoro();
+    if (estado.pomodoro.rodando) pausarPomodoro(); else iniciarPomodoro();
   });
-
   $("#btn-pomo-reset").addEventListener("click", () => {
     pararPomodoro();
     definirModoPomodoro(estado.pomodoro.modo === "pausa" ? "trabalho" : estado.pomodoro.modo);
@@ -1967,62 +1675,50 @@ function renderizarPomodoro() {
 
 function definirModoPomodoro(modo) {
   const cfg = estado.config || {};
-  const minutos = cfg.pomodoro_minutos || 25;
+  const min = cfg.pomodoro_minutos || 25;
   estado.pomodoro.modo = modo;
-  estado.pomodoro.total = minutos * 60;
-  estado.pomodoro.restante = minutos * 60;
+  estado.pomodoro.total = min * 60;
+  estado.pomodoro.restante = min * 60;
   estado.pomodoro.rodando = false;
 }
-
 function iniciarPomodoro() {
   const pm = estado.pomodoro;
   if (pm.rodando) return;
   pm.rodando = true;
   pm.fimEm = Date.now() + pm.restante * 1000;
-  Sons.pomodoroInicio(); vibrar([18, 50, 18]);
+  Sons.pomodoroInicio(); vibrar([18,50,18]);
   toast("Pomodoro iniciado 🍅");
   pm.intervalo = setInterval(() => {
-    const restante = Math.round((pm.fimEm - Date.now()) / 1000);
-    if (restante <= 0) { finalizarPomodoro(); return; }
-    pm.restante = restante;
+    const r = Math.round((pm.fimEm - Date.now()) / 1000);
+    if (r <= 0) { finalizarPomodoro(); return; }
+    pm.restante = r;
     atualizarVisorPomodoro();
   }, 250);
   renderizarPomodoro();
 }
-
 function pausarPomodoro() {
   const pm = estado.pomodoro;
   if (!pm.rodando) return;
-  clearInterval(pm.intervalo);
-  pm.intervalo = null;
-  pm.rodando = false;
+  clearInterval(pm.intervalo); pm.intervalo = null; pm.rodando = false;
   pm.restante = Math.max(0, Math.round((pm.fimEm - Date.now()) / 1000));
   toast("Pausado ☕");
   renderizarPomodoro();
 }
-
 function pararPomodoro() {
   const pm = estado.pomodoro;
-  clearInterval(pm.intervalo);
-  pm.intervalo = null;
-  pm.rodando = false;
+  clearInterval(pm.intervalo); pm.intervalo = null; pm.rodando = false;
 }
-
 async function finalizarPomodoro() {
   const pm = estado.pomodoro;
   const p = estado.pessoa;
   const modo = pm.modo;
-  const minutos = Math.round(pm.total / 60);
+  const min = Math.round(pm.total / 60);
   pararPomodoro();
-  Sons.pomodoroFim();
-  vibrar([30, 80, 30, 80, 30]);
+  Sons.pomodoroFim(); vibrar([30,80,30,80,30]);
   notificarNavegador("Foco concluído 🍅", "Boa! Você completou um bloco. Descansa um pouquinho 💙");
   toast("Bloco concluído! Descansa um pouquinho 💙", 3200);
 
-  await registrarSessaoPomodoro({
-    pessoa: p, data: hojeISO(), duracao_min: minutos,
-    categoria: modo, concluido: true
-  });
+  await registrarSessaoPomodoro({ pessoa: p, data: hojeISO(), duracao_min: min, categoria: modo, concluido: true });
 
   const data = hojeISO();
   const dia = obterDia(p, data) || {};
@@ -2030,7 +1726,7 @@ async function finalizarPomodoro() {
   else if (modo === "estudo") await salvarDia(p, data, { pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1 }, null);
   else await salvarDia(p, data, {
     pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1,
-    ingles_minutos: (dia.ingles_minutos || 0) + minutos
+    ingles_minutos: (dia.ingles_minutos || 0) + min
   }, null);
 
   pm.ciclo = (pm.ciclo || 0) + 1;
@@ -2042,34 +1738,29 @@ async function finalizarPomodoro() {
   pm.rodando = false;
   renderizarPomodoro();
   toast(`Pausa de ${pausaMin} min 💚`, 3000);
-
-  const modoAnterior = modo;
+  const modoAnt = modo;
   setTimeout(() => {
-    if (estado.pomodoro.modo === "pausa") {
-      definirModoPomodoro(modoAnterior);
-      renderizarTelaAtual();
-    }
+    if (estado.pomodoro.modo === "pausa") { definirModoPomodoro(modoAnt); renderizarTelaAtual(); }
   }, pausaMin * 60 * 1000);
 }
-
 function atualizarVisorPomodoro() {
   const pm = estado.pomodoro;
   const visor = $("#tela-pomodoro");
   if (!visor || visor.classList.contains("oculto")) return;
-  const texto = `${String(Math.floor(pm.restante / 60)).padStart(2, "0")}:${String(pm.restante % 60).padStart(2, "0")}`;
+  const t = `${String(Math.floor(pm.restante / 60)).padStart(2,"0")}:${String(pm.restante % 60).padStart(2,"0")}`;
   const el = visor.querySelector(".fonte-display.font-bold");
-  if (el) el.textContent = texto;
+  if (el) el.textContent = t;
   const anel = visor.querySelector(".pomo-anel");
   if (anel) {
     const raio = 120;
-    const circ = 2 * Math.PI * raio;
-    const prog = pm.total > 0 ? 1 - (pm.restante / pm.total) : 0;
-    anel.setAttribute("stroke-dashoffset", String(circ * (1 - prog)));
+    const c = 2 * Math.PI * raio;
+    const pr = pm.total > 0 ? 1 - (pm.restante / pm.total) : 0;
+    anel.setAttribute("stroke-dashoffset", String(c * (1 - pr)));
   }
 }
 
 /* ============================================================
-   18. GRAVIDEZ
+   GRAVIDEZ
    ============================================================ */
 function renderizarGravidez() {
   const p = estado.pessoa;
@@ -2088,17 +1779,16 @@ function renderizarGravidez() {
   }
 
   const bebe = infoBebe(grav.semanaTabela);
-  const semanaReg = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
-  const sintomasAtivos = semanaReg.sintomas || [];
+  const semReg = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
+  const sintAtivos = semReg.sintomas || [];
 
-  /* Sintomas com botão "limpar tudo" no topo */
   const sintomasHTML = APP_CONFIG.sintomas.map((s) => `
-    <button class="chip ${sintomasAtivos.includes(s.id) ? "ativo" : ""}" data-sintoma="${s.id}">
+    <button class="chip ${sintAtivos.includes(s.id) ? "ativo" : ""}" data-sintoma="${s.id}">
       ${s.e} ${escaparHTML(s.t)}
     </button>`).join("");
 
   const humoresHTML = APP_CONFIG.humores.map((h) => `
-    <button class="humor-btn ${semanaReg.humor === h.id ? "ativo" : ""}" data-humor-semana="${h.id}">
+    <button class="humor-btn ${semReg.humor === h.id ? "ativo" : ""}" data-humor-semana="${h.id}">
       <span class="emo">${h.e}</span>
       <span class="txt">${escaparHTML(h.t)}</span>
     </button>`).join("");
@@ -2122,16 +1812,10 @@ function renderizarGravidez() {
     .map((s) => `<button class="chip" data-sugestao="${escaparHTML(s)}">+ ${escaparHTML(s)}</button>`)
     .join("");
 
-  /* NOVO: pré-natal */
   const consultas = estado.prenatal.filter((i) => i.tipo === "consulta");
   const exames = estado.prenatal.filter((i) => i.tipo === "exame");
   const lembretes = estado.prenatal.filter((i) => i.tipo === "lembrete");
-
   const hojeMs = inicioDoDia(new Date()).getTime();
-  function classeData(d) {
-    if (!d) return "";
-    return inicioDoDia(d).getTime() < hojeMs ? "passado" : "";
-  }
 
   const consultasHTML = consultas.length
     ? consultas.map((c) => {
@@ -2150,9 +1834,7 @@ function renderizarGravidez() {
             <button class="acao" data-prenatal-toggle="${c.id}" data-feito="${c.feito ? "1" : "0"}" title="Marcar como feito">
               <i class="fa-solid ${c.feito ? "fa-circle-check" : "fa-circle"}" style="${c.feito ? "color:var(--ok)" : ""}"></i>
             </button>
-            <button class="acao" data-prenatal-remover="${c.id}" title="Remover">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+            <button class="acao" data-prenatal-remover="${c.id}" title="Remover"><i class="fa-solid fa-xmark"></i></button>
           </div>`;
       }).join("")
     : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhuma consulta agendada ainda.</p>`;
@@ -2174,9 +1856,7 @@ function renderizarGravidez() {
             <button class="acao" data-prenatal-toggle="${ex.id}" data-feito="${ex.feito ? "1" : "0"}" title="Marcar como feito">
               <i class="fa-solid ${ex.feito ? "fa-circle-check" : "fa-circle"}" style="${ex.feito ? "color:var(--ok)" : ""}"></i>
             </button>
-            <button class="acao" data-prenatal-remover="${ex.id}" title="Remover">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+            <button class="acao" data-prenatal-remover="${ex.id}" title="Remover"><i class="fa-solid fa-xmark"></i></button>
           </div>`;
       }).join("")
     : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhum exame agendado ainda.</p>`;
@@ -2194,19 +1874,16 @@ function renderizarGravidez() {
         </div>`).join("")
     : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhum lembrete ainda. Que tal adicionar "levar exames na consulta"?</p>`;
 
-  const lembretesSugeridos = APP_CONFIG.lembretesPrenatal
+  const lembretesSug = APP_CONFIG.lembretesPrenatal
     .filter((s) => !lembretes.some((l) => l.titulo.toLowerCase() === s.toLowerCase()))
     .slice(0, 3)
     .map((s) => `<button class="chip" data-prenatal-sugestao="${escaparHTML(s)}">+ ${escaparHTML(s)}</button>`)
     .join("");
 
-  /* Linha do tempo */
   const timeline = estado.semanas.length
     ? estado.semanas.map((s) => {
         const h = APP_CONFIG.humores.find((x) => x.id === s.humor);
-        const sint = (s.sintomas || [])
-          .map((id) => APP_CONFIG.sintomas.find((x) => x.id === id))
-          .filter(Boolean).map((x) => `${x.e} ${x.t}`).join(" · ");
+        const sint = (s.sintomas || []).map((id) => APP_CONFIG.sintomas.find((x) => x.id === id)).filter(Boolean).map((x) => `${x.e} ${x.t}`).join(" · ");
         const inf = infoBebe(s.semana);
         return `
           <div class="timeline-item">
@@ -2246,7 +1923,6 @@ function renderizarGravidez() {
         </p>
         <p class="semana-grande mb-1">${grav.semanas}<span class="text-2xl align-top"> semanas</span></p>
         <p class="text-sm font-bold mb-3" style="color:var(--text)">${escaparHTML(grav.texto)} · ${grav.trimestre}º trimestre</p>
-
         <div class="cartao-suave inline-flex items-center gap-3 px-4 py-3">
           <span class="text-3xl flutuar">${bebe.e}</span>
           <div class="text-left">
@@ -2268,38 +1944,31 @@ function renderizarGravidez() {
         <p class="fonte-display text-2xl font-bold mb-1">Faltam ${grav.diasRestantes} dias</p>
         <p class="text-sm font-bold" style="color:var(--muted)">pro nosso encontro 💗</p>
         <p class="text-xs mt-2" style="color:var(--muted)">
-          Previsão: ${grav.dataPrevista.getDate()}/${String(grav.dataPrevista.getMonth() + 1).padStart(2, "0")}/${grav.dataPrevista.getFullYear()}
+          Previsão: ${grav.dataPrevista.getDate()}/${String(grav.dataPrevista.getMonth()+1).padStart(2,"0")}/${grav.dataPrevista.getFullYear()}
         </p>
       </div>
 
       ${alertaCarinhoso}
 
-      <!-- Sintomas com limpar -->
       <div class="cartao mb-3" style="background:linear-gradient(140deg,var(--rosa-clara),var(--surface))">
         <div class="flex items-center justify-between mb-1">
           <h3 class="fonte-display text-lg font-bold">Como estou me sentindo 💗</h3>
-          ${editavelEla && sintomasAtivos.length ? `<button class="btn btn-fantasma text-xs px-2 py-1" id="btn-limpar-sintomas" style="color:var(--rosa)">limpar</button>` : ""}
+          ${editavelEla && sintAtivos.length ? `<button class="btn btn-fantasma text-xs px-2 py-1" id="btn-limpar-sintomas" style="color:var(--rosa)">limpar</button>` : ""}
         </div>
         <p class="text-xs mb-4" style="color:var(--muted)">
           Semana ${grav.semanaTabela} · ${editavelEla ? "toque para marcar/desmarcar" : `registro da ${escaparHTML(nomePessoa("mayara"))}`}
         </p>
-
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Sintomas dessa semana</p>
         <div class="flex flex-wrap gap-2 mb-4">${sintomasHTML}</div>
-
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Humor da semana</p>
         <div class="flex gap-2 mb-4">${humoresHTML}</div>
-
         <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Algo que quero lembrar dessa semana...</label>
-        <textarea class="campo mb-3" id="grav-anotacao" maxlength="800" ${editavelEla ? "" : "readonly"} placeholder="Escreve aqui o que você quiser guardar 💗">${escaparHTML(semanaReg.anotacao_mayara || "")}</textarea>
-
+        <textarea class="campo mb-3" id="grav-anotacao" maxlength="800" ${editavelEla ? "" : "readonly"} placeholder="Escreve aqui o que você quiser guardar 💗">${escaparHTML(semReg.anotacao_mayara || "")}</textarea>
         <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Algo que o ${escaparHTML(nomePessoa("douglas"))} pode fazer pra ajudar 💙</label>
-        <input class="campo mb-3" id="grav-ajuda" maxlength="200" ${editavelEla ? "" : "readonly"} value="${escaparHTML(semanaReg.o_que_ajuda || "")}" placeholder="Opcional">
-
+        <input class="campo mb-3" id="grav-ajuda" maxlength="200" ${editavelEla ? "" : "readonly"} value="${escaparHTML(semReg.o_que_ajuda || "")}" placeholder="Opcional">
         ${editavelEla ? `<button class="btn btn-rosa w-full py-3 text-sm" id="btn-salvar-semana">Salvar como estou 💗</button>` : ""}
       </div>
 
-      <!-- NOVO: Acompanhamento pré-natal -->
       <div class="cartao mb-3">
         <h3 class="fonte-display text-lg font-bold mb-1">📅 Acompanhamento pré-natal</h3>
         <p class="text-xs mb-4" style="color:var(--muted)">Consultas, exames e lembretes — tudo num lugar só.</p>
@@ -2318,22 +1987,19 @@ function renderizarGravidez() {
 
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">💡 Lembretes</p>
         <div class="mb-2">${lembretesHTML}</div>
-        ${lembretesSugeridos ? `<div class="flex flex-wrap gap-2 mb-2">${lembretesSugeridos}</div>` : ""}
+        ${lembretesSug ? `<div class="flex flex-wrap gap-2 mb-2">${lembretesSug}</div>` : ""}
         <button class="btn btn-neutro w-full py-2 text-xs" data-prenatal-add="lembrete">
           <i class="fa-solid fa-plus mr-1"></i> Adicionar lembrete
         </button>
       </div>
 
-      <!-- Pai em treinamento -->
       <div class="cartao mb-3" style="background:linear-gradient(140deg,var(--azul-claro),var(--surface))">
         <h3 class="fonte-display text-lg font-bold mb-1">Pai em treinamento 🌱</h3>
         <p class="text-sm font-bold mb-4" style="color:var(--azul)">
           Faltam ${grav.semanasRestantes} ${grav.semanasRestantes === 1 ? "semana" : "semanas"} pra eu conhecer meu filho/a 🌱
         </p>
-
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Checklist de preparação</p>
         <div class="mb-3">${checklistHTML}</div>
-
         ${editavelEle ? `
           <div class="flex gap-2 mb-3">
             <input class="campo flex-1" id="novo-item-checklist" maxlength="80" placeholder="Adicionar item...">
@@ -2341,10 +2007,8 @@ function renderizarGravidez() {
           </div>
           ${sugestoes ? `<div class="flex flex-wrap gap-2 mb-3">${sugestoes}</div>` : ""}
         ` : ""}
-
         <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">O que eu fiz de especial por ela essa semana</label>
-        <textarea class="campo mb-3" id="grav-feito" maxlength="400" ${editavelEle ? "" : "readonly"} placeholder="Um carinho, uma surpresa, um cuidado...">${escaparHTML(semanaReg.feito_pelo_douglas || "")}</textarea>
-
+        <textarea class="campo mb-3" id="grav-feito" maxlength="400" ${editavelEle ? "" : "readonly"} placeholder="Um carinho, uma surpresa, um cuidado...">${escaparHTML(semReg.feito_pelo_douglas || "")}</textarea>
         ${editavelEle ? `<button class="btn btn-primario w-full py-3 text-sm" id="btn-salvar-papai">Salvar meu registro 💙</button>` : ""}
       </div>
 
@@ -2361,28 +2025,18 @@ function renderizarGravidez() {
     </div>
   `;
 
-  /* ---------- Eventos: sintomas (toggle + limpar) ---------- */
   if (editavelEla) {
     $$("[data-sintoma]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const id = b.dataset.sintoma;
-        /* Pega a versão MAIS RECENTE do estado a cada clique */
-        const atual = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
-        const lista = new Set(atual.sintomas || []);
-        if (lista.has(id)) {
-          lista.delete(id);
-          Sons.habitoFeito();
-          vibrar(12);
-        } else {
-          lista.add(id);
-          Sons.habitoFeito();
-          vibrar(16);
-        }
+        const at = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
+        const lista = new Set(at.sintomas || []);
+        if (lista.has(id)) { lista.delete(id); Sons.habitoFeito(); vibrar(12); }
+        else { lista.add(id); Sons.habitoFeito(); vibrar(16); }
         b.classList.toggle("ativo", lista.has(id));
         await salvarSemana(grav.semanaTabela, { sintomas: Array.from(lista) }, null);
       });
     });
-
     const btnLimpar = $("#btn-limpar-sintomas");
     if (btnLimpar) {
       btnLimpar.addEventListener("click", async () => {
@@ -2393,20 +2047,18 @@ function renderizarGravidez() {
         vibrar(18);
       });
     }
-
     $$("[data-humor-semana]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const id = b.dataset.humorSemana;
-        const anterior = $$("[data-humor-semana]", $("#tela-gravidez")).find((x) => x.classList.contains("ativo"));
+        const ant = $$("[data-humor-semana]", $("#tela-gravidez")).find((x) => x.classList.contains("ativo"));
         $$("[data-humor-semana]", $("#tela-gravidez")).forEach((x) => x.classList.remove("ativo"));
         b.classList.add("ativo");
         vibrar(18);
         const ok = await salvarSemana(grav.semanaTabela, { humor: id }, null);
-        if (!ok && anterior) { anterior.classList.add("ativo"); b.classList.remove("ativo"); }
+        if (!ok && ant) { ant.classList.add("ativo"); b.classList.remove("ativo"); }
         if (ok && id === "muito_dificil") toast("Obrigado por dividir 💗 Vai com calma hoje.", 3400);
       });
     });
-
     const btnSem = $("#btn-salvar-semana");
     if (btnSem) {
       btnSem.addEventListener("click", async () => {
@@ -2415,16 +2067,14 @@ function renderizarGravidez() {
           o_que_ajuda: ($("#grav-ajuda").value || "").slice(0, 200),
           data: new Date()
         }, "Anotado com carinho 💗");
-        if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
+        if (ok) { Sons.salvar(); vibrar([18,40,18]); }
       });
     }
   }
 
-  /* ---------- Eventos: pré-natal ---------- */
   $$("[data-prenatal-add]", $("#tela-gravidez")).forEach((b) => {
     b.addEventListener("click", () => abrirModalPrenatal(b.dataset.prenatalAdd));
   });
-
   $$("[data-prenatal-toggle]", $("#tela-gravidez")).forEach((b) => {
     b.addEventListener("click", async () => {
       const id = b.dataset.prenatalToggle;
@@ -2432,7 +2082,6 @@ function renderizarGravidez() {
       const item = estado.prenatal.find((x) => x.id === id);
       if (!item) return;
       const novo = !feito;
-      /* Optimistic */
       item.feito = novo;
       if (novo) { Sons.habitoFeito(); vibrar(20); } else vibrar(12);
       const ok = await salvarPrenatal({ feito: novo, data_conclusao: novo ? new Date() : null }, id);
@@ -2440,14 +2089,12 @@ function renderizarGravidez() {
       renderizarGravidez();
     });
   });
-
   $$("[data-prenatal-remover]", $("#tela-gravidez")).forEach((b) => {
     b.addEventListener("click", async () => {
       const ok = await confirmar("Remover este item?", "Ele será apagado do acompanhamento pré-natal.", "Remover");
       if (ok) await removerPrenatal(b.dataset.prenatalRemover);
     });
   });
-
   $$("[data-prenatal-sugestao]", $("#tela-gravidez")).forEach((b) => {
     b.addEventListener("click", async () => {
       const ok = await salvarPrenatal({ tipo: "lembrete", titulo: b.dataset.prenatalSugestao });
@@ -2455,7 +2102,6 @@ function renderizarGravidez() {
     });
   });
 
-  /* ---------- Eventos: checklist do pai ---------- */
   if (editavelEle) {
     const btnAdd = $("#btn-add-item");
     if (btnAdd) {
@@ -2470,38 +2116,34 @@ function renderizarGravidez() {
         vibrar(18);
       });
     }
-
     $$("[data-sugestao]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         await salvarPreparacao({ item: b.dataset.sugestao, ordem: Date.now() });
         vibrar(18);
       });
     });
-
     $$("[data-check]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const id = b.dataset.check;
         const feito = b.dataset.feito === "1";
-        const anterior = feito;
+        const ant = feito;
         b.classList.toggle("ativo", !feito);
-        const span = b.querySelector("span");
-        if (span) span.classList.toggle("line-through", !feito);
+        const sp = b.querySelector("span");
+        if (sp) sp.classList.toggle("line-through", !feito);
         if (!feito) { Sons.habitoFeito(); vibrar(20); }
         const ok = await atualizarPreparacao(id, { feito: !feito, data_conclusao: !feito ? new Date() : null });
         if (!ok) {
-          b.classList.toggle("ativo", anterior);
-          if (span) span.classList.toggle("line-through", anterior);
+          b.classList.toggle("ativo", ant);
+          if (sp) sp.classList.toggle("line-through", ant);
         }
       });
     });
-
     $$("[data-remover-item]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const ok = await confirmar("Remover este item?", "Ele sai do seu checklist de preparação.", "Remover");
         if (ok) await removerPreparacao(b.dataset.removerItem);
       });
     });
-
     const btnPapai = $("#btn-salvar-papai");
     if (btnPapai) {
       btnPapai.addEventListener("click", async () => {
@@ -2509,41 +2151,34 @@ function renderizarGravidez() {
           feito_pelo_douglas: ($("#grav-feito").value || "").slice(0, 400),
           data: new Date()
         }, "Registrado 💙");
-        if (ok) { Sons.salvar(); vibrar([18, 40, 18]); }
+        if (ok) { Sons.salvar(); vibrar([18,40,18]); }
       });
     }
   }
 }
 
-/* ---------- Modal de adicionar item do pré-natal ---------- */
 function abrirModalPrenatal(tipo) {
-  const titulos = {
-    consulta: { h: "🩺 Nova consulta", sub: "Agende e deixe anotado", placeholderTitulo: "Ex.: Consulta com obstetra" },
-    exame:    { h: "🔬 Novo exame",    sub: "Marque o que vai fazer", placeholderTitulo: "Ex.: Ultrassom morfológica" },
-    lembrete: { h: "💡 Novo lembrete", sub: "Perguntas e cuidados",    placeholderTitulo: "Ex.: Perguntar sobre ácido fólico" }
+  const t = {
+    consulta: { h: "🩺 Nova consulta", sub: "Agende e deixe anotado", ph: "Ex.: Consulta com obstetra" },
+    exame:    { h: "🔬 Novo exame",    sub: "Marque o que vai fazer", ph: "Ex.: Ultrassom morfológica" },
+    lembrete: { h: "💡 Novo lembrete", sub: "Perguntas e cuidados",    ph: "Ex.: Perguntar sobre ácido fólico" }
   }[tipo];
-
   const hoje = hojeISO();
   const mostrarData = tipo !== "lembrete";
 
   const fundo = abrirModal(`
-    <h3 class="fonte-display text-xl font-bold mb-1">${titulos.h}</h3>
-    <p class="text-xs mb-4" style="color:var(--muted)">${titulos.sub}</p>
-
+    <h3 class="fonte-display text-xl font-bold mb-1">${t.h}</h3>
+    <p class="text-xs mb-4" style="color:var(--muted)">${t.sub}</p>
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Título</label>
-    <input id="pn-titulo" class="campo mb-3" maxlength="120" placeholder="${titulos.placeholderTitulo}">
-
+    <input id="pn-titulo" class="campo mb-3" maxlength="120" placeholder="${t.ph}">
     ${mostrarData ? `
       <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Data</label>
       <input id="pn-data" type="date" class="campo mb-3" value="${hoje}">
-
       <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Local (opcional)</label>
       <input id="pn-local" class="campo mb-3" maxlength="80" placeholder="Clínica, hospital, laboratório...">
-
       <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Observação (opcional)</label>
       <textarea id="pn-obs" class="campo mb-4" maxlength="300" placeholder="Levar carteirinha, jejum, exames anteriores..."></textarea>
     ` : ""}
-
     <div class="flex gap-3">
       <button class="btn btn-neutro flex-1 py-3" data-cancelar>Cancelar</button>
       <button class="btn btn-rosa flex-1 py-3" data-salvar>Salvar 💗</button>
@@ -2556,33 +2191,30 @@ function abrirModalPrenatal(tipo) {
     if (!titulo) { toast("Preciso de um título 💙", 2000); return; }
     const dados = { tipo, titulo };
     if (mostrarData) {
-      const dataVal = $("#pn-data").value;
-      dados.data = dataVal ? new Date(`${dataVal}T00:00:00`) : null;
+      const v = $("#pn-data").value;
+      dados.data = v ? new Date(`${v}T00:00:00`) : null;
       dados.local = ($("#pn-local").value || "").trim();
       dados.observacao = ($("#pn-obs").value || "").trim();
     }
     const ok = await salvarPrenatal(dados);
     if (ok) {
-      fecharModal();
-      Sons.salvar();
-      vibrar([18, 40, 18]);
+      fecharModal(); Sons.salvar(); vibrar([18,40,18]);
       toast("Adicionado 💗");
     }
   });
 }
 
 /* ============================================================
-   19. HISTÓRICO
+   HISTÓRICO
    ============================================================ */
 function renderizarHistorico() {
   const p = estado.pessoa;
   const agora = new Date();
-
   const ano = agora.getFullYear();
   const mes = agora.getMonth();
-  const primeiroDia = new Date(ano, mes, 1);
+  const primeiro = new Date(ano, mes, 1);
   const diasNoMes = new Date(ano, mes + 1, 0).getDate();
-  const inicioSemana = primeiroDia.getDay();
+  const inicioSemana = primeiro.getDay();
 
   let celulas = "";
   for (let i = 0; i < inicioSemana; i++) celulas += `<div class="cal-dia vazio"></div>`;
@@ -2590,57 +2222,48 @@ function renderizarHistorico() {
     const iso = dataISO(new Date(ano, mes, d));
     const doc = obterDia(p, iso);
     const prog = doc ? progressoDia(doc, p) : -1;
-    let classe = "n0";
-    if (prog >= 0) classe = prog >= 80 ? "n3" : (prog >= 50 ? "n2" : "n1");
+    let cl = "n0";
+    if (prog >= 0) cl = prog >= 80 ? "n3" : (prog >= 50 ? "n2" : "n1");
     const ehHoje = iso === hojeISO();
-    celulas += `<div class="cal-dia ${classe} ${ehHoje ? "hoje" : ""}">${d}</div>`;
+    celulas += `<div class="cal-dia ${cl} ${ehHoje ? "hoje" : ""}">${d}</div>`;
   }
 
   const nomeMes = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"][mes];
 
   const streaksHTML = ["douglas", "mayara"].map((pes) => {
-    const sGeral = calcularStreak(pes, "geral");
-    const sAgua = calcularStreak(pes, "agua");
-    const rGeral = calcularRecorde(pes, "geral");
+    const sG = calcularStreak(pes, "geral");
+    const sA = calcularStreak(pes, "agua");
+    const rG = calcularRecorde(pes, "geral");
     const cor = pes === "douglas" ? "var(--azul)" : "var(--rosa)";
     return `
       <div class="cartao-suave flex-1">
         <p class="text-xs font-extrabold mb-2" style="color:${cor}">${pes === "douglas" ? "💙" : "💗"} ${escaparHTML(nomePessoa(pes))}</p>
-        <p class="text-2xl font-extrabold" style="color:var(--text)">${sGeral} <span class="text-xs font-bold" style="color:var(--muted)">dias</span></p>
+        <p class="text-2xl font-extrabold" style="color:var(--text)">${sG} <span class="text-xs font-bold" style="color:var(--muted)">dias</span></p>
         <p class="text-[0.66rem] font-bold mb-2" style="color:var(--muted)">sequência atual</p>
-        <p class="text-xs font-bold" style="color:var(--muted)">💧 ${sAgua} dias de água</p>
-        <p class="text-xs font-bold" style="color:var(--muted)">🏆 recorde: ${rGeral} dias</p>
+        <p class="text-xs font-bold" style="color:var(--muted)">💧 ${sA} dias de água</p>
+        <p class="text-xs font-bold" style="color:var(--muted)">🏆 recorde: ${rG} dias</p>
       </div>`;
   }).join("");
 
-  /* Últimos 14 dias (mais legível no mobile) */
-  const DIAS_GRAF = 14;
+  const DIAS = 14;
   const labels = [];
-  for (let i = DIAS_GRAF - 1; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    labels.push(dataISO(d));
-  }
-  const aguaDouglas = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.agua_ml || 0) : 0; });
-  const aguaMayara = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.agua_ml || 0) : 0; });
-  const inglesDouglas = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.ingles_minutos || 0) : 0; });
-  const inglesMayara = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.ingles_minutos || 0) : 0; });
+  for (let i = DIAS - 1; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); labels.push(dataISO(d)); }
+  const aguaD = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.agua_ml || 0) : 0; });
+  const aguaM = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.agua_ml || 0) : 0; });
+  const ingD = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.ingles_minutos || 0) : 0; });
+  const ingM = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.ingles_minutos || 0) : 0; });
 
   const semanasGrav = [...estado.semanas].sort((a, b) => a.semana - b.semana);
   const labelsGrav = semanasGrav.map((s) => `S${s.semana}`);
-  const mapaHumor = { otimo: 5, bom: 4, neutro: 3, dificil: 2, muito_dificil: 1 };
-  const dadosHumor = semanasGrav.map((s) => mapaHumor[s.humor] || null);
+  const mapH = { otimo: 5, bom: 4, neutro: 3, dificil: 2, muito_dificil: 1 };
+  const dadosH = semanasGrav.map((s) => mapH[s.humor] || null);
 
-  const distTrabalho = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "trabalho").length;
-  const distEstudo = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "estudo").length;
-  const distIngles = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "ingles").length;
-  const totalSessoes = distTrabalho + distEstudo + distIngles;
+  const distT = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "trabalho").length;
+  const distE = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "estudo").length;
+  const distI = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "ingles").length;
+  const totalS = distT + distE + distI;
 
-  /* Labels curtos: dia do mês, sem autoSkip */
-  const labelsCurtos = labels.map((iso) => {
-    const [a, m, d] = iso.split("-");
-    return `${d}/${m}`;
-  });
+  const labelsCurtos = labels.map((iso) => { const [a,m,d] = iso.split("-"); return `${d}/${m}`; });
 
   $("#tela-historico").innerHTML = `
     <div class="stagger">
@@ -2675,15 +2298,13 @@ function renderizarHistorico() {
       </div>
 
       <div class="cartao mb-3">
-        <div class="flex items-center justify-between mb-3">
-          <p class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--muted)">📚 Minutos de inglês por dia</p>
-        </div>
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">📚 Minutos de inglês por dia</p>
         <div style="height:200px"><canvas id="grafico-ingles"></canvas></div>
       </div>
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🍅 Meus focos por categoria (total)</p>
-        ${totalSessoes > 0
+        ${totalS > 0
           ? `<div style="height:200px"><canvas id="grafico-pomodoro"></canvas></div>`
           : `<p class="text-sm" style="color:var(--muted)">Ainda não temos focos registrados. Eles aparecem aqui conforme forem salvos 🍅</p>`}
       </div>
@@ -2698,163 +2319,113 @@ function renderizarHistorico() {
     </div>
   `;
 
-  Object.values(estado.charts).forEach((c) => { try { c.destroy(); } catch (e) {} });
+  Object.values(estado.charts).forEach((c) => { try { c.destroy(); } catch(e) {} });
   estado.charts = {};
 
   const corTexto = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#7A7489";
   const corGrade = getComputedStyle(document.documentElement).getPropertyValue("--borda").trim() || "rgba(0,0,0,.08)";
-  const fontePadrao = { family: "Nunito", size: 10, weight: "700" };
+  const fonte = { family: "Nunito", size: 10, weight: "700" };
 
-  const opcoesBase = {
+  const op = {
     responsive: true, maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
-      legend: { labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true } },
+      legend: { labels: { color: corTexto, font: fonte, boxWidth: 10, boxHeight: 10, usePointStyle: true } },
       tooltip: {
-        titleFont: { ...fontePadrao, size: 12 },
-        bodyFont: { ...fontePadrao, size: 11, weight: "600" },
+        titleFont: { ...fonte, size: 12 },
+        bodyFont: { ...fonte, size: 11, weight: "600" },
         padding: 10, cornerRadius: 10, displayColors: true,
         callbacks: {
-          title: (items) => {
-            const iso = labels[items[0].dataIndex];
-            const [a, m, d] = iso.split("-");
-            return `${d}/${m}/${a}`;
-          }
+          title: (items) => { const iso = labels[items[0].dataIndex]; const [a,m,d] = iso.split("-"); return `${d}/${m}/${a}`; }
         }
       }
     },
     scales: {
       x: {
         ticks: {
-          color: corTexto,
-          font: fontePadrao,
-          maxRotation: 0,
-          autoSkip: false,
-          callback: function(val, idx) {
-            /* Mostra só 1 a cada 2 no mobile */
-            if (window.innerWidth < 500) return (idx % 2 === 0) ? labelsCurtos[idx] : "";
-            return labelsCurtos[idx];
-          }
+          color: corTexto, font: fonte, maxRotation: 0, autoSkip: false,
+          callback: function(val, idx) { if (window.innerWidth < 500) return (idx % 2 === 0) ? labelsCurtos[idx] : ""; return labelsCurtos[idx]; }
         },
         grid: { display: false }
       },
-      y: {
-        ticks: { color: corTexto, font: fontePadrao, precision: 0 },
-        grid: { color: corGrade }, beginAtZero: true
-      }
+      y: { ticks: { color: corTexto, font: fonte, precision: 0 }, grid: { color: corGrade }, beginAtZero: true }
     }
   };
 
-  const cvAgua = $("#grafico-agua");
-  if (cvAgua) {
-    estado.charts.agua = new Chart(cvAgua, {
-      type: "line",
-      data: {
-        labels: labelsCurtos,
-        datasets: [
-          {
-            label: nomePessoa("douglas"), data: aguaDouglas,
-            borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.14)",
-            fill: false, tension: 0.3, spanGaps: false,
-            pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#4A90D9",
-            pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5
-          },
-          {
-            label: nomePessoa("mayara"), data: aguaMayara,
-            borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.14)",
-            fill: false, tension: 0.3, spanGaps: false,
-            pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#E08AA6",
-            pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5
-          }
-        ]
-      },
-      options: opcoesBase
-    });
-  }
+  const cvA = $("#grafico-agua");
+  if (cvA) estado.charts.agua = new Chart(cvA, {
+    type: "line",
+    data: {
+      labels: labelsCurtos,
+      datasets: [
+        { label: nomePessoa("douglas"), data: aguaD, borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.14)", fill: false, tension: 0.3, spanGaps: false, pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#4A90D9", pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5 },
+        { label: nomePessoa("mayara"), data: aguaM, borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.14)", fill: false, tension: 0.3, spanGaps: false, pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#E08AA6", pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5 }
+      ]
+    },
+    options: op
+  });
 
-  const cvIngles = $("#grafico-ingles");
-  if (cvIngles) {
-    estado.charts.ingles = new Chart(cvIngles, {
-      type: "bar",
-      data: {
-        labels: labelsCurtos,
-        datasets: [
-          { label: nomePessoa("douglas"), data: inglesDouglas, backgroundColor: "#4A90D9", borderRadius: 6, maxBarThickness: 14 },
-          { label: nomePessoa("mayara"), data: inglesMayara, backgroundColor: "#E08AA6", borderRadius: 6, maxBarThickness: 14 }
-        ]
-      },
-      options: {
-        ...opcoesBase,
-        scales: {
-          ...opcoesBase.scales,
-          x: {
-            ...opcoesBase.scales.x,
-            stacked: false
-          }
+  const cvI = $("#grafico-ingles");
+  if (cvI) estado.charts.ingles = new Chart(cvI, {
+    type: "bar",
+    data: {
+      labels: labelsCurtos,
+      datasets: [
+        { label: nomePessoa("douglas"), data: ingD, backgroundColor: "#4A90D9", borderRadius: 6, maxBarThickness: 14 },
+        { label: nomePessoa("mayara"), data: ingM, backgroundColor: "#E08AA6", borderRadius: 6, maxBarThickness: 14 }
+      ]
+    },
+    options: op
+  });
+
+  const cvP = $("#grafico-pomodoro");
+  if (cvP && totalS > 0) estado.charts.pomodoro = new Chart(cvP, {
+    type: "doughnut",
+    data: {
+      labels: ["Trabalho","Estudo","Inglês"],
+      datasets: [{ data: [distT, distE, distI], backgroundColor: ["#4A90D9","#A8D8C8","#E08AA6"], borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: "62%",
+      plugins: {
+        legend: { position: "bottom", labels: { color: corTexto, font: fonte, boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 14 } },
+        tooltip: {
+          titleFont: { ...fonte, size: 12 }, bodyFont: { ...fonte, size: 11, weight: "600" },
+          padding: 10, cornerRadius: 10,
+          callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed} sessões` }
         }
       }
-    });
-  }
+    }
+  });
 
-  const cvPomo = $("#grafico-pomodoro");
-  if (cvPomo && totalSessoes > 0) {
-    estado.charts.pomodoro = new Chart(cvPomo, {
-      type: "doughnut",
-      data: {
-        labels: ["Trabalho", "Estudo", "Inglês"],
-        datasets: [{
-          data: [distTrabalho, distEstudo, distIngles],
-          backgroundColor: ["#4A90D9", "#A8D8C8", "#E08AA6"],
-          borderWidth: 0, hoverOffset: 6
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false, cutout: "62%",
-        plugins: {
-          legend: { position: "bottom", labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 14 } },
-          tooltip: {
-            titleFont: { ...fontePadrao, size: 12 },
-            bodyFont: { ...fontePadrao, size: 11, weight: "600" },
-            padding: 10, cornerRadius: 10,
-            callbacks: {
-              label: (ctx) => `${ctx.label}: ${ctx.parsed} sessões`
-            }
-          }
+  const cvH = $("#grafico-humor");
+  if (cvH) estado.charts.humor = new Chart(cvH, {
+    type: "line",
+    data: {
+      labels: labelsGrav,
+      datasets: [{
+        label: "Humor dela", data: dadosH,
+        borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.16)",
+        fill: true, tension: 0.38, spanGaps: true,
+        pointRadius: 5, pointBackgroundColor: "#E08AA6", pointBorderColor: "#fff", pointBorderWidth: 2, borderWidth: 2.5
+      }]
+    },
+    options: {
+      ...op,
+      scales: {
+        x: { ticks: { color: corTexto, font: fonte }, grid: { display: false } },
+        y: {
+          min: 1, max: 5,
+          ticks: { color: corTexto, font: fonte, stepSize: 1, callback: (v) => ({ 1: "😢", 2: "😔", 3: "😐", 4: "🙂", 5: "😄" }[v] || "") },
+          grid: { color: corGrade }
         }
       }
-    });
-  }
-
-  const cvHumor = $("#grafico-humor");
-  if (cvHumor) {
-    estado.charts.humor = new Chart(cvHumor, {
-      type: "line",
-      data: {
-        labels: labelsGrav,
-        datasets: [{
-          label: "Humor dela", data: dadosHumor,
-          borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.16)",
-          fill: true, tension: 0.38, spanGaps: true,
-          pointRadius: 5, pointBackgroundColor: "#E08AA6", pointBorderColor: "#fff", pointBorderWidth: 2, borderWidth: 2.5
-        }]
-      },
-      options: {
-        ...opcoesBase,
-        scales: {
-          x: { ticks: { color: corTexto, font: fontePadrao }, grid: { display: false } },
-          y: {
-            min: 1, max: 5,
-            ticks: { color: corTexto, font: fontePadrao, stepSize: 1, callback: (v) => ({ 1: "😢", 2: "😔", 3: "😐", 4: "🙂", 5: "😄" }[v] || "") },
-            grid: { color: corGrade }
-          }
-        }
-      }
-    });
-  }
+    }
+  });
 }
 
 /* ============================================================
-   20. CONFIGURAÇÕES
+   CONFIG
    ============================================================ */
 function renderizarConfig() {
   const cfg = estado.config;
@@ -2875,7 +2446,7 @@ function renderizarConfig() {
         <input class="campo mb-3" id="cfg-nome-douglas" maxlength="24" value="${escaparHTML(cfg.nomes && cfg.nomes.douglas || "Douglas")}">
         <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Ela</label>
         <input class="campo mb-3" id="cfg-nome-mayara" maxlength="24" value="${escaparHTML(cfg.nomes && cfg.nomes.mayara || "Mayara")}">
-        <label class="block text-xs font-bold mb-1" style="color:var(--muted)">👶 Nome do bebê (se já escolheram)</label>
+        <label class="block text-xs font-bold mb-1" style="color:var(--muted)">👶 Nome do bebê</label>
         <input class="campo" id="cfg-nome-bebe" maxlength="30" value="${escaparHTML(cfg.nome_bebe || "")}" placeholder="Ainda não escolhemos">
       </div>
 
@@ -2890,96 +2461,43 @@ function renderizarConfig() {
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">Nossas metas</p>
-
         <div class="grid grid-cols-2 gap-3 mb-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Água (ml)</label>
-            <input type="number" min="500" max="6000" step="100" class="campo" id="cfg-agua-douglas" value="${(cfg.meta_agua_ml && cfg.meta_agua_ml.douglas) || 2500}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Água (ml)</label>
-            <input type="number" min="500" max="6000" step="100" class="campo" id="cfg-agua-mayara" value="${(cfg.meta_agua_ml && cfg.meta_agua_ml.mayara) || 2500}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Água (ml)</label><input type="number" min="500" max="6000" step="100" class="campo" id="cfg-agua-douglas" value="${(cfg.meta_agua_ml && cfg.meta_agua_ml.douglas) || 2500}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Água (ml)</label><input type="number" min="500" max="6000" step="100" class="campo" id="cfg-agua-mayara" value="${(cfg.meta_agua_ml && cfg.meta_agua_ml.mayara) || 2500}"></div>
         </div>
-
         <div class="grid grid-cols-2 gap-3 mb-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Acordar</label>
-            <input type="time" class="campo" id="cfg-acordar-douglas" value="${escaparHTML((cfg.meta_acordar && cfg.meta_acordar.douglas) || "06:30")}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Acordar</label>
-            <input type="time" class="campo" id="cfg-acordar-mayara" value="${escaparHTML((cfg.meta_acordar && cfg.meta_acordar.mayara) || "07:30")}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Acordar</label><input type="time" class="campo" id="cfg-acordar-douglas" value="${escaparHTML((cfg.meta_acordar && cfg.meta_acordar.douglas) || "06:30")}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Acordar</label><input type="time" class="campo" id="cfg-acordar-mayara" value="${escaparHTML((cfg.meta_acordar && cfg.meta_acordar.mayara) || "07:30")}"></div>
         </div>
-
         <div class="grid grid-cols-2 gap-3 mb-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Dormir</label>
-            <input type="time" class="campo" id="cfg-dormir-douglas" value="${escaparHTML((cfg.meta_dormir && cfg.meta_dormir.douglas) || "23:00")}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Dormir</label>
-            <input type="time" class="campo" id="cfg-dormir-mayara" value="${escaparHTML((cfg.meta_dormir && cfg.meta_dormir.mayara) || "22:30")}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Dormir</label><input type="time" class="campo" id="cfg-dormir-douglas" value="${escaparHTML((cfg.meta_dormir && cfg.meta_dormir.douglas) || "23:00")}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Dormir</label><input type="time" class="campo" id="cfg-dormir-mayara" value="${escaparHTML((cfg.meta_dormir && cfg.meta_dormir.mayara) || "22:30")}"></div>
         </div>
-
         <div class="grid grid-cols-2 gap-3 mb-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Inglês (min/dia)</label>
-            <input type="number" min="0" max="240" class="campo" id="cfg-ingles-douglas" value="${(cfg.meta_ingles_min && cfg.meta_ingles_min.douglas) || 20}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Inglês (min/dia)</label>
-            <input type="number" min="0" max="240" class="campo" id="cfg-ingles-mayara" value="${(cfg.meta_ingles_min && cfg.meta_ingles_min.mayara) || 15}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Inglês (min/dia)</label><input type="number" min="0" max="240" class="campo" id="cfg-ingles-douglas" value="${(cfg.meta_ingles_min && cfg.meta_ingles_min.douglas) || 20}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Inglês (min/dia)</label><input type="number" min="0" max="240" class="campo" id="cfg-ingles-mayara" value="${(cfg.meta_ingles_min && cfg.meta_ingles_min.mayara) || 15}"></div>
         </div>
-
         <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Focos/dia</label>
-            <input type="number" min="1" max="16" class="campo" id="cfg-pomo-douglas" value="${(cfg.meta_pomodoros && cfg.meta_pomodoros.douglas) || 4}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Focos/dia</label>
-            <input type="number" min="1" max="16" class="campo" id="cfg-pomo-mayara" value="${(cfg.meta_pomodoros && cfg.meta_pomodoros.mayara) || 3}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--azul)">💙 Focos/dia</label><input type="number" min="1" max="16" class="campo" id="cfg-pomo-douglas" value="${(cfg.meta_pomodoros && cfg.meta_pomodoros.douglas) || 4}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--rosa)">💗 Focos/dia</label><input type="number" min="1" max="16" class="campo" id="cfg-pomo-mayara" value="${(cfg.meta_pomodoros && cfg.meta_pomodoros.mayara) || 3}"></div>
         </div>
       </div>
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">⏰ Horários das refeições principais</p>
         <div class="grid grid-cols-3 gap-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">☕ Café</label>
-            <input type="time" class="campo" id="cfg-cafe" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.cafe) || "07:00")}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">🍽️ Almoço</label>
-            <input type="time" class="campo" id="cfg-almoco" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.almoco) || "12:30")}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">🍲 Jantar</label>
-            <input type="time" class="campo" id="cfg-jantar" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.jantar) || "19:30")}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">☕ Café</label><input type="time" class="campo" id="cfg-cafe" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.cafe) || "07:00")}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">🍽️ Almoço</label><input type="time" class="campo" id="cfg-almoco" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.almoco) || "12:30")}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">🍲 Jantar</label><input type="time" class="campo" id="cfg-jantar" value="${escaparHTML((cfg.horarios_refeicao && cfg.horarios_refeicao.jantar) || "19:30")}"></div>
         </div>
       </div>
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🍅 Pomodoro</p>
         <div class="grid grid-cols-3 gap-3">
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">Foco</label>
-            <input type="number" min="5" max="90" class="campo" id="cfg-pomo-min" value="${cfg.pomodoro_minutos || 25}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">Pausa curta</label>
-            <input type="number" min="1" max="30" class="campo" id="cfg-pausa-curta" value="${cfg.pausa_curta_minutos || 5}">
-          </div>
-          <div>
-            <label class="block text-xs font-bold mb-1" style="color:var(--muted)">Pausa longa</label>
-            <input type="number" min="5" max="60" class="campo" id="cfg-pausa-longa" value="${cfg.pausa_longa_minutos || 15}">
-          </div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">Foco</label><input type="number" min="5" max="90" class="campo" id="cfg-pomo-min" value="${cfg.pomodoro_minutos || 25}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">Pausa curta</label><input type="number" min="1" max="30" class="campo" id="cfg-pausa-curta" value="${cfg.pausa_curta_minutos || 5}"></div>
+          <div><label class="block text-xs font-bold mb-1" style="color:var(--muted)">Pausa longa</label><input type="number" min="5" max="60" class="campo" id="cfg-pausa-longa" value="${cfg.pausa_longa_minutos || 15}"></div>
         </div>
       </div>
 
@@ -2999,18 +2517,10 @@ function renderizarConfig() {
 
       <div class="cartao mb-3">
         <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🔒 Nossos dados</p>
-        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-exportar">
-          <i class="fa-solid fa-download mr-1"></i> Exportar backup (JSON)
-        </button>
-        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-regras">
-          <i class="fa-solid fa-shield-halved mr-1"></i> Ver regras do Firestore
-        </button>
-        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-logout">
-          <i class="fa-solid fa-right-from-bracket mr-1"></i> Sair
-        </button>
-        <button class="btn w-full py-3 text-sm" id="cfg-apagar" style="background:var(--surface-2); color:var(--rosa)">
-          <i class="fa-solid fa-trash-can mr-1"></i> Apagar todos os registros
-        </button>
+        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-exportar"><i class="fa-solid fa-download mr-1"></i> Exportar backup (JSON)</button>
+        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-regras"><i class="fa-solid fa-shield-halved mr-1"></i> Ver regras do Firestore</button>
+        <button class="btn btn-neutro w-full py-3 text-sm mb-2" id="cfg-logout"><i class="fa-solid fa-right-from-bracket mr-1"></i> Sair</button>
+        <button class="btn w-full py-3 text-sm" id="cfg-apagar" style="background:var(--surface-2); color:var(--rosa)"><i class="fa-solid fa-trash-can mr-1"></i> Apagar todos os registros</button>
       </div>
 
       <div class="cartao-suave text-center mb-6">
@@ -3022,33 +2532,30 @@ function renderizarConfig() {
     </div>
   `;
 
-  const btnTema = $("#cfg-tema");
-  const temaAtual = localStorage.getItem(CHAVE_TEMA) || "light";
-  btnTema.classList.toggle("ativo", temaAtual === "dark");
-  btnTema.addEventListener("click", () => {
-    const novo = (localStorage.getItem(CHAVE_TEMA) || "light") === "dark" ? "light" : "dark";
-    aplicarTema(novo);
-    btnTema.classList.toggle("ativo", novo === "dark");
+  const btnT = $("#cfg-tema");
+  const tAtual = localStorage.getItem(CHAVE_TEMA) || "light";
+  btnT.classList.toggle("ativo", tAtual === "dark");
+  btnT.addEventListener("click", () => {
+    const nv = (localStorage.getItem(CHAVE_TEMA) || "light") === "dark" ? "light" : "dark";
+    aplicarTema(nv);
+    btnT.classList.toggle("ativo", nv === "dark");
   });
 
-  const btnNotif = $("#cfg-notificacoes");
-  btnNotif.classList.toggle("ativo", typeof Notification !== "undefined" && Notification.permission === "granted");
-  btnNotif.addEventListener("click", async () => {
+  const btnN = $("#cfg-notificacoes");
+  btnN.classList.toggle("ativo", typeof Notification !== "undefined" && Notification.permission === "granted");
+  btnN.addEventListener("click", async () => {
     if (typeof Notification === "undefined") { toast("Esse navegador não suporta notificações 💙"); return; }
     try {
       const perm = await Notification.requestPermission();
-      btnNotif.classList.toggle("ativo", perm === "granted");
-      if (perm === "granted") {
-        toast("Notificações ligadas 🔔");
-        notificarNavegador("Tudo pronto! 💙", "Vamos cuidar da nossa rotina juntinhos.");
-      } else toast("Sem problemas, seguimos por aqui 💙");
-    } catch (e) { toast("Não consegui ativar agora 💙"); }
+      btnN.classList.toggle("ativo", perm === "granted");
+      if (perm === "granted") { toast("Notificações ligadas 🔔"); notificarNavegador("Tudo pronto! 💙", "Vamos cuidar da nossa rotina juntinhos."); }
+      else toast("Sem problemas, seguimos por aqui 💙");
+    } catch(e) { toast("Não consegui ativar agora 💙"); }
   });
 
   $("#cfg-salvar").addEventListener("click", async () => {
     const dumVal = $("#cfg-dum").value;
     const juntosVal = $("#cfg-juntos").value;
-
     const dados = {
       nomes: {
         douglas: ($("#cfg-nome-douglas").value || "Douglas").trim() || "Douglas",
@@ -3069,13 +2576,12 @@ function renderizarConfig() {
       pausa_curta_minutos: Number($("#cfg-pausa-curta").value) || 5,
       pausa_longa_minutos: Number($("#cfg-pausa-longa").value) || 15
     };
-
     if (dumVal) dados.dum = new Date(`${dumVal}T00:00:00`);
     if (juntosVal) dados.data_juntos = new Date(`${juntosVal}T00:00:00`);
 
     const ok = await salvarConfig(dados, "Configurações salvas 💚");
     if (ok) {
-      Sons.salvar(); vibrar([18, 40, 18]);
+      Sons.salvar(); vibrar([18,40,18]);
       if (!estado.pomodoro.rodando && estado.pomodoro.modo !== "pausa") definirModoPomodoro(estado.pomodoro.modo);
       atualizarCabecalho();
     }
@@ -3093,12 +2599,11 @@ function renderizarConfig() {
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = url;
-      a.download = `nossa-rotina-viva-backup-${hojeISO()}.json`;
+      a.href = url; a.download = `nossa-rotina-viva-backup-${hojeISO()}.json`;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 2000);
       toast("Backup baixado 💚"); Sons.salvar();
-    } catch (e) { toast("Não consegui gerar o backup agora 💙"); }
+    } catch(e) { toast("Não consegui gerar o backup agora 💙"); }
   });
 
   $("#cfg-regras").addEventListener("click", () => {
@@ -3120,19 +2625,10 @@ service cloud.firestore {
   $("#cfg-logout").addEventListener("click", sair);
 
   $("#cfg-apagar").addEventListener("click", async () => {
-    const ok1 = await confirmar(
-      "Apagar todos os registros?",
-      "Isso remove diários, semanas de gravidez, checklist, pré-natal e configurações. Não tem volta.",
-      "Continuar"
-    );
+    const ok1 = await confirmar("Apagar todos os registros?", "Isso remove diários, semanas, checklist, pré-natal e configurações. Não tem volta.", "Continuar");
     if (!ok1) return;
-    const ok2 = await confirmar(
-      "Tem certeza mesmo?",
-      "Última confirmação. Depois de apagar, não conseguimos recuperar.",
-      "Apagar tudo"
-    );
+    const ok2 = await confirmar("Tem certeza mesmo?", "Última confirmação. Depois de apagar, não conseguimos recuperar.", "Apagar tudo");
     if (!ok2) return;
-
     toast("Apagando...", 2000);
     try {
       const colecoes = ["dias", "semanas_gravidez", "preparacao_papai", "sessoes_pomodoro", "prenatal"];
@@ -3150,12 +2646,12 @@ service cloud.firestore {
       estado.pessoa = null;
       toast("Tudo apagado. Vamos recomeçar com carinho 💙", 3200);
       setTimeout(() => window.location.reload(), 1400);
-    } catch (e) { toast("Não consegui apagar tudo agora 💙", 3200); }
+    } catch(e) { toast("Não consegui apagar tudo agora 💙", 3200); }
   });
 }
 
 /* ============================================================
-   21. TEMA
+   TEMA
    ============================================================ */
 function aplicarTema(tema) {
   const escuro = tema === "dark";
@@ -3169,14 +2665,13 @@ function aplicarTema(tema) {
 }
 
 /* ============================================================
-   22. NOTIFICAÇÕES E LEMBRETES
+   NOTIFICAÇÕES
    ============================================================ */
 function notificarNavegador(titulo, corpo) {
   if (typeof Notification === "undefined") return;
   if (Notification.permission !== "granted") return;
-  try {
-    new Notification(titulo, { body: corpo, icon: gerarIconeDataURL(), badge: gerarIconeDataURL() });
-  } catch (e) { /* silencioso */ }
+  try { new Notification(titulo, { body: corpo, icon: gerarIconeDataURL(), badge: gerarIconeDataURL() }); }
+  catch(e) {}
 }
 
 let intervaloLembretes = null;
@@ -3184,86 +2679,77 @@ function iniciarLembretes() {
   if (intervaloLembretes) clearInterval(intervaloLembretes);
   const cfg = estado.config;
   if (!cfg) return;
-
-  let ultimoLembreteAgua = 0;
-  const ultimaRefeicaoAvisada = {};
-  let ultimoLembreteDormir = "";
+  let ultAgua = 0;
+  const ultRef = {};
+  let ultDormir = "";
 
   intervaloLembretes = setInterval(() => {
     if (!estado.pessoa) return;
     if (typeof Notification === "undefined" || Notification.permission !== "granted") return;
-
     const agora = new Date();
     const hhmm = agoraHHMM();
     const dia = obterDia(estado.pessoa, hojeISO()) || {};
+    const ms = Date.now();
 
-    const agoraMs = Date.now();
-    if (agoraMs - ultimoLembreteAgua > 2 * 60 * 60 * 1000) {
+    if (ms - ultAgua > 2 * 60 * 60 * 1000) {
       if ((dia.agua_ml || 0) < metaAgua(estado.pessoa) && agora.getHours() >= 8 && agora.getHours() <= 21) {
         notificarNavegador("Hora de beber água 💧", "Um copinho agora faz diferença. Você merece esse cuidado.");
-        ultimoLembreteAgua = agoraMs;
+        ultAgua = ms;
       }
     }
-
-    const refeicoes = cfg.horarios_refeicao || {};
-    const mapaRefeicao = [
-      { id: "cafe", hora: refeicoes.cafe || "07:00", msg: "Hora do café ☕", corpo: "Um bom começo pra um dia gentil." },
-      { id: "almoco", hora: refeicoes.almoco || "12:30", msg: "Hora do almoço 🍽️", corpo: "Come com calma, sem pressa." },
-      { id: "jantar", hora: refeicoes.jantar || "19:30", msg: "Hora do jantar 🍲", corpo: "Comida quentinha e boa companhia." }
-    ];
-    mapaRefeicao.forEach((r) => {
+    const refs = cfg.horarios_refeicao || {};
+    [
+      { id: "cafe", hora: refs.cafe || "07:00", msg: "Hora do café ☕", corpo: "Um bom começo pra um dia gentil." },
+      { id: "almoco", hora: refs.almoco || "12:30", msg: "Hora do almoço 🍽️", corpo: "Come com calma, sem pressa." },
+      { id: "jantar", hora: refs.jantar || "19:30", msg: "Hora do jantar 🍲", corpo: "Comida quentinha e boa companhia." }
+    ].forEach((r) => {
       const [h, m] = r.hora.split(":").map(Number);
       if (agora.getHours() === h && Math.abs(agora.getMinutes() - m) < 2) {
-        const chave = `${hojeISO()}_${r.id}`;
-        if (!ultimaRefeicaoAvisada[chave]) {
+        const k = `${hojeISO()}_${r.id}`;
+        if (!ultRef[k]) {
           const feito = (dia.refeicoes || []).some((x) => x.tipo === r.id);
-          if (!feito) { notificarNavegador(r.msg, r.corpo); ultimaRefeicaoAvisada[chave] = true; }
+          if (!feito) { notificarNavegador(r.msg, r.corpo); ultRef[k] = true; }
         }
       }
     });
-
-    const metaDormir = (cfg.meta_dormir && cfg.meta_dormir[estado.pessoa]) || "23:00";
-    const chaveDormir = `${hojeISO()}_dormir`;
-    if (hhmm === metaDormir && ultimoLembreteDormir !== chaveDormir) {
+    const mD = (cfg.meta_dormir && cfg.meta_dormir[estado.pessoa]) || "23:00";
+    const kD = `${hojeISO()}_dormir`;
+    if (hhmm === mD && ultDormir !== kD) {
       notificarNavegador("Vamos dormir? 😴", "Amanhã a gente continua. Descansa bem.");
-      ultimoLembreteDormir = chaveDormir;
+      ultDormir = kD;
     }
-
-    const chavePomo = `${hojeISO()}_pomo15`;
-    if (agora.getHours() === 15 && agora.getMinutes() < 2 && !ultimaRefeicaoAvisada[chavePomo]) {
-      const totalPomo = (dia.pomodoros_trabalho || 0) + (dia.pomodoros_estudo || 0);
-      if (totalPomo < metaPomodoros(estado.pessoa)) {
+    const kP = `${hojeISO()}_pomo15`;
+    if (agora.getHours() === 15 && agora.getMinutes() < 2 && !ultRef[kP]) {
+      const tot = (dia.pomodoros_trabalho || 0) + (dia.pomodoros_estudo || 0);
+      if (tot < metaPomodoros(estado.pessoa)) {
         notificarNavegador("Que tal um Pomodoro agora? 🍅", "25 minutinhos de foco e depois um café.");
-        ultimaRefeicaoAvisada[chavePomo] = true;
+        ultRef[kP] = true;
       }
     }
   }, 60000);
 }
 
 /* ============================================================
-   23. PWA
+   PWA
    ============================================================ */
 function gerarIconeDataURL() {
   try {
-    const canvas = document.createElement("canvas");
-    canvas.width = 512; canvas.height = 512;
-    const ctx = canvas.getContext("2d");
-    const grad = ctx.createLinearGradient(0, 0, 512, 512);
-    grad.addColorStop(0, "#F6DDE5"); grad.addColorStop(0.5, "#E8DEF7"); grad.addColorStop(1, "#D8EFE7");
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, 512, 512);
-    ctx.fillStyle = "rgba(255,255,255,0.55)";
-    ctx.beginPath(); ctx.arc(256, 256, 190, 0, Math.PI * 2); ctx.fill();
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.font = "150px serif";
-    ctx.fillText("💙", 178, 236);
-    ctx.fillText("💗", 334, 236);
-    ctx.font = "bold 58px Nunito, sans-serif";
-    ctx.fillStyle = "#4A3F63";
-    ctx.fillText("Rotina", 256, 372);
-    return canvas.toDataURL("image/png");
-  } catch (e) { return ""; }
+    const c = document.createElement("canvas");
+    c.width = 512; c.height = 512;
+    const x = c.getContext("2d");
+    const g = x.createLinearGradient(0, 0, 512, 512);
+    g.addColorStop(0, "#F6DDE5"); g.addColorStop(0.5, "#E8DEF7"); g.addColorStop(1, "#D8EFE7");
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+    x.fillStyle = "rgba(255,255,255,0.55)";
+    x.beginPath(); x.arc(256, 256, 190, 0, Math.PI * 2); x.fill();
+    x.textAlign = "center"; x.textBaseline = "middle";
+    x.font = "150px serif";
+    x.fillText("💙", 178, 236); x.fillText("💗", 334, 236);
+    x.font = "bold 58px Nunito, sans-serif";
+    x.fillStyle = "#4A3F63"; x.fillText("Rotina", 256, 372);
+    return c.toDataURL("image/png");
+  } catch(e) { return ""; }
 }
-
 function registrarPWA() {
   try {
     const icone = gerarIconeDataURL();
@@ -3291,37 +2777,37 @@ function registrarPWA() {
       fav.rel = "icon"; fav.type = "image/png"; fav.href = icone;
       document.head.appendChild(fav);
     }
-  } catch (e) { /* silencioso */ }
+  } catch(e) {}
 }
 
 /* ============================================================
-   24. BLOQUEIO DE GESTOS
+   GESTOS
    ============================================================ */
 function bloquearGestos() {
   ["gesturestart", "gesturechange", "gestureend"].forEach((ev) => {
     document.addEventListener(ev, (e) => e.preventDefault(), { passive: false });
   });
-  let ultimoToque = 0;
+  let ult = 0;
   document.addEventListener("touchend", (e) => {
-    const agora = Date.now();
-    if (agora - ultimoToque <= 320) e.preventDefault();
-    ultimoToque = agora;
+    const a = Date.now();
+    if (a - ult <= 320) e.preventDefault();
+    ult = a;
   }, { passive: false });
   document.addEventListener("touchmove", (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
   document.addEventListener("contextmenu", (e) => e.preventDefault());
   document.addEventListener("wheel", (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
   document.addEventListener("keydown", (e) => {
-    if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].includes(e.key)) e.preventDefault();
+    if ((e.ctrlKey || e.metaKey) && ["+","-","=","0"].includes(e.key)) e.preventDefault();
   });
 }
 
 /* ============================================================
-   25. DELEGAÇÃO DE EVENTOS
+   DELEGAÇÃO
    ============================================================ */
 document.addEventListener("click", (e) => {
-  const alvo = e.target.closest("[data-acao]");
-  if (!alvo) return;
-  const acao = alvo.dataset.acao;
+  const a = e.target.closest("[data-acao]");
+  if (!a) return;
+  const acao = a.dataset.acao;
   switch (acao) {
     case "abrir-diario": vibrar(20); trocarTela("diario"); break;
     case "ir-gravidez": vibrar(18); trocarTela("gravidez"); break;
@@ -3335,41 +2821,35 @@ document.addEventListener("click", (e) => {
 $$(".nav-btn").forEach((b) => {
   b.addEventListener("click", () => { vibrar(14); trocarTela(b.dataset.tela); });
 });
-
 $("#btn-tema").addEventListener("click", () => {
-  const novo = (localStorage.getItem(CHAVE_TEMA) || "light") === "dark" ? "light" : "dark";
-  aplicarTema(novo); vibrar(14);
+  const nv = (localStorage.getItem(CHAVE_TEMA) || "light") === "dark" ? "light" : "dark";
+  aplicarTema(nv); vibrar(14);
   if (estado.tela === "config") renderizarConfig();
 });
-
 $("#btn-config-topo").addEventListener("click", () => { vibrar(14); trocarTela("config"); });
 
 $$("#login-passo-pessoa .btn-pessoa").forEach((b) => {
   b.addEventListener("click", () => { vibrar(18); irParaPin(b.dataset.pessoa); });
 });
-
 $("#login-voltar").addEventListener("click", () => {
   pessoaEscolhida = null;
   $("#login-passo-pin").classList.add("oculto");
   $("#login-passo-pessoa").classList.remove("oculto");
 });
-
 $("#login-entrar").addEventListener("click", validarPin);
-
 $("#login-pin").addEventListener("input", (e) => {
   e.target.value = e.target.value.replace(/\D/g, "").slice(0, 4);
   $("#login-erro").classList.add("oculto");
   if (e.target.value.length === 4) setTimeout(validarPin, 140);
 });
-
 $("#login-pin").addEventListener("keydown", (e) => { if (e.key === "Enter") validarPin(); });
 
 /* ============================================================
-   26. TELA DE SETUP QUANDO O FIREBASE NÃO ESTÁ CONFIGURADO
+   SETUP (config placeholder)
    ============================================================ */
 function mostrarTelaSetup() {
-  const existente = document.getElementById("tela-setup-firebase");
-  if (existente) existente.remove();
+  const ex = document.getElementById("tela-setup-firebase");
+  if (ex) ex.remove();
   const div = document.createElement("div");
   div.id = "tela-setup-firebase";
   div.className = "fixed inset-0 z-40 flex items-start justify-center overflow-y-auto px-4 py-8";
@@ -3410,75 +2890,69 @@ service cloud.firestore {
 }
 
 /* ============================================================
-   27. BOOT
+   BOOT
    ============================================================ */
 async function boot() {
-  aplicarTema(localStorage.getItem(CHAVE_TEMA) || "light");
-  registrarPWA();
-  bloquearGestos();
+  try {
+    aplicarTema(localStorage.getItem(CHAVE_TEMA) || "light");
+    registrarPWA();
+    bloquearGestos();
 
-  if (!FIREBASE_CONFIGURADO) {
-    $("#tela-loading").classList.add("oculto");
-    $("#tela-login").classList.add("oculto");
-    $("#app").classList.add("oculto");
-    mostrarTelaSetup();
-    return;
-  }
-
-  if (!app || !auth || !db) {
-    $("#tela-loading").classList.add("oculto");
-    $("#tela-login").classList.remove("oculto");
-    const erro = $("#login-erro");
-    if (erro) {
-      erro.textContent = "Não consegui iniciar o Firebase. Confere as credenciais 💙";
-      erro.classList.remove("oculto");
+    if (!FIREBASE_CONFIGURADO) {
+      $("#tela-loading").classList.add("oculto");
+      $("#tela-login").classList.add("oculto");
+      $("#app").classList.add("oculto");
+      mostrarTelaSetup();
+      return;
     }
-    return;
-  }
 
-  /* Timeout de segurança: 15s */
-  const timerSeguranca = setTimeout(() => {
-    const loading = $("#tela-loading");
-    if (loading && !loading.classList.contains("oculto")) {
-      loading.classList.add("oculto");
+    if (!app || !auth || !db) {
+      $("#tela-loading").classList.add("oculto");
       $("#tela-login").classList.remove("oculto");
       const erro = $("#login-erro");
       if (erro) {
-        erro.textContent = "Demorou mais que o normal. Confere a internet e as regras do Firestore 💙";
+        erro.textContent = "Não consegui iniciar o Firebase. Confere as credenciais 💙";
         erro.classList.remove("oculto");
       }
+      return;
     }
-  }, 15000);
 
-  try {
+    const timerSeg = setTimeout(() => {
+      const load = $("#tela-loading");
+      if (load && !load.classList.contains("oculto")) {
+        load.classList.add("oculto");
+        $("#tela-login").classList.remove("oculto");
+        const erro = $("#login-erro");
+        if (erro) {
+          erro.textContent = "Demorou mais que o normal. Confere a internet e as regras do Firestore 💙";
+          erro.classList.remove("oculto");
+        }
+      }
+    }, 15000);
+
     const usuario = await garantirAutenticacao();
     if (!usuario) {
-      clearTimeout(timerSeguranca);
+      clearTimeout(timerSeg);
       $("#tela-loading").classList.add("oculto");
       $("#tela-login").classList.remove("oculto");
       toast("Não consegui conectar. Confere a internet e as credenciais 💙", 4000);
       return;
     }
+
     iniciarOuvintes();
-    /* IMPORTANTE: fallback via getDoc caso o onSnapshot não dispare em mobile */
-    setTimeout(() => {
-      if (!estado.configCarregada) buscarConfigSeNecessario();
-    }, 3000);
-    setTimeout(() => {
-      if (!estado.configCarregada) buscarConfigSeNecessario();
-    }, 8000);
+    setTimeout(() => { if (!estado.configCarregada) buscarConfigSeNecessario(); }, 3000);
+    setTimeout(() => { if (!estado.configCarregada) buscarConfigSeNecessario(); }, 8000);
 
     const vigia = setInterval(() => {
       if (estado.configCarregada) {
-        clearTimeout(timerSeguranca);
+        clearTimeout(timerSeg);
         clearInterval(vigia);
       }
     }, 500);
   } catch (e) {
-    clearTimeout(timerSeguranca);
     $("#tela-loading").classList.add("oculto");
     $("#tela-login").classList.remove("oculto");
-    toast("Não consegui conectar. Confere a internet 💙", 4000);
+    toast("Não consegui iniciar. Confere a conexão 💙", 4000);
   }
 }
 

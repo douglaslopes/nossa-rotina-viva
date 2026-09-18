@@ -349,7 +349,7 @@
     <div id="faixa-avisos" class="oculto"></div>
   </header>
 
-  <main id="conteudo" class="max-w-lg mx-auto px-4 pt-4" style="padding-bottom:calc(140px + env(safe-area-inset-bottom))">
+  <main id="conteudo" class="max-w-lg mx-auto px-4 pt-4" style="padding-bottom:calc(104px + env(safe-area-inset-bottom))">
     <section id="tela-home" class="tela"></section>
     <section id="tela-diario" class="tela oculto"></section>
     <section id="tela-pomodoro" class="tela oculto"></section>
@@ -1587,21 +1587,20 @@ function renderizarHome() {
         </button>
       </div>
 
+         <!-- Botão inline de anotar (sem flutuar sobre nada) -->
+      <button class="btn btn-rosa w-full py-4 text-base mb-3 flex items-center justify-center gap-2"
+              data-acao="abrir-diario">
+        <i class="fa-solid fa-plus text-lg"></i>
+        <span>Anotar meu dia</span>
+      </button>
+
       <div class="cartao-suave text-center mb-4">
         <p class="text-xs font-bold" style="color:var(--muted)">
           Falhou um dia? Tudo bem, amanhã é outro dia 🌱
         </p>
       </div>
     </div>
-
-    <!-- Botão flutuante: à esquerda, acima da nav (não cobre Evolução) -->
-    <button class="fixed z-40 w-16 h-16 rounded-full flex items-center justify-center btn-rosa shadow-2xl"
-            style="left:20px; bottom:calc(130px + env(safe-area-inset-bottom)); box-shadow:var(--sombra-forte)"
-            data-acao="abrir-diario" aria-label="Abrir diário do dia">
-      <i class="fa-solid fa-plus text-2xl"></i>
-    </button>
   `;
-}
 
 /* ============================================================
    16. DIÁRIO

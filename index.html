@@ -14,21 +14,7 @@
 <!-- ============================================================
      NOSSA ROTINA VIVA — app do casal (Douglas 💙 & Mayara 💗)
      ------------------------------------------------------------
-     COMO PUBLICAR (GitHub Pages):
-     1. Crie um projeto no Firebase Console (console.firebase.google.com).
-     2. Build → Authentication → Começar → ative o provedor "Anônimo".
-     3. Build → Firestore Database → Criar banco de dados.
-        IMPORTANTE: cole as regras abaixo em Firestore → Regras → Publicar.
-     4. Configurações do Projeto → Seus apps → Web (</>) → copie o
-        objeto de configuração e substitua o "firebaseConfig" abaixo.
-     5. Suba este index.html num repositório e ative o GitHub Pages.
-     6. Abra a URL no celular, crie o PIN na primeira vez e pronto.
-     7. Instale como app:
-        - Android/Chrome: menu ⋮ → "Adicionar à tela inicial".
-        - iPhone/Safari: compartilhar → "Adicionar à Tela de Início".
-
-     REGRAS DO FIRESTORE (obrigatório — cole no Console):
-     ------------------------------------------------------------
+     REGRAS DO FIRESTORE (obrigatório — cole no Console → Firestore → Regras):
      rules_version = '2';
      service cloud.firestore {
        match /databases/{database}/documents {
@@ -38,7 +24,6 @@
        }
      }
      ------------------------------------------------------------
-     Seus dados ficam na sua conta Firebase. Só vocês dois têm acesso. 🔒
      ============================================================ -->
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -73,6 +58,8 @@
     --cinza-azulado:#8C9BB5; --rosa:#E08AA6; --rosa-clara:#F6DDE5;
     --azul:#4A90D9; --azul-claro:#D9E8F8; --ok:#6FBF9B;
     --nav-bg:rgba(255,255,255,0.86);
+    --evitado-bg:rgba(111,191,155,0.14);
+    --nao-evitado-bg:rgba(120,110,145,0.06);
   }
   html.dark{
     --bg:#14121C; --bg-grad-1:#14121C; --bg-grad-2:#171A22;
@@ -84,6 +71,8 @@
     --cinza-azulado:#6E7C96; --rosa:#D4789A; --rosa-clara:#3A2733;
     --azul:#5C9FE0; --azul-claro:#1F2C3D; --ok:#5FAE8C;
     --nav-bg:rgba(30,27,40,0.88);
+    --evitado-bg:rgba(95,174,140,0.18);
+    --nao-evitado-bg:rgba(120,110,145,0.10);
   }
   *{ -webkit-tap-highlight-color: transparent; }
   html,body{ overscroll-behavior:none; touch-action: manipulation; background:var(--bg); color:var(--text); font-family:'Nunito',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
@@ -127,8 +116,6 @@
   .chip{ display:inline-flex; align-items:center; gap:6px; padding:9px 14px; border-radius:999px; background:var(--surface-2); color:var(--muted); border:1.5px solid var(--borda); font-weight:700; font-size:.86rem; transition:all .15s ease; user-select:none; }
   .chip:active{ transform:scale(0.95); }
   .chip.ativo{ background:var(--rosa); color:#fff; border-color:var(--rosa); }
-  .chip-azul.ativo{ background:var(--azul); border-color:var(--azul); }
-  .chip-verde.ativo{ background:var(--ok); border-color:var(--ok); }
 
   .humor-btn{ display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 4px; border-radius:16px; border:1.5px solid var(--borda); background:var(--surface-2); transition:all .15s ease; flex:1; min-width:0; }
   .humor-btn span.emo{ font-size:1.5rem; line-height:1; }
@@ -141,6 +128,65 @@
   .toggle-item.ativo{ background:var(--surface-3); border-color:var(--menta); }
   .toggle-dot{ width:26px; height:26px; border-radius:9px; border:2px solid var(--borda); display:flex; align-items:center; justify-content:center; font-size:.75rem; color:transparent; transition:all .15s ease; flex:0 0 auto; }
   .toggle-item.ativo .toggle-dot{ background:var(--ok); border-color:var(--ok); color:#fff; }
+
+  /* NOVO: hábitos evitados na home com contraste claro */
+  .habito-card{
+    padding:10px 6px;
+    border-radius:16px;
+    text-align:center;
+    transition:all .25s ease;
+    border:1.5px solid var(--borda);
+    background:var(--nao-evitado-bg);
+    position:relative;
+  }
+  .habito-card .emoji{
+    font-size:1.4rem;
+    filter:grayscale(1);
+    opacity:.30;
+    transition:all .25s ease;
+    display:block;
+    line-height:1;
+  }
+  .habito-card .rotulo{
+    font-size:.6rem;
+    font-weight:700;
+    color:var(--muted);
+    margin-top:3px;
+    opacity:.55;
+    line-height:1.15;
+  }
+  .habito-card .check{
+    position:absolute;
+    top:5px;
+    right:5px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--ok);
+    color:#fff;
+    font-size:.6rem;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 4px rgba(0,0,0,0.12);
+  }
+  .habito-card.ativo{
+    background:var(--evitado-bg);
+    border-color:var(--ok);
+    border-style:solid;
+  }
+  .habito-card.ativo .emoji{
+    filter:none;
+    opacity:1;
+  }
+  .habito-card.ativo .rotulo{
+    color:var(--text);
+    opacity:1;
+    font-weight:800;
+  }
+  .habito-card.ativo .check{
+    display:flex;
+  }
 
   .nav-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:8px 2px 6px; color:var(--muted); font-size:.62rem; font-weight:700; transition:color .18s ease; background:transparent; border:none; }
   .nav-btn i{ font-size:1.15rem; }
@@ -206,6 +252,40 @@
   .timeline-item::before{ content:''; position:absolute; left:7px; top:8px; bottom:-4px; width:2px; background:var(--borda); }
   .timeline-item:last-child::before{ display:none; }
   .timeline-item::after{ content:''; position:absolute; left:1px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--rosa); border:3px solid var(--surface); box-shadow:0 0 0 1px var(--borda); }
+
+  /* NOVO: item de pré-natal */
+  .pnatal-item{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 12px; border-radius:14px;
+    background:var(--surface-2); border:1px solid var(--borda);
+    margin-bottom:8px;
+  }
+  .pnatal-item .data{
+    flex:0 0 auto;
+    background:var(--surface);
+    border:1px solid var(--borda);
+    border-radius:10px;
+    padding:4px 8px;
+    font-size:.66rem;
+    font-weight:800;
+    color:var(--muted);
+    min-width:52px;
+    text-align:center;
+    line-height:1.1;
+  }
+  .pnatal-item .data.dia{ font-size:1rem; color:var(--text); }
+  .pnatal-item .info{ flex:1; min-width:0; }
+  .pnatal-item .info .titulo{ font-size:.86rem; font-weight:800; line-height:1.25; }
+  .pnatal-item .info .sub{ font-size:.72rem; color:var(--muted); font-weight:600; margin-top:2px; }
+  .pnatal-item .acao{
+    flex:0 0 auto;
+    width:30px; height:30px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; color:var(--muted); border:none;
+  }
+  .pnatal-item.feito{ opacity:.55; }
+  .pnatal-item.feito .titulo{ text-decoration:line-through; }
+  .pnatal-item.passado .data{ background:var(--evitado-bg); }
 </style>
 </head>
 
@@ -269,7 +349,7 @@
     <div id="faixa-avisos" class="oculto"></div>
   </header>
 
-  <main id="conteudo" class="max-w-lg mx-auto px-4 pt-4" style="padding-bottom:calc(104px + env(safe-area-inset-bottom))">
+  <main id="conteudo" class="max-w-lg mx-auto px-4 pt-4" style="padding-bottom:calc(140px + env(safe-area-inset-bottom))">
     <section id="tela-home" class="tela"></section>
     <section id="tela-diario" class="tela oculto"></section>
     <section id="tela-pomodoro" class="tela oculto"></section>
@@ -295,7 +375,7 @@
 
 <script type="module">
 /* ============================================================
-   0. IMPORTAÇÕES DO FIREBASE (SDK 10.x via CDN modular)
+   0. IMPORTAÇÕES DO FIREBASE
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import {
@@ -327,9 +407,6 @@ const FIREBASE_CONFIGURADO =
   !!firebaseConfig.projectId &&
   !firebaseConfig.projectId.includes("SEU_PROJETO");
 
-/* Inicialização robusta: alguns navegadores móveis (Safari iOS,
-   navegadores in-app, modo privado) bloqueiam IndexedDB. Nesses
-   casos, caímos para cache em memória para não travar o app. */
 let app = null, auth = null, db = null;
 
 if (FIREBASE_CONFIGURADO) {
@@ -353,7 +430,7 @@ if (FIREBASE_CONFIGURADO) {
    ============================================================ */
 const APP_CONFIG = {
   nome: "Nossa Rotina Viva",
-  versao: "1.1.0",
+  versao: "1.2.0",
 
   frases: [
     "Cuidar de você também é cuidar de nós dois. 💙💗",
@@ -371,46 +448,46 @@ const APP_CONFIG = {
   ],
 
   tamanhos: {
-    1:  { t:"sementinha de papoula", e:"🌱", d:"Ainda é uma promessa minúscula, mas já está se dividindo em muitas células." },
-    2:  { t:"semente de gergelim",   e:"🌰", d:"O embriãozinho se aninha com cuidado no colo do útero." },
-    3:  { t:"semente de chia",       e:"🌱", d:"Começam a se formar o tubo neural e o coraçãozinho." },
-    4:  { t:"semente de papoula",    e:"🌾", d:"O coração já bate — pequenininho e apressado." },
-    5:  { t:"semente de maçã",       e:"🍎", d:"Bracinhos e perninhas começam a brotar." },
-    6:  { t:"lentilha",              e:"🫘", d:"O rostinho começa a ganhar forma, com olhinhos e nariz." },
-    7:  { t:"mirtilo",               e:"🫐", d:"O cérebro cresce muito rápido. Já tem o tamanho de um mirtilo!" },
-    8:  { t:"framboesa",             e:"🍇", d:"Dedinhos começam a aparecer. Já se mexe, mesmo sem você sentir." },
-    9:  { t:"uva",                   e:"🍇", d:"Todos os órgãos essenciais já começaram a se formar." },
-    10: { t:"morango",               e:"🍓", d:"As articulações se formam e os ossinhos começam a endurecer." },
-    11: { t:"figo",                  e:"🫒", d:"Já tem unhas minúsculas e pode abrir e fechar as mãozinhas." },
-    12: { t:"limão",                 e:"🍋", d:"Os reflexos aparecem — ele já responde ao toque na barriga." },
-    13: { t:"pêssego",               e:"🍑", d:"Começa o segundo trimestre! As cordas vocais se formam." },
-    14: { t:"limão siciliano",       e:"🍋", d:"Ele faz caretas, franze a testa e pode chupar o dedinho." },
-    15: { t:"maçã",                  e:"🍎", d:"Os ossos seguem crescendo e os ouvidos se posicionam." },
-    16: { t:"abacate",               e:"🥑", d:"Já consegue ouvir sua voz e o batimento do seu coração." },
-    17: { t:"pera",                  e:"🍐", d:"Ganha gordurinha e o cordão umbilical fica mais grosso." },
-    18: { t:"pimentão",              e:"🫑", d:"Se mexe bastante — talvez você já sinta borboletinhas na barriga." },
-    19: { t:"manga",                 e:"🥭", d:"O vérnix protege a pele e os sentidos se aguçam." },
-    20: { t:"banana",                e:"🍌", d:"Metade do caminho! Já engole e tem impressões digitais." },
-    21: { t:"cenoura",               e:"🥕", d:"Os movimentos ficam mais coordenados e o sono tem ciclos." },
-    22: { t:"mamão",                 e:"🍈", d:"Sobrancelhas e cílios aparecem. Ele te escuta cada vez melhor." },
-    23: { t:"berinjela",             e:"🍆", d:"Os pulmões se preparam, treinando para o primeiro ar." },
-    24: { t:"espiga de milho",       e:"🌽", d:"Já teria chances fora da barriga, mas fica quentinho mais um pouco." },
-    25: { t:"couve-flor",            e:"🥬", d:"Começa a ganhar cabelinho e mais gordurinha na pele." },
-    26: { t:"alface americana",      e:"🥬", d:"Abre os olhinhos pela primeira vez e reconhece a sua voz." },
-    27: { t:"repolho",               e:"🥬", d:"Sonha e tem soluços. O terceiro trimestre se aproxima." },
-    28: { t:"berinjela grande",      e:"🍆", d:"Já pisca os olhos e sonha. Começa o 3º trimestre!" },
-    29: { t:"abóbora pequena",       e:"🎃", d:"Os músculos e os pulmões continuam amadurecendo." },
-    30: { t:"pepino",                e:"🥒", d:"O cérebro ganha sulcos e ele controla melhor a temperatura." },
-    31: { t:"coco",                  e:"🥥", d:"Todos os sentidos funcionam — ele vê, ouve, sente e saboreia." },
-    32: { t:"jícama",                e:"🥔", d:"As unhas estão formadas e ele começa a se posicionar de cabeça pra baixo." },
-    33: { t:"abacaxi",               e:"🍍", d:"O sistema imunológico recebe os seus anticorpos." },
-    34: { t:"melão cantalupo",       e:"🍈", d:"Os ossinhos ficam firmes e a pele mais rosada." },
-    35: { t:"melão",                 e:"🍈", d:"Os rins estão prontos e o fígado começa a trabalhar." },
-    36: { t:"alface romana",         e:"🥬", d:"Ele desce para a posição de nascimento. Falta pouco!" },
-    37: { t:"acelga",                e:"🥬", d:"Já é considerado a termo precoce. Pode vir a qualquer momento." },
-    38: { t:"alho-poró",             e:"🥬", d:"Os pulmões amadurecem e ele ganha peso a cada dia." },
-    39: { t:"melancia pequena",      e:"🍉", d:"Prontinho! Só esperando o dia certo pra te conhecer." },
-    40: { t:"abóbora",               e:"🎃", d:"Chegou a hora. Que encontro lindo vai ser. 💗" }
+    1:{t:"sementinha de papoula",e:"🌱",d:"Ainda é uma promessa minúscula, mas já está se dividindo em muitas células."},
+    2:{t:"semente de gergelim",e:"🌰",d:"O embriãozinho se aninha com cuidado no colo do útero."},
+    3:{t:"semente de chia",e:"🌱",d:"Começam a se formar o tubo neural e o coraçãozinho."},
+    4:{t:"semente de papoula",e:"🌾",d:"O coração já bate — pequenininho e apressado."},
+    5:{t:"semente de maçã",e:"🍎",d:"Bracinhos e perninhas começam a brotar."},
+    6:{t:"lentilha",e:"🫘",d:"O rostinho começa a ganhar forma, com olhinhos e nariz."},
+    7:{t:"mirtilo",e:"🫐",d:"O cérebro cresce muito rápido. Já tem o tamanho de um mirtilo!"},
+    8:{t:"framboesa",e:"🍇",d:"Dedinhos começam a aparecer. Já se mexe, mesmo sem você sentir."},
+    9:{t:"uva",e:"🍇",d:"Todos os órgãos essenciais já começaram a se formar."},
+    10:{t:"morango",e:"🍓",d:"As articulações se formam e os ossinhos começam a endurecer."},
+    11:{t:"figo",e:"🫒",d:"Já tem unhas minúsculas e pode abrir e fechar as mãozinhas."},
+    12:{t:"limão",e:"🍋",d:"Os reflexos aparecem — ele já responde ao toque na barriga."},
+    13:{t:"pêssego",e:"🍑",d:"Começa o segundo trimestre! As cordas vocais se formam."},
+    14:{t:"limão siciliano",e:"🍋",d:"Ele faz caretas, franze a testa e pode chupar o dedinho."},
+    15:{t:"maçã",e:"🍎",d:"Os ossos seguem crescendo e os ouvidos se posicionam."},
+    16:{t:"abacate",e:"🥑",d:"Já consegue ouvir sua voz e o batimento do seu coração."},
+    17:{t:"pera",e:"🍐",d:"Ganha gordurinha e o cordão umbilical fica mais grosso."},
+    18:{t:"pimentão",e:"🫑",d:"Se mexe bastante — talvez você já sinta borboletinhas na barriga."},
+    19:{t:"manga",e:"🥭",d:"O vérnix protege a pele e os sentidos se aguçam."},
+    20:{t:"banana",e:"🍌",d:"Metade do caminho! Já engole e tem impressões digitais."},
+    21:{t:"cenoura",e:"🥕",d:"Os movimentos ficam mais coordenados e o sono tem ciclos."},
+    22:{t:"mamão",e:"🍈",d:"Sobrancelhas e cílios aparecem. Ele te escuta cada vez melhor."},
+    23:{t:"berinjela",e:"🍆",d:"Os pulmões se preparam, treinando para o primeiro ar."},
+    24:{t:"espiga de milho",e:"🌽",d:"Já teria chances fora da barriga, mas fica quentinho mais um pouco."},
+    25:{t:"couve-flor",e:"🥬",d:"Começa a ganhar cabelinho e mais gordurinha na pele."},
+    26:{t:"alface americana",e:"🥬",d:"Abre os olhinhos pela primeira vez e reconhece a sua voz."},
+    27:{t:"repolho",e:"🥬",d:"Sonha e tem soluços. O terceiro trimestre se aproxima."},
+    28:{t:"berinjela grande",e:"🍆",d:"Já pisca os olhos e sonha. Começa o 3º trimestre!"},
+    29:{t:"abóbora pequena",e:"🎃",d:"Os músculos e os pulmões continuam amadurecendo."},
+    30:{t:"pepino",e:"🥒",d:"O cérebro ganha sulcos e ele controla melhor a temperatura."},
+    31:{t:"coco",e:"🥥",d:"Todos os sentidos funcionam — ele vê, ouve, sente e saboreia."},
+    32:{t:"jícama",e:"🥔",d:"As unhas estão formadas e ele começa a se posicionar de cabeça pra baixo."},
+    33:{t:"abacaxi",e:"🍍",d:"O sistema imunológico recebe os seus anticorpos."},
+    34:{t:"melão cantalupo",e:"🍈",d:"Os ossinhos ficam firmes e a pele mais rosada."},
+    35:{t:"melão",e:"🍈",d:"Os rins estão prontos e o fígado começa a trabalhar."},
+    36:{t:"alface romana",e:"🥬",d:"Ele desce para a posição de nascimento. Falta pouco!"},
+    37:{t:"acelga",e:"🥬",d:"Já é considerado a termo precoce. Pode vir a qualquer momento."},
+    38:{t:"alho-poró",e:"🥬",d:"Os pulmões amadurecem e ele ganha peso a cada dia."},
+    39:{t:"melancia pequena",e:"🍉",d:"Prontinho! Só esperando o dia certo pra te conhecer."},
+    40:{t:"abóbora",e:"🎃",d:"Chegou a hora. Que encontro lindo vai ser. 💗"}
   },
 
   sintomas: [
@@ -440,7 +517,6 @@ const APP_CONFIG = {
     { id:"muito_dificil",t:"Muito difícil",e:"😢" }
   ],
 
-  /* NOVO: 6 refeições — inclui lanches e ceia */
   refeicoes: [
     { id:"cafe",      t:"Café da manhã",   e:"☕" },
     { id:"lanche_am", t:"Lanche da manhã", e:"🍎" },
@@ -450,7 +526,6 @@ const APP_CONFIG = {
     { id:"ceia",      t:"Ceia leve",       e:"🥛" }
   ],
 
-  /* NOVO: 6 hábitos evitados — adicionado café e dormir com tela */
   evitaveis: [
     { id:"doce",        t:"Doce",           e:"🍰" },
     { id:"farofa",      t:"Farofa",         e:"🍚" },
@@ -467,6 +542,16 @@ const APP_CONFIG = {
     "Fazer o enxoval",
     "Escolher a maternidade",
     "Fazer o chá de bebê"
+  ],
+
+  /* NOVO: lembretes sugeridos do pré-natal */
+  lembretesPrenatal: [
+    "Agendar a morfológica do 1º trimestre",
+    "Levar exames na consulta",
+    "Perguntar sobre ácido fólico",
+    "Verificar carteira de vacinação",
+    "Marcar ultrassom morfológica",
+    "Confirmar data do parto com o obstetra"
   ]
 };
 
@@ -492,6 +577,7 @@ const estado = {
   semanas: [],
   preparacao: [],
   sessoes: [],
+  prenatal: [],       // NOVO
   tela: "home",
   charts: {},
   modoDificil: false,
@@ -499,13 +585,8 @@ const estado = {
   ouvintesAtivos: false,
   configCarregada: false,
   pomodoro: {
-    modo: "trabalho",
-    restante: 25 * 60,
-    total: 25 * 60,
-    rodando: false,
-    intervalo: null,
-    fimEm: null,
-    ciclo: 0
+    modo: "trabalho", restante: 25 * 60, total: 25 * 60,
+    rodando: false, intervalo: null, fimEm: null, ciclo: 0
   }
 };
 
@@ -538,6 +619,10 @@ function formatarDataLonga(d) {
 function formatarDataCurta(iso) {
   const [a, m, d] = iso.split("-");
   return `${d}/${m}`;
+}
+function formatarDiaMes(d) {
+  const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  return `${String(d.getDate()).padStart(2,"0")} ${meses[d.getMonth()]}`;
 }
 function escaparHTML(s) {
   return String(s == null ? "" : s)
@@ -583,10 +668,8 @@ function tocarNota(freq, atraso, duracao, tipo = "sine", volume = 0.16) {
   gan.gain.setValueAtTime(0.0001, t0);
   gan.gain.exponentialRampToValueAtTime(volume, t0 + 0.02);
   gan.gain.exponentialRampToValueAtTime(0.0001, t0 + duracao);
-  osc.connect(gan);
-  gan.connect(ctx.destination);
-  osc.start(t0);
-  osc.stop(t0 + duracao + 0.05);
+  osc.connect(gan); gan.connect(ctx.destination);
+  osc.start(t0); osc.stop(t0 + duracao + 0.05);
 }
 const Sons = {
   pomodoroInicio() { tocarNota(261.63, 0, 0.28, "sine", 0.14); tocarNota(329.63, 0.14, 0.38, "sine", 0.14); },
@@ -658,14 +741,10 @@ function soltarConfete() {
       pecas.push({
         x: window.innerWidth / 2 + (Math.random() - 0.5) * 140,
         y: -20 - Math.random() * 160,
-        w: 5 + Math.random() * 6,
-        h: 8 + Math.random() * 8,
-        vy: 1.6 + Math.random() * 2.4,
-        vx: (Math.random() - 0.5) * 1.6,
-        rot: Math.random() * Math.PI,
-        vrot: (Math.random() - 0.5) * 0.16,
-        cor: cores[Math.floor(Math.random() * cores.length)],
-        op: 0.9
+        w: 5 + Math.random() * 6, h: 8 + Math.random() * 8,
+        vy: 1.6 + Math.random() * 2.4, vx: (Math.random() - 0.5) * 1.6,
+        rot: Math.random() * Math.PI, vrot: (Math.random() - 0.5) * 0.16,
+        cor: cores[Math.floor(Math.random() * cores.length)], op: 0.9
       });
     }
     let frames = 0;
@@ -728,7 +807,7 @@ function diasJuntos() {
 }
 
 /* ============================================================
-   8. PROGRESSO / METAS / STREAKS
+   8. PROGRESSO / METAS
    ============================================================ */
 function metaAgua(pessoa) {
   const m = estado.config && estado.config.meta_agua_ml;
@@ -748,7 +827,6 @@ function obterDia(pessoa, data) {
 function progressoDia(dia, pessoa) {
   if (!dia) return 0;
   const agua = Math.min(1, (dia.agua_ml || 0) / metaAgua(pessoa)) * 25;
-  /* Refeições: 3 já bate a meta; as outras 3 são bônus */
   const refeicoes = Math.min(1, ((dia.refeicoes || []).length) / 3) * 20;
   const exercicio = dia.exercicio ? 10 : 0;
   const ingles = Math.min(1, (dia.ingles_minutos || 0) / metaIngles(pessoa)) * 15;
@@ -808,10 +886,12 @@ const CHAVE_TEMA = "nrv_tema";
 async function garantirAutenticacao() {
   return new Promise((resolve) => {
     if (!auth) { resolve(null); return; }
+    /* Timeout de segurança para mobile lento */
+    const timeout = setTimeout(() => resolve(auth.currentUser || null), 12000);
     const parar = onAuthStateChanged(auth, async (user) => {
-      if (user) { parar(); resolve(user); return; }
+      if (user) { clearTimeout(timeout); parar(); resolve(user); return; }
       try { await signInAnonymously(auth); }
-      catch (e) { parar(); resolve(null); }
+      catch (e) { clearTimeout(timeout); parar(); resolve(null); }
     });
   });
 }
@@ -843,14 +923,37 @@ function irParaPin(pessoa) {
   $("#login-erro").classList.add("oculto");
   $("#login-pin").value = "";
   setTimeout(() => $("#login-pin").focus(), 220);
+
+  /* NOVO: em mobile a config pode não ter chegado ainda. Buscamos de novo. */
+  if (!estado.config) buscarConfigSeNecessario();
 }
 
-function validarPin() {
+/* NOVO: fallback direto via getDoc (mobile costuma precisar disso) */
+async function buscarConfigSeNecessario() {
+  if (estado.config || !db) return;
+  try {
+    const snap = await getDoc(doc(db, "config", "casal"));
+    if (snap.exists()) {
+      estado.config = snap.data();
+      estado.configCarregada = true;
+    }
+  } catch (e) {
+    /* silencioso — o validarPin mostra a mensagem */
+  }
+}
+
+async function validarPin() {
+  /* Se a config não está na memória, tenta buscar direto do Firestore */
+  if (!estado.config) {
+    toast("Conectando...", 1500);
+    await buscarConfigSeNecessario();
+  }
+
   if (!estado.config) {
     Sons.erro();
     vibrar(120);
     const erro = $("#login-erro");
-    erro.textContent = "Ainda não consegui falar com o Firebase. Confere a conexão 💙";
+    erro.textContent = "Ainda não consegui falar com o Firebase. Confere a internet e as regras do Firestore 💙";
     erro.classList.remove("oculto");
     return;
   }
@@ -858,10 +961,7 @@ function validarPin() {
   const valor = ($("#login-pin").value || "").trim();
   const pinCorreto = estado.config.pin ? String(estado.config.pin) : null;
 
-  if (!pinCorreto) {
-    entrarNoApp(pessoaEscolhida);
-    return;
-  }
+  if (!pinCorreto) { entrarNoApp(pessoaEscolhida); return; }
 
   if (valor === pinCorreto) {
     Sons.salvar();
@@ -886,6 +986,8 @@ function entrarNoApp(pessoa) {
   atualizarCabecalho();
   trocarTela("home");
   verificarAvisosDaOutraPessoa();
+  /* Garante que os ouvintes rodem mesmo se a config chegou via getDoc direto */
+  if (!estado.ouvintesAtivos) iniciarOuvintes();
 }
 
 async function sair() {
@@ -901,24 +1003,19 @@ async function sair() {
 }
 
 /* ============================================================
-   10. FIRESTORE — CRUD (com erros explicativos)
+   10. FIRESTORE — CRUD
    ============================================================ */
 const REF_CONFIG = () => doc(db, "config", "casal");
 const refDia = (pessoa, data) => doc(db, "dias", `${pessoa}_${data}`);
 const refSemana = (semana) => doc(db, "semanas_gravidez", String(semana));
 
-/* Mensagem de erro clara para qualquer falha de escrita */
 function mensagemErroFirestore(e) {
   const codigo = (e && e.code) ? String(e.code) : "";
-  if (!navigator.onLine) {
-    return "Tô sem conexão. Quando voltar, atualizo tudo 💙";
-  }
+  if (!navigator.onLine) return "Tô sem conexão. Quando voltar, atualizo tudo 💙";
   if (codigo.includes("permission") || codigo.includes("unauthenticated")) {
     return "O Firestore está bloqueando. Confere as regras no Console 🔒";
   }
-  if (codigo.includes("unavailable")) {
-    return "Servidor indisponível agora. Tenta em instantes 💙";
-  }
+  if (codigo.includes("unavailable")) return "Servidor indisponível agora. Tenta em instantes 💙";
   return "Não consegui salvar agora. Tenta de novo 💙";
 }
 
@@ -928,28 +1025,18 @@ async function salvarConfig(parcial, aviso = "Salvo 💚") {
     await setDoc(REF_CONFIG(), { ...parcial, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function salvarDia(pessoa, data, dados, aviso = "Anotado 💚") {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
-    /* setDoc com merge cria ou atualiza em uma única chamada — mais robusto */
     await setDoc(refDia(pessoa, data), {
-      pessoa,
-      data,
-      ...dados,
-      atualizado_em: serverTimestamp()
+      pessoa, data, ...dados, atualizado_em: serverTimestamp()
     }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function salvarSemana(semana, dados, aviso = "Anotado com carinho 💗") {
@@ -958,58 +1045,58 @@ async function salvarSemana(semana, dados, aviso = "Anotado com carinho 💗") {
     await setDoc(refSemana(semana), { semana, ...dados, atualizado_em: serverTimestamp() }, { merge: true });
     if (aviso) toast(aviso);
     return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function salvarPreparacao(item) {
   if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
     await addDoc(collection(db, "preparacao_papai"), {
-      item: item.item,
-      feito: false,
-      data_conclusao: null,
-      ordem: item.ordem || Date.now(),
-      criado_em: serverTimestamp()
+      item: item.item, feito: false, data_conclusao: null,
+      ordem: item.ordem || Date.now(), criado_em: serverTimestamp()
     });
     toast("Item adicionado 🌱");
     return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function atualizarPreparacao(id, dados) {
   if (!db) return false;
-  try {
-    await updateDoc(doc(db, "preparacao_papai", id), dados);
-    return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  try { await updateDoc(doc(db, "preparacao_papai", id), dados); return true; }
+  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function removerPreparacao(id) {
   if (!db) return false;
+  try { await deleteDoc(doc(db, "preparacao_papai", id)); toast("Item removido"); return true; }
+  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+}
+
+/* NOVO: pré-natal */
+async function salvarPrenatal(dados, id = null) {
+  if (!db) { toast("Firebase não configurado 💙", 3000); return false; }
   try {
-    await deleteDoc(doc(db, "preparacao_papai", id));
-    toast("Item removido");
+    if (id) {
+      await updateDoc(doc(db, "prenatal", id), { ...dados, atualizado_em: serverTimestamp() });
+    } else {
+      await addDoc(collection(db, "prenatal"), {
+        ...dados, feito: false, criado_em: serverTimestamp()
+      });
+    }
     return true;
-  } catch (e) {
-    toast(mensagemErroFirestore(e), 4000);
-    return false;
-  }
+  } catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
+}
+
+async function removerPrenatal(id) {
+  if (!db) return false;
+  try { await deleteDoc(doc(db, "prenatal", id)); toast("Item removido"); return true; }
+  catch (e) { toast(mensagemErroFirestore(e), 4000); return false; }
 }
 
 async function registrarSessaoPomodoro(dados) {
   if (!db) return;
-  try {
-    await addDoc(collection(db, "sessoes_pomodoro"), { ...dados, criado_em: serverTimestamp() });
-  } catch (e) { /* silencioso — não interrompe o foco */ }
+  try { await addDoc(collection(db, "sessoes_pomodoro"), { ...dados, criado_em: serverTimestamp() }); }
+  catch (e) { /* silencioso */ }
 }
 
 /* ============================================================
@@ -1051,9 +1138,12 @@ function iniciarOuvintes() {
     atualizarCabecalho();
     renderizarTelaAtual();
   }, () => {
-    $("#tela-loading").classList.add("oculto");
-    toast("Tô sem conexão, mas quando voltar atualizo tudo 💙", 3600);
-    if (!estado.pessoa) mostrarLogin();
+    /* Fallback: tenta buscar direto */
+    buscarConfigSeNecessario();
+    if (!estado.config) {
+      $("#tela-loading").classList.add("oculto");
+      if (!estado.pessoa) mostrarLogin();
+    }
   });
 
   onSnapshot(collection(db, "dias"), (snap) => {
@@ -1071,6 +1161,20 @@ function iniciarOuvintes() {
   onSnapshot(collection(db, "preparacao_papai"), (snap) => {
     estado.preparacao = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
       .sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
+    renderizarTelaAtual();
+  }, () => {});
+
+  /* NOVO: pré-natal */
+  onSnapshot(collection(db, "prenatal"), (snap) => {
+    estado.prenatal = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => {
+        const da = a.data ? paraData(a.data) : null;
+        const db_ = b.data ? paraData(b.data) : null;
+        if (da && db_) return da - db_;
+        if (da) return -1;
+        if (db_) return 1;
+        return (a.ordem || 0) - (b.ordem || 0);
+      });
     renderizarTelaAtual();
   }, () => {});
 
@@ -1104,20 +1208,15 @@ function abrirConfiguracaoInicial() {
     </div>
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Nosso PIN de 4 dígitos</label>
     <input id="setup-pin" class="campo pin-campo mb-5" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" autocomplete="off">
-
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Nome dele 💙</label>
     <input id="setup-nome-douglas" class="campo mb-4" value="Douglas" maxlength="24">
-
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Nome dela 💗</label>
     <input id="setup-nome-mayara" class="campo mb-4" value="Mayara" maxlength="24">
-
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Data da última menstruação (DUM)</label>
     <input id="setup-dum" type="date" class="campo mb-2" value="${dumPadrao}" max="${hoje}">
     <p class="text-xs mb-4" style="color:var(--muted)">É a base pra calcular as semanas do bebê. Dá pra ajustar depois.</p>
-
     <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Quando a gente começou 💞</label>
     <input id="setup-juntos" type="date" class="campo mb-5" value="${hoje}" max="${hoje}">
-
     <button id="setup-salvar" class="btn btn-rosa w-full py-4 text-base mb-2">Criar nosso cantinho ✨</button>
     <p id="setup-erro" class="text-sm font-bold oculto text-center" style="color:var(--rosa)"></p>
     <p class="text-xs text-center mt-3" style="color:var(--muted)">🔒 Seus dados ficam na sua conta Firebase. Só vocês dois têm acesso.</p>
@@ -1130,40 +1229,28 @@ function abrirConfiguracaoInicial() {
     const erro = $("#setup-erro");
     if (!/^\d{4}$/.test(pin)) {
       erro.textContent = "O PIN precisa ter 4 números 💙";
-      erro.classList.remove("oculto");
-      Sons.erro();
-      return;
+      erro.classList.remove("oculto"); Sons.erro(); return;
     }
     const nomeD = ($("#setup-nome-douglas").value || "Douglas").trim() || "Douglas";
     const nomeM = ($("#setup-nome-mayara").value || "Mayara").trim() || "Mayara";
     const dum = $("#setup-dum").value;
     const juntos = $("#setup-juntos").value;
-
     if (!dum) {
       erro.textContent = "Preciso da data da última menstruação 💗";
-      erro.classList.remove("oculto");
-      Sons.erro();
-      return;
+      erro.classList.remove("oculto"); Sons.erro(); return;
     }
-
     const dumDate = new Date(`${dum}T00:00:00`);
     const juntosDate = new Date(`${juntos}T00:00:00`);
 
     const ok = await salvarConfig({
-      pin,
-      nomes: { douglas: nomeD, mayara: nomeM },
-      dum: dumDate,
-      data_juntos: juntosDate,
-      nome_bebe: "",
-      ...METAS_PADRAO,
-      criado_em: serverTimestamp()
+      pin, nomes: { douglas: nomeD, mayara: nomeM },
+      dum: dumDate, data_juntos: juntosDate, nome_bebe: "",
+      ...METAS_PADRAO, criado_em: serverTimestamp()
     }, null);
 
     if (ok) {
-      Sons.salvar();
-      vibrar([20, 50, 20]);
-      fecharModal();
-      soltarConfete();
+      Sons.salvar(); vibrar([20, 50, 20]);
+      fecharModal(); soltarConfete();
       toast("Nosso cantinho está pronto 💙💗", 3200);
       mostrarLogin();
     } else {
@@ -1212,15 +1299,29 @@ function verificarAvisosDaOutraPessoa() {
   if (diaOutro && (diaOutro.agua_ml || 0) >= metaAgua(outro)) {
     avisos.push(`${nomePessoa(outro)} bateu a meta de água hoje! 💧`);
   }
-  if (diaOutro && diaOutro.exercicio) {
-    avisos.push(`${nomePessoa(outro)} se mexeu hoje! 🧘`);
-  }
+  if (diaOutro && diaOutro.exercicio) avisos.push(`${nomePessoa(outro)} se mexeu hoje! 🧘`);
   if (diaOutro && (diaOutro.ingles_minutos || 0) >= metaIngles(outro)) {
     avisos.push(`${nomePessoa(outro)} estudou inglês hoje! 📚`);
   }
   if (diaOutro && diaOutro.pomodoros_trabalho >= metaPomodoros(outro)) {
     avisos.push(`${nomePessoa(outro)} mandou bem nos focos hoje! 🍅`);
   }
+
+  /* NOVO: lembrete de pré-natal próximo */
+  const hojeMs = inicioDoDia(new Date()).getTime();
+  estado.prenatal.forEach((item) => {
+    if (item.feito) return;
+    const d = paraData(item.data);
+    if (!d) return;
+    const diff = Math.round((inicioDoDia(d) - hojeMs) / 86400000);
+    if (diff === 0) {
+      avisos.push(`📅 Hoje: ${item.titulo}`);
+    } else if (diff === 1) {
+      avisos.push(`📅 Amanhã: ${item.titulo}`);
+    } else if (diff > 1 && diff <= 3) {
+      avisos.push(`📅 Em ${diff} dias: ${item.titulo}`);
+    }
+  });
 
   const semanaAtual = calcularGravidez(estado.config && estado.config.dum);
   if (p === "douglas" && semanaAtual) {
@@ -1240,11 +1341,7 @@ function verificarAvisosDaOutraPessoa() {
 
   estado.avisos = avisos;
   const faixa = $("#faixa-avisos");
-  if (!avisos.length) {
-    faixa.classList.add("oculto");
-    faixa.innerHTML = "";
-    return;
-  }
+  if (!avisos.length) { faixa.classList.add("oculto"); faixa.innerHTML = ""; return; }
   faixa.classList.remove("oculto");
   faixa.innerHTML = `
     <div class="max-w-lg mx-auto px-4 pb-3">
@@ -1271,9 +1368,7 @@ function trocarTela(tela) {
       el.classList.remove("fade-in");
       void el.offsetWidth;
       el.classList.add("fade-in");
-    } else {
-      el.classList.add("oculto");
-    }
+    } else { el.classList.add("oculto"); }
   });
   $$(".nav-btn").forEach((b) => b.classList.toggle("ativo", b.dataset.tela === tela));
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1367,11 +1462,12 @@ function renderizarHome() {
       </div>`;
   }
 
-  /* NOVO: 6 evitáveis em grid 3x2 */
+  /* NOVO: hábitos evitados com contraste claro (grayscale nos não-marcados) */
   const evHTML = APP_CONFIG.evitaveis.map((e) => `
-    <div class="text-center cartao-suave py-2">
-      <div class="text-lg ${evitou[e.id] ? "" : "opacity-30"}">${e.e}</div>
-      <div class="text-[0.58rem] font-bold mt-0.5 leading-tight" style="color:var(--muted)">${escaparHTML(e.t)}</div>
+    <div class="habito-card ${evitou[e.id] ? "ativo" : ""}" title="${evitou[e.id] ? 'Evitado hoje' : 'Ainda não marcado'}">
+      <div class="check"><i class="fa-solid fa-check"></i></div>
+      <span class="emoji">${e.e}</span>
+      <div class="rotulo">${escaparHTML(e.t)}</div>
     </div>`).join("");
 
   const humorHoje = APP_CONFIG.humores.find((h) => h.id === (diaHoje && diaHoje.humor));
@@ -1465,7 +1561,10 @@ function renderizarHome() {
       </div>
 
       <div class="cartao mb-3">
-        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🚫 Hábitos evitados hoje</p>
+        <div class="flex items-center justify-between mb-3">
+          <p class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--muted)">🚫 Hábitos evitados hoje</p>
+          <p class="text-[0.66rem] font-bold" style="color:var(--muted)">${APP_CONFIG.evitaveis.filter((e) => evitou[e.id]).length}/${APP_CONFIG.evitaveis.length}</p>
+        </div>
         <div class="grid grid-cols-3 gap-2">${evHTML}</div>
       </div>
 
@@ -1495,8 +1594,9 @@ function renderizarHome() {
       </div>
     </div>
 
-    <button class="fixed right-5 z-40 w-16 h-16 rounded-full flex items-center justify-center btn-rosa shadow-2xl"
-            style="bottom:calc(96px + env(safe-area-inset-bottom)); box-shadow:var(--sombra-forte)"
+    <!-- Botão flutuante: à esquerda, acima da nav (não cobre Evolução) -->
+    <button class="fixed z-40 w-16 h-16 rounded-full flex items-center justify-center btn-rosa shadow-2xl"
+            style="left:20px; bottom:calc(130px + env(safe-area-inset-bottom)); box-shadow:var(--sombra-forte)"
             data-acao="abrir-diario" aria-label="Abrir diário do dia">
       <i class="fa-solid fa-plus text-2xl"></i>
     </button>
@@ -1515,25 +1615,18 @@ function renderizarDiario() {
   const dia = obterDia(p, data) || {};
   const cfg = estado.config;
 
-  /* Sincroniza água local só quando muda o dia ou quando o servidor traz valor maior */
-  if (aguaLocalData !== data) {
-    aguaLocal = dia.agua_ml || 0;
-    aguaLocalData = data;
-  } else if (typeof dia.agua_ml === "number" && dia.agua_ml > aguaLocal) {
-    aguaLocal = dia.agua_ml;
-  }
+  if (aguaLocalData !== data) { aguaLocal = dia.agua_ml || 0; aguaLocalData = data; }
+  else if (typeof dia.agua_ml === "number" && dia.agua_ml > aguaLocal) aguaLocal = dia.agua_ml;
 
   const refeicoesFeitas = (dia.refeicoes || []).map((r) => r.tipo);
   const evitou = dia.evitou || {};
 
-  /* NOVO: 6 refeições */
   const refeicoesHTML = APP_CONFIG.refeicoes.map((r) => `
     <button class="toggle-item w-full mb-2 ${refeicoesFeitas.includes(r.id) ? "ativo" : ""}" data-refeicao="${r.id}">
       <span class="flex items-center gap-2 text-sm">${r.e} ${escaparHTML(r.t)}</span>
       <span class="toggle-dot"><i class="fa-solid fa-check"></i></span>
     </button>`).join("");
 
-  /* NOVO: 6 evitáveis */
   const evitaveisHTML = APP_CONFIG.evitaveis.map((e) => `
     <button class="toggle-item w-full mb-2 ${evitou[e.id] ? "ativo" : ""}" data-evitavel="${e.id}">
       <span class="flex items-center gap-2 text-sm">${e.e} ${escaparHTML(e.t)}</span>
@@ -1635,20 +1728,17 @@ function renderizarDiario() {
   $$("[data-agua]", $("#tela-diario")).forEach((b) => {
     b.addEventListener("click", async () => {
       const anterior = aguaLocal;
-      if (b.dataset.agua === "reset") {
-        aguaLocal = 0;
-      } else {
+      if (b.dataset.agua === "reset") aguaLocal = 0;
+      else {
         aguaLocal = Math.max(0, aguaLocal + Number(b.dataset.agua));
-        Sons.habitoFeito();
-        vibrar(18);
+        Sons.habitoFeito(); vibrar(18);
       }
       atualizarAguaUI();
       const ok = await salvarDia(p, data, { agua_ml: aguaLocal }, null);
       if (!ok) { aguaLocal = anterior; atualizarAguaUI(); }
       const meta = metaAgua(p);
       if (ok && aguaLocal >= meta && (dia.agua_ml || 0) < meta) {
-        soltarConfete();
-        toast("Meta de água batida! 💧✨", 3000);
+        soltarConfete(); toast("Meta de água batida! 💧✨", 3000);
       }
     });
   });
@@ -1659,13 +1749,8 @@ function renderizarDiario() {
       const atual = obterDia(p, data) || {};
       let lista = [...(atual.refeicoes || [])];
       const existe = lista.some((r) => r.tipo === tipo);
-      if (existe) {
-        lista = lista.filter((r) => r.tipo !== tipo);
-      } else {
-        lista.push({ tipo, horario: agoraHHMM() });
-        Sons.habitoFeito();
-        vibrar(18);
-      }
+      if (existe) lista = lista.filter((r) => r.tipo !== tipo);
+      else { lista.push({ tipo, horario: agoraHHMM() }); Sons.habitoFeito(); vibrar(18); }
       const anterior = b.classList.contains("ativo");
       b.classList.toggle("ativo", !existe);
       const ok = await salvarDia(p, data, { refeicoes: lista }, null);
@@ -1756,19 +1841,13 @@ function renderizarDiario() {
     const ok = await salvarDia(p, data, dados, null);
     btn.disabled = false;
     if (ok) {
-      Sons.salvar();
-      vibrar([18, 40, 18]);
+      Sons.salvar(); vibrar([18, 40, 18]);
       btn.innerHTML = '<i class="fa-solid fa-check"></i> Salvo!';
       toast("Anotado 💚", 2000);
       setTimeout(() => { btn.innerHTML = original; }, 1500);
       const prog = progressoDia({ ...atual, ...dados }, p);
-      if (prog >= 80) {
-        soltarConfete();
-        toast("Dia lindo! Você cuidou de você hoje ✨", 3000);
-      }
-    } else {
-      btn.innerHTML = original;
-    }
+      if (prog >= 80) { soltarConfete(); toast("Dia lindo! Você cuidou de você hoje ✨", 3000); }
+    } else { btn.innerHTML = original; }
   });
 }
 
@@ -1901,8 +1980,7 @@ function iniciarPomodoro() {
   if (pm.rodando) return;
   pm.rodando = true;
   pm.fimEm = Date.now() + pm.restante * 1000;
-  Sons.pomodoroInicio();
-  vibrar([18, 50, 18]);
+  Sons.pomodoroInicio(); vibrar([18, 50, 18]);
   toast("Pomodoro iniciado 🍅");
   pm.intervalo = setInterval(() => {
     const restante = Math.round((pm.fimEm - Date.now()) / 1000);
@@ -1949,16 +2027,12 @@ async function finalizarPomodoro() {
 
   const data = hojeISO();
   const dia = obterDia(p, data) || {};
-  if (modo === "trabalho") {
-    await salvarDia(p, data, { pomodoros_trabalho: (dia.pomodoros_trabalho || 0) + 1 }, null);
-  } else if (modo === "estudo") {
-    await salvarDia(p, data, { pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1 }, null);
-  } else {
-    await salvarDia(p, data, {
-      pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1,
-      ingles_minutos: (dia.ingles_minutos || 0) + minutos
-    }, null);
-  }
+  if (modo === "trabalho") await salvarDia(p, data, { pomodoros_trabalho: (dia.pomodoros_trabalho || 0) + 1 }, null);
+  else if (modo === "estudo") await salvarDia(p, data, { pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1 }, null);
+  else await salvarDia(p, data, {
+    pomodoros_estudo: (dia.pomodoros_estudo || 0) + 1,
+    ingles_minutos: (dia.ingles_minutos || 0) + minutos
+  }, null);
 
   pm.ciclo = (pm.ciclo || 0) + 1;
   const cfg = estado.config || {};
@@ -2016,9 +2090,11 @@ function renderizarGravidez() {
 
   const bebe = infoBebe(grav.semanaTabela);
   const semanaReg = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
+  const sintomasAtivos = semanaReg.sintomas || [];
 
+  /* Sintomas com botão "limpar tudo" no topo */
   const sintomasHTML = APP_CONFIG.sintomas.map((s) => `
-    <button class="chip ${(semanaReg.sintomas || []).includes(s.id) ? "ativo" : ""}" data-sintoma="${s.id}">
+    <button class="chip ${sintomasAtivos.includes(s.id) ? "ativo" : ""}" data-sintoma="${s.id}">
       ${s.e} ${escaparHTML(s.t)}
     </button>`).join("");
 
@@ -2047,6 +2123,85 @@ function renderizarGravidez() {
     .map((s) => `<button class="chip" data-sugestao="${escaparHTML(s)}">+ ${escaparHTML(s)}</button>`)
     .join("");
 
+  /* NOVO: pré-natal */
+  const consultas = estado.prenatal.filter((i) => i.tipo === "consulta");
+  const exames = estado.prenatal.filter((i) => i.tipo === "exame");
+  const lembretes = estado.prenatal.filter((i) => i.tipo === "lembrete");
+
+  const hojeMs = inicioDoDia(new Date()).getTime();
+  function classeData(d) {
+    if (!d) return "";
+    return inicioDoDia(d).getTime() < hojeMs ? "passado" : "";
+  }
+
+  const consultasHTML = consultas.length
+    ? consultas.map((c) => {
+        const d = paraData(c.data);
+        const passado = d && inicioDoDia(d).getTime() < hojeMs;
+        return `
+          <div class="pnatal-item ${c.feito ? "feito" : ""} ${passado && !c.feito ? "passado" : ""}">
+            <div class="data ${d ? "dia" : ""}">
+              ${d ? `${String(d.getDate()).padStart(2,"0")}<br><span style="font-size:.6rem">${formatarDiaMes(d).split(" ")[1]}</span>` : "—"}
+            </div>
+            <div class="info">
+              <div class="titulo">${escaparHTML(c.titulo || "Consulta")}</div>
+              ${c.local ? `<div class="sub">📍 ${escaparHTML(c.local)}</div>` : ""}
+              ${c.observacao ? `<div class="sub">${escaparHTML(c.observacao)}</div>` : ""}
+            </div>
+            <button class="acao" data-prenatal-toggle="${c.id}" data-feito="${c.feito ? "1" : "0"}" title="Marcar como feito">
+              <i class="fa-solid ${c.feito ? "fa-circle-check" : "fa-circle"}" style="${c.feito ? "color:var(--ok)" : ""}"></i>
+            </button>
+            <button class="acao" data-prenatal-remover="${c.id}" title="Remover">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>`;
+      }).join("")
+    : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhuma consulta agendada ainda.</p>`;
+
+  const examesHTML = exames.length
+    ? exames.map((ex) => {
+        const d = paraData(ex.data);
+        const passado = d && inicioDoDia(d).getTime() < hojeMs;
+        return `
+          <div class="pnatal-item ${ex.feito ? "feito" : ""} ${passado && !ex.feito ? "passado" : ""}">
+            <div class="data ${d ? "dia" : ""}">
+              ${d ? `${String(d.getDate()).padStart(2,"0")}<br><span style="font-size:.6rem">${formatarDiaMes(d).split(" ")[1]}</span>` : "—"}
+            </div>
+            <div class="info">
+              <div class="titulo">${escaparHTML(ex.titulo || "Exame")}</div>
+              ${ex.local ? `<div class="sub">📍 ${escaparHTML(ex.local)}</div>` : ""}
+              ${ex.observacao ? `<div class="sub">${escaparHTML(ex.observacao)}</div>` : ""}
+            </div>
+            <button class="acao" data-prenatal-toggle="${ex.id}" data-feito="${ex.feito ? "1" : "0"}" title="Marcar como feito">
+              <i class="fa-solid ${ex.feito ? "fa-circle-check" : "fa-circle"}" style="${ex.feito ? "color:var(--ok)" : ""}"></i>
+            </button>
+            <button class="acao" data-prenatal-remover="${ex.id}" title="Remover">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>`;
+      }).join("")
+    : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhum exame agendado ainda.</p>`;
+
+  const lembretesHTML = lembretes.length
+    ? lembretes.map((l) => `
+        <div class="flex items-center gap-2 mb-2">
+          <button class="toggle-item flex-1 ${l.feito ? "ativo" : ""}" data-prenatal-toggle="${l.id}" data-feito="${l.feito ? "1" : "0"}">
+            <span class="text-sm text-left ${l.feito ? "line-through opacity-60" : ""}">💡 ${escaparHTML(l.titulo)}</span>
+            <span class="toggle-dot"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--surface-2); color:var(--muted)" data-prenatal-remover="${l.id}">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>`).join("")
+    : `<p class="text-xs mb-2" style="color:var(--muted)">Nenhum lembrete ainda. Que tal adicionar "levar exames na consulta"?</p>`;
+
+  const lembretesSugeridos = APP_CONFIG.lembretesPrenatal
+    .filter((s) => !lembretes.some((l) => l.titulo.toLowerCase() === s.toLowerCase()))
+    .slice(0, 3)
+    .map((s) => `<button class="chip" data-prenatal-sugestao="${escaparHTML(s)}">+ ${escaparHTML(s)}</button>`)
+    .join("");
+
+  /* Linha do tempo */
   const timeline = estado.semanas.length
     ? estado.semanas.map((s) => {
         const h = APP_CONFIG.humores.find((x) => x.id === s.humor);
@@ -2106,9 +2261,7 @@ function renderizarGravidez() {
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">🌱 Essa semana</p>
         <p class="text-sm font-semibold leading-relaxed">${escaparHTML(bebe.d)}</p>
         <div class="divisor"></div>
-        <p class="text-sm font-bold text-center" style="color:var(--rosa)">
-          Seu corpo está fazendo algo incrível 💗
-        </p>
+        <p class="text-sm font-bold text-center" style="color:var(--rosa)">Seu corpo está fazendo algo incrível 💗</p>
       </div>
 
       <div class="cartao mb-3 text-center">
@@ -2122,10 +2275,14 @@ function renderizarGravidez() {
 
       ${alertaCarinhoso}
 
+      <!-- Sintomas com limpar -->
       <div class="cartao mb-3" style="background:linear-gradient(140deg,var(--rosa-clara),var(--surface))">
-        <h3 class="fonte-display text-lg font-bold mb-1">Como estou me sentindo 💗</h3>
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="fonte-display text-lg font-bold">Como estou me sentindo 💗</h3>
+          ${editavelEla && sintomasAtivos.length ? `<button class="btn btn-fantasma text-xs px-2 py-1" id="btn-limpar-sintomas" style="color:var(--rosa)">limpar</button>` : ""}
+        </div>
         <p class="text-xs mb-4" style="color:var(--muted)">
-          Semana ${grav.semanaTabela} · ${editavelEla ? "é só seu, escreve com carinho" : `registro da ${escaparHTML(nomePessoa("mayara"))}`}
+          Semana ${grav.semanaTabela} · ${editavelEla ? "toque para marcar/desmarcar" : `registro da ${escaparHTML(nomePessoa("mayara"))}`}
         </p>
 
         <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Sintomas dessa semana</p>
@@ -2143,6 +2300,32 @@ function renderizarGravidez() {
         ${editavelEla ? `<button class="btn btn-rosa w-full py-3 text-sm" id="btn-salvar-semana">Salvar como estou 💗</button>` : ""}
       </div>
 
+      <!-- NOVO: Acompanhamento pré-natal -->
+      <div class="cartao mb-3">
+        <h3 class="fonte-display text-lg font-bold mb-1">📅 Acompanhamento pré-natal</h3>
+        <p class="text-xs mb-4" style="color:var(--muted)">Consultas, exames e lembretes — tudo num lugar só.</p>
+
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">🩺 Consultas</p>
+        <div class="mb-2">${consultasHTML}</div>
+        <button class="btn btn-neutro w-full py-2 text-xs mb-4" data-prenatal-add="consulta">
+          <i class="fa-solid fa-plus mr-1"></i> Adicionar consulta
+        </button>
+
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">🔬 Exames</p>
+        <div class="mb-2">${examesHTML}</div>
+        <button class="btn btn-neutro w-full py-2 text-xs mb-4" data-prenatal-add="exame">
+          <i class="fa-solid fa-plus mr-1"></i> Adicionar exame
+        </button>
+
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">💡 Lembretes</p>
+        <div class="mb-2">${lembretesHTML}</div>
+        ${lembretesSugeridos ? `<div class="flex flex-wrap gap-2 mb-2">${lembretesSugeridos}</div>` : ""}
+        <button class="btn btn-neutro w-full py-2 text-xs" data-prenatal-add="lembrete">
+          <i class="fa-solid fa-plus mr-1"></i> Adicionar lembrete
+        </button>
+      </div>
+
+      <!-- Pai em treinamento -->
       <div class="cartao mb-3" style="background:linear-gradient(140deg,var(--azul-claro),var(--surface))">
         <h3 class="fonte-display text-lg font-bold mb-1">Pai em treinamento 🌱</h3>
         <p class="text-sm font-bold mb-4" style="color:var(--azul)">
@@ -2179,19 +2362,38 @@ function renderizarGravidez() {
     </div>
   `;
 
+  /* ---------- Eventos: sintomas (toggle + limpar) ---------- */
   if (editavelEla) {
     $$("[data-sintoma]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
         const id = b.dataset.sintoma;
+        /* Pega a versão MAIS RECENTE do estado a cada clique */
         const atual = estado.semanas.find((s) => s.semana === grav.semanaTabela) || {};
         const lista = new Set(atual.sintomas || []);
-        if (lista.has(id)) lista.delete(id); else { lista.add(id); Sons.habitoFeito(); vibrar(16); }
-        const anterior = b.classList.contains("ativo");
+        if (lista.has(id)) {
+          lista.delete(id);
+          Sons.habitoFeito();
+          vibrar(12);
+        } else {
+          lista.add(id);
+          Sons.habitoFeito();
+          vibrar(16);
+        }
         b.classList.toggle("ativo", lista.has(id));
-        const ok = await salvarSemana(grav.semanaTabela, { sintomas: Array.from(lista) }, null);
-        if (!ok) b.classList.toggle("ativo", anterior);
+        await salvarSemana(grav.semanaTabela, { sintomas: Array.from(lista) }, null);
       });
     });
+
+    const btnLimpar = $("#btn-limpar-sintomas");
+    if (btnLimpar) {
+      btnLimpar.addEventListener("click", async () => {
+        const ok = await confirmar("Limpar os sintomas da semana?", "Isso remove todos os sintomas marcados dessa semana. Você pode marcar de novo depois.", "Limpar");
+        if (!ok) return;
+        $$("[data-sintoma]", $("#tela-gravidez")).forEach((x) => x.classList.remove("ativo"));
+        await salvarSemana(grav.semanaTabela, { sintomas: [] }, "Sintomas limpos 🌿");
+        vibrar(18);
+      });
+    }
 
     $$("[data-humor-semana]", $("#tela-gravidez")).forEach((b) => {
       b.addEventListener("click", async () => {
@@ -2202,9 +2404,7 @@ function renderizarGravidez() {
         vibrar(18);
         const ok = await salvarSemana(grav.semanaTabela, { humor: id }, null);
         if (!ok && anterior) { anterior.classList.add("ativo"); b.classList.remove("ativo"); }
-        if (ok && id === "muito_dificil") {
-          toast("Obrigado por dividir 💗 Vai com calma hoje.", 3400);
-        }
+        if (ok && id === "muito_dificil") toast("Obrigado por dividir 💗 Vai com calma hoje.", 3400);
       });
     });
 
@@ -2221,6 +2421,42 @@ function renderizarGravidez() {
     }
   }
 
+  /* ---------- Eventos: pré-natal ---------- */
+  $$("[data-prenatal-add]", $("#tela-gravidez")).forEach((b) => {
+    b.addEventListener("click", () => abrirModalPrenatal(b.dataset.prenatalAdd));
+  });
+
+  $$("[data-prenatal-toggle]", $("#tela-gravidez")).forEach((b) => {
+    b.addEventListener("click", async () => {
+      const id = b.dataset.prenatalToggle;
+      const feito = b.dataset.feito === "1";
+      const item = estado.prenatal.find((x) => x.id === id);
+      if (!item) return;
+      const novo = !feito;
+      /* Optimistic */
+      item.feito = novo;
+      if (novo) { Sons.habitoFeito(); vibrar(20); } else vibrar(12);
+      const ok = await salvarPrenatal({ feito: novo, data_conclusao: novo ? new Date() : null }, id);
+      if (!ok) { item.feito = feito; vibrar(80); }
+      renderizarGravidez();
+    });
+  });
+
+  $$("[data-prenatal-remover]", $("#tela-gravidez")).forEach((b) => {
+    b.addEventListener("click", async () => {
+      const ok = await confirmar("Remover este item?", "Ele será apagado do acompanhamento pré-natal.", "Remover");
+      if (ok) await removerPrenatal(b.dataset.prenatalRemover);
+    });
+  });
+
+  $$("[data-prenatal-sugestao]", $("#tela-gravidez")).forEach((b) => {
+    b.addEventListener("click", async () => {
+      const ok = await salvarPrenatal({ tipo: "lembrete", titulo: b.dataset.prenatalSugestao });
+      if (ok) vibrar(18);
+    });
+  });
+
+  /* ---------- Eventos: checklist do pai ---------- */
   if (editavelEle) {
     const btnAdd = $("#btn-add-item");
     if (btnAdd) {
@@ -2280,6 +2516,62 @@ function renderizarGravidez() {
   }
 }
 
+/* ---------- Modal de adicionar item do pré-natal ---------- */
+function abrirModalPrenatal(tipo) {
+  const titulos = {
+    consulta: { h: "🩺 Nova consulta", sub: "Agende e deixe anotado", placeholderTitulo: "Ex.: Consulta com obstetra" },
+    exame:    { h: "🔬 Novo exame",    sub: "Marque o que vai fazer", placeholderTitulo: "Ex.: Ultrassom morfológica" },
+    lembrete: { h: "💡 Novo lembrete", sub: "Perguntas e cuidados",    placeholderTitulo: "Ex.: Perguntar sobre ácido fólico" }
+  }[tipo];
+
+  const hoje = hojeISO();
+  const mostrarData = tipo !== "lembrete";
+
+  const fundo = abrirModal(`
+    <h3 class="fonte-display text-xl font-bold mb-1">${titulos.h}</h3>
+    <p class="text-xs mb-4" style="color:var(--muted)">${titulos.sub}</p>
+
+    <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Título</label>
+    <input id="pn-titulo" class="campo mb-3" maxlength="120" placeholder="${titulos.placeholderTitulo}">
+
+    ${mostrarData ? `
+      <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Data</label>
+      <input id="pn-data" type="date" class="campo mb-3" value="${hoje}">
+
+      <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Local (opcional)</label>
+      <input id="pn-local" class="campo mb-3" maxlength="80" placeholder="Clínica, hospital, laboratório...">
+
+      <label class="block text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--muted)">Observação (opcional)</label>
+      <textarea id="pn-obs" class="campo mb-4" maxlength="300" placeholder="Levar carteirinha, jejum, exames anteriores..."></textarea>
+    ` : ""}
+
+    <div class="flex gap-3">
+      <button class="btn btn-neutro flex-1 py-3" data-cancelar>Cancelar</button>
+      <button class="btn btn-rosa flex-1 py-3" data-salvar>Salvar 💗</button>
+    </div>
+  `);
+
+  fundo.querySelector("[data-cancelar]").addEventListener("click", () => fecharModal());
+  fundo.querySelector("[data-salvar]").addEventListener("click", async () => {
+    const titulo = ($("#pn-titulo").value || "").trim();
+    if (!titulo) { toast("Preciso de um título 💙", 2000); return; }
+    const dados = { tipo, titulo };
+    if (mostrarData) {
+      const dataVal = $("#pn-data").value;
+      dados.data = dataVal ? new Date(`${dataVal}T00:00:00`) : null;
+      dados.local = ($("#pn-local").value || "").trim();
+      dados.observacao = ($("#pn-obs").value || "").trim();
+    }
+    const ok = await salvarPrenatal(dados);
+    if (ok) {
+      fecharModal();
+      Sons.salvar();
+      vibrar([18, 40, 18]);
+      toast("Adicionado 💗");
+    }
+  });
+}
+
 /* ============================================================
    19. HISTÓRICO
    ============================================================ */
@@ -2322,35 +2614,18 @@ function renderizarHistorico() {
       </div>`;
   }).join("");
 
-  const labels30 = [];
-  for (let i = 29; i >= 0; i--) {
+  /* Últimos 14 dias (mais legível no mobile) */
+  const DIAS_GRAF = 14;
+  const labels = [];
+  for (let i = DIAS_GRAF - 1; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
-    labels30.push(dataISO(d));
+    labels.push(dataISO(d));
   }
-  const aguaDouglas = labels30.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.agua_ml || 0) : null; });
-  const aguaMayara = labels30.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.agua_ml || 0) : null; });
-
-  const semanasLabels = [];
-  const inglesDouglas = [];
-  const inglesMayara = [];
-  for (let i = 5; i >= 0; i--) {
-    const inicio = new Date();
-    inicio.setDate(inicio.getDate() - (inicio.getDay() || 7) + 1 - i * 7);
-    const fim = new Date(inicio);
-    fim.setDate(fim.getDate() + 6);
-    semanasLabels.push(`${inicio.getDate()}/${inicio.getMonth() + 1}`);
-    let somaD = 0, somaM = 0;
-    estado.dias.forEach((d) => {
-      const dd = new Date(`${d.data}T00:00:00`);
-      if (dd >= inicioDoDia(inicio) && dd <= inicioDoDia(fim)) {
-        if (d.pessoa === "douglas") somaD += d.ingles_minutos || 0;
-        if (d.pessoa === "mayara") somaM += d.ingles_minutos || 0;
-      }
-    });
-    inglesDouglas.push(somaD);
-    inglesMayara.push(somaM);
-  }
+  const aguaDouglas = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.agua_ml || 0) : 0; });
+  const aguaMayara = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.agua_ml || 0) : 0; });
+  const inglesDouglas = labels.map((iso) => { const d = obterDia("douglas", iso); return d ? (d.ingles_minutos || 0) : 0; });
+  const inglesMayara = labels.map((iso) => { const d = obterDia("mayara", iso); return d ? (d.ingles_minutos || 0) : 0; });
 
   const semanasGrav = [...estado.semanas].sort((a, b) => a.semana - b.semana);
   const labelsGrav = semanasGrav.map((s) => `S${s.semana}`);
@@ -2360,6 +2635,13 @@ function renderizarHistorico() {
   const distTrabalho = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "trabalho").length;
   const distEstudo = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "estudo").length;
   const distIngles = estado.sessoes.filter((s) => s.pessoa === p && s.categoria === "ingles").length;
+  const totalSessoes = distTrabalho + distEstudo + distIngles;
+
+  /* Labels curtos: dia do mês, sem autoSkip */
+  const labelsCurtos = labels.map((iso) => {
+    const [a, m, d] = iso.split("-");
+    return `${d}/${m}`;
+  });
 
   $("#tela-historico").innerHTML = `
     <div class="stagger">
@@ -2386,18 +2668,25 @@ function renderizarHistorico() {
       <div class="flex gap-3 mb-3">${streaksHTML}</div>
 
       <div class="cartao mb-3">
-        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">💧 Água nos últimos 30 dias</p>
-        <div style="height:190px"><canvas id="grafico-agua"></canvas></div>
+        <div class="flex items-center justify-between mb-3">
+          <p class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--muted)">💧 Água (últimos 14 dias)</p>
+          <p class="text-[0.66rem] font-bold" style="color:var(--muted)">meta ${metaAgua("douglas")}/${metaAgua("mayara")} ml</p>
+        </div>
+        <div style="height:200px"><canvas id="grafico-agua"></canvas></div>
       </div>
 
       <div class="cartao mb-3">
-        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">📚 Minutos de inglês por semana</p>
-        <div style="height:190px"><canvas id="grafico-ingles"></canvas></div>
+        <div class="flex items-center justify-between mb-3">
+          <p class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--muted)">📚 Minutos de inglês por dia</p>
+        </div>
+        <div style="height:200px"><canvas id="grafico-ingles"></canvas></div>
       </div>
 
       <div class="cartao mb-3">
-        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🍅 Meus focos por categoria</p>
-        <div style="height:190px"><canvas id="grafico-pomodoro"></canvas></div>
+        <p class="text-xs font-extrabold uppercase tracking-wider mb-3" style="color:var(--muted)">🍅 Meus focos por categoria (total)</p>
+        ${totalSessoes > 0
+          ? `<div style="height:200px"><canvas id="grafico-pomodoro"></canvas></div>`
+          : `<p class="text-sm" style="color:var(--muted)">Ainda não temos focos registrados. Eles aparecem aqui conforme forem salvos 🍅</p>`}
       </div>
 
       <div class="cartao mb-6">
@@ -2410,22 +2699,50 @@ function renderizarHistorico() {
     </div>
   `;
 
-  Object.values(estado.charts).forEach((c) => { try { c.destroy(); } catch (e) { /* silencioso */ } });
+  Object.values(estado.charts).forEach((c) => { try { c.destroy(); } catch (e) {} });
   estado.charts = {};
 
   const corTexto = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#7A7489";
   const corGrade = getComputedStyle(document.documentElement).getPropertyValue("--borda").trim() || "rgba(0,0,0,.08)";
-  const fontePadrao = { family: "Nunito", size: 11, weight: "600" };
+  const fontePadrao = { family: "Nunito", size: 10, weight: "700" };
+
   const opcoesBase = {
     responsive: true, maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
       legend: { labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true } },
-      tooltip: { titleFont: fontePadrao, bodyFont: fontePadrao, padding: 10, cornerRadius: 10, displayColors: true }
+      tooltip: {
+        titleFont: { ...fontePadrao, size: 12 },
+        bodyFont: { ...fontePadrao, size: 11, weight: "600" },
+        padding: 10, cornerRadius: 10, displayColors: true,
+        callbacks: {
+          title: (items) => {
+            const iso = labels[items[0].dataIndex];
+            const [a, m, d] = iso.split("-");
+            return `${d}/${m}/${a}`;
+          }
+        }
+      }
     },
     scales: {
-      x: { ticks: { color: corTexto, font: fontePadrao, maxRotation: 0, autoSkipPadding: 14 }, grid: { display: false } },
-      y: { ticks: { color: corTexto, font: fontePadrao }, grid: { color: corGrade }, beginAtZero: true }
+      x: {
+        ticks: {
+          color: corTexto,
+          font: fontePadrao,
+          maxRotation: 0,
+          autoSkip: false,
+          callback: function(val, idx) {
+            /* Mostra só 1 a cada 2 no mobile */
+            if (window.innerWidth < 500) return (idx % 2 === 0) ? labelsCurtos[idx] : "";
+            return labelsCurtos[idx];
+          }
+        },
+        grid: { display: false }
+      },
+      y: {
+        ticks: { color: corTexto, font: fontePadrao, precision: 0 },
+        grid: { color: corGrade }, beginAtZero: true
+      }
     }
   };
 
@@ -2434,10 +2751,22 @@ function renderizarHistorico() {
     estado.charts.agua = new Chart(cvAgua, {
       type: "line",
       data: {
-        labels: labels30.map(formatarDataCurta),
+        labels: labelsCurtos,
         datasets: [
-          { label: nomePessoa("douglas"), data: aguaDouglas, borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.12)", fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5 },
-          { label: nomePessoa("mayara"), data: aguaMayara, borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.12)", fill: true, tension: 0.36, spanGaps: true, pointRadius: 0, borderWidth: 2.5 }
+          {
+            label: nomePessoa("douglas"), data: aguaDouglas,
+            borderColor: "#4A90D9", backgroundColor: "rgba(74,144,217,0.14)",
+            fill: false, tension: 0.3, spanGaps: false,
+            pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#4A90D9",
+            pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5
+          },
+          {
+            label: nomePessoa("mayara"), data: aguaMayara,
+            borderColor: "#E08AA6", backgroundColor: "rgba(224,138,166,0.14)",
+            fill: false, tension: 0.3, spanGaps: false,
+            pointRadius: 3, pointHoverRadius: 6, pointBackgroundColor: "#E08AA6",
+            pointBorderColor: "#fff", pointBorderWidth: 1.5, borderWidth: 2.5
+          }
         ]
       },
       options: opcoesBase
@@ -2449,29 +2778,49 @@ function renderizarHistorico() {
     estado.charts.ingles = new Chart(cvIngles, {
       type: "bar",
       data: {
-        labels: semanasLabels,
+        labels: labelsCurtos,
         datasets: [
-          { label: nomePessoa("douglas"), data: inglesDouglas, backgroundColor: "#4A90D9", borderRadius: 8, maxBarThickness: 22 },
-          { label: nomePessoa("mayara"), data: inglesMayara, backgroundColor: "#E08AA6", borderRadius: 8, maxBarThickness: 22 }
+          { label: nomePessoa("douglas"), data: inglesDouglas, backgroundColor: "#4A90D9", borderRadius: 6, maxBarThickness: 14 },
+          { label: nomePessoa("mayara"), data: inglesMayara, backgroundColor: "#E08AA6", borderRadius: 6, maxBarThickness: 14 }
         ]
       },
-      options: opcoesBase
+      options: {
+        ...opcoesBase,
+        scales: {
+          ...opcoesBase.scales,
+          x: {
+            ...opcoesBase.scales.x,
+            stacked: false
+          }
+        }
+      }
     });
   }
 
   const cvPomo = $("#grafico-pomodoro");
-  if (cvPomo) {
+  if (cvPomo && totalSessoes > 0) {
     estado.charts.pomodoro = new Chart(cvPomo, {
       type: "doughnut",
       data: {
         labels: ["Trabalho", "Estudo", "Inglês"],
-        datasets: [{ data: [distTrabalho, distEstudo, distIngles], backgroundColor: ["#4A90D9", "#A8D8C8", "#E08AA6"], borderWidth: 0, hoverOffset: 6 }]
+        datasets: [{
+          data: [distTrabalho, distEstudo, distIngles],
+          backgroundColor: ["#4A90D9", "#A8D8C8", "#E08AA6"],
+          borderWidth: 0, hoverOffset: 6
+        }]
       },
       options: {
         responsive: true, maintainAspectRatio: false, cutout: "62%",
         plugins: {
           legend: { position: "bottom", labels: { color: corTexto, font: fontePadrao, boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 14 } },
-          tooltip: { titleFont: fontePadrao, bodyFont: fontePadrao, padding: 10, cornerRadius: 10 }
+          tooltip: {
+            titleFont: { ...fontePadrao, size: 12 },
+            bodyFont: { ...fontePadrao, size: 11, weight: "600" },
+            padding: 10, cornerRadius: 10,
+            callbacks: {
+              label: (ctx) => `${ctx.label}: ${ctx.parsed} sessões`
+            }
+          }
         }
       }
     });
@@ -2693,9 +3042,7 @@ function renderizarConfig() {
       if (perm === "granted") {
         toast("Notificações ligadas 🔔");
         notificarNavegador("Tudo pronto! 💙", "Vamos cuidar da nossa rotina juntinhos.");
-      } else {
-        toast("Sem problemas, seguimos por aqui 💙");
-      }
+      } else toast("Sem problemas, seguimos por aqui 💙");
     } catch (e) { toast("Não consegui ativar agora 💙"); }
   });
 
@@ -2729,8 +3076,7 @@ function renderizarConfig() {
 
     const ok = await salvarConfig(dados, "Configurações salvas 💚");
     if (ok) {
-      Sons.salvar();
-      vibrar([18, 40, 18]);
+      Sons.salvar(); vibrar([18, 40, 18]);
       if (!estado.pomodoro.rodando && estado.pomodoro.modo !== "pausa") definirModoPomodoro(estado.pomodoro.modo);
       atualizarCabecalho();
     }
@@ -2741,7 +3087,8 @@ function renderizarConfig() {
       app: APP_CONFIG.nome, versao: APP_CONFIG.versao,
       exportado_em: new Date().toISOString(),
       config: estado.config, dias: estado.dias, semanas_gravidez: estado.semanas,
-      preparacao_papai: estado.preparacao, sessoes_pomodoro: estado.sessoes
+      preparacao_papai: estado.preparacao, sessoes_pomodoro: estado.sessoes,
+      prenatal: estado.prenatal
     };
     try {
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
@@ -2749,12 +3096,9 @@ function renderizarConfig() {
       const a = document.createElement("a");
       a.href = url;
       a.download = `nossa-rotina-viva-backup-${hojeISO()}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 2000);
-      toast("Backup baixado 💚");
-      Sons.salvar();
+      toast("Backup baixado 💚"); Sons.salvar();
     } catch (e) { toast("Não consegui gerar o backup agora 💙"); }
   });
 
@@ -2779,7 +3123,7 @@ service cloud.firestore {
   $("#cfg-apagar").addEventListener("click", async () => {
     const ok1 = await confirmar(
       "Apagar todos os registros?",
-      "Isso remove diários, semanas de gravidez, checklist e configurações. Não tem volta.",
+      "Isso remove diários, semanas de gravidez, checklist, pré-natal e configurações. Não tem volta.",
       "Continuar"
     );
     if (!ok1) return;
@@ -2792,7 +3136,7 @@ service cloud.firestore {
 
     toast("Apagando...", 2000);
     try {
-      const colecoes = ["dias", "semanas_gravidez", "preparacao_papai", "sessoes_pomodoro"];
+      const colecoes = ["dias", "semanas_gravidez", "preparacao_papai", "sessoes_pomodoro", "prenatal"];
       for (const nome of colecoes) {
         const snap = await getDocs(collection(db, nome));
         const docs = snap.docs;
@@ -2807,9 +3151,7 @@ service cloud.firestore {
       estado.pessoa = null;
       toast("Tudo apagado. Vamos recomeçar com carinho 💙", 3200);
       setTimeout(() => window.location.reload(), 1400);
-    } catch (e) {
-      toast("Não consegui apagar tudo agora 💙", 3200);
-    }
+    } catch (e) { toast("Não consegui apagar tudo agora 💙", 3200); }
   });
 }
 
@@ -2824,9 +3166,7 @@ function aplicarTema(tema) {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", escuro ? "#14121C" : "#F6F3FB");
   const btn = $("#btn-tema");
-  if (btn) {
-    btn.innerHTML = escuro ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-  }
+  if (btn) btn.innerHTML = escuro ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
 }
 
 /* ============================================================
@@ -2878,10 +3218,7 @@ function iniciarLembretes() {
         const chave = `${hojeISO()}_${r.id}`;
         if (!ultimaRefeicaoAvisada[chave]) {
           const feito = (dia.refeicoes || []).some((x) => x.tipo === r.id);
-          if (!feito) {
-            notificarNavegador(r.msg, r.corpo);
-            ultimaRefeicaoAvisada[chave] = true;
-          }
+          if (!feito) { notificarNavegador(r.msg, r.corpo); ultimaRefeicaoAvisada[chave] = true; }
         }
       }
     });
@@ -2914,12 +3251,9 @@ function gerarIconeDataURL() {
     const ctx = canvas.getContext("2d");
     const grad = ctx.createLinearGradient(0, 0, 512, 512);
     grad.addColorStop(0, "#F6DDE5"); grad.addColorStop(0.5, "#E8DEF7"); grad.addColorStop(1, "#D8EFE7");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 512, 512);
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, 512, 512);
     ctx.fillStyle = "rgba(255,255,255,0.55)";
-    ctx.beginPath();
-    ctx.arc(256, 256, 190, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(256, 256, 190, 0, Math.PI * 2); ctx.fill();
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.font = "150px serif";
     ctx.fillText("💙", 178, 236);
@@ -2950,7 +3284,6 @@ function registrarPWA() {
     const link = document.createElement("link");
     link.rel = "manifest"; link.href = url;
     document.head.appendChild(link);
-
     if (icone) {
       const apple = document.createElement("link");
       apple.rel = "apple-touch-icon"; apple.href = icone;
@@ -2975,9 +3308,7 @@ function bloquearGestos() {
     if (agora - ultimoToque <= 320) e.preventDefault();
     ultimoToque = agora;
   }, { passive: false });
-  document.addEventListener("touchmove", (e) => {
-    if (e.touches.length > 1) e.preventDefault();
-  }, { passive: false });
+  document.addEventListener("touchmove", (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
   document.addEventListener("contextmenu", (e) => e.preventDefault());
   document.addEventListener("wheel", (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
   document.addEventListener("keydown", (e) => {
@@ -3008,8 +3339,7 @@ $$(".nav-btn").forEach((b) => {
 
 $("#btn-tema").addEventListener("click", () => {
   const novo = (localStorage.getItem(CHAVE_TEMA) || "light") === "dark" ? "light" : "dark";
-  aplicarTema(novo);
-  vibrar(14);
+  aplicarTema(novo); vibrar(14);
   if (estado.tela === "config") renderizarConfig();
 });
 
@@ -3088,9 +3418,6 @@ async function boot() {
   registrarPWA();
   bloquearGestos();
 
-  const dica = $("#loading-dica");
-  if (dica) dica.textContent = "";
-
   if (!FIREBASE_CONFIGURADO) {
     $("#tela-loading").classList.add("oculto");
     $("#tela-login").classList.add("oculto");
@@ -3110,8 +3437,7 @@ async function boot() {
     return;
   }
 
-  /* Timeout de segurança: se em 15s o app não carregou, mostra o login
-     com uma mensagem clara em vez de travar em "Carregando..." */
+  /* Timeout de segurança: 15s */
   const timerSeguranca = setTimeout(() => {
     const loading = $("#tela-loading");
     if (loading && !loading.classList.contains("oculto")) {
@@ -3135,7 +3461,14 @@ async function boot() {
       return;
     }
     iniciarOuvintes();
-    /* O timer de segurança é limpo quando a config chega no onSnapshot */
+    /* IMPORTANTE: fallback via getDoc caso o onSnapshot não dispare em mobile */
+    setTimeout(() => {
+      if (!estado.configCarregada) buscarConfigSeNecessario();
+    }, 3000);
+    setTimeout(() => {
+      if (!estado.configCarregada) buscarConfigSeNecessario();
+    }, 8000);
+
     const vigia = setInterval(() => {
       if (estado.configCarregada) {
         clearTimeout(timerSeguranca);
@@ -3152,10 +3485,7 @@ async function boot() {
 
 boot().then(() => {
   const esperar = setInterval(() => {
-    if (estado.config) {
-      clearInterval(esperar);
-      iniciarLembretes();
-    }
+    if (estado.config) { clearInterval(esperar); iniciarLembretes(); }
   }, 1000);
 });
 
